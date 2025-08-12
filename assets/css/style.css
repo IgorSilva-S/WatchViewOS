@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: black;
+    color: aliceblue;
+    font-family: "Quicksand", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+}
+
+.defaultWatch {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: .5s ease-out;
+    gap: 10px
+}
+
+.loadingContainer {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 15px;
+    height: 60px;
+}
+
+.loadingDot {
+    width: 40px;
+    height: 40px;
+    border-radius: 120px;
+    background-color: aqua;
+    animation: upAndDown 2s infinite;
+}
+
+@keyframes upAndDown {
+    0% {
+        margin-bottom: 0;
+    }
+
+    50% {
+        margin-bottom: 120px;
+    }
+
+    100% {
+        margin-bottom: 0%;
+    }
+}
+
+.defaultWatch h1 {
+    font-size: 160px;
+}
+.defaultWatch h2 {
+    font-size: 50px;
+}
+
+.homeMenu {
+    position: fixed;
+    bottom: -60%;
+    left: 0;
+    border-radius: 24px 24px 0 0;
+    background-color: #19191999;
+    width: 100%;
+    height: 60%;
+    transition: .5s ease-out;
+    box-sizing: border-box;
+    padding: 30px;
+}
+
+.homeMenu h1 {
+    font-size: 50px;
+}

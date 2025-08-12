@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watch View</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <section class="defaultWatch" id="watch">
+        <h1 id="time">
+            <div class="loadingContainer">
+                <div class="loadingDot"></div>
+                <div class="loadingDot" style="animation-delay: .2s;"></div>
+                <div class="loadingDot" style="animation-delay: .4s;"></div>
+                <div class="loadingDot" style="animation-delay: .6s;"></div>
+                <div class="loadingDot" style="animation-delay: .8s;"></div>
+            </div>
+        </h1>
+        <h2 id="date">
+            Buscando horário
+        </h2>
+    </section>
+    <div class="homeMenu" id="HM">
+        <h1>Menu Home</h1>
+        <audio src="assets/sounds/HomeUp.mp3" id="openHome"></audio>
+        <audio src="assets/sounds/HomeClose.mp3" id="closeHome"></audio>
+    </div>
+
+    <script src="assets/js/homeMenu.js"></script>
+    <script src="assets/js/timecount.js"></script>
+</body>
+
+</html>
