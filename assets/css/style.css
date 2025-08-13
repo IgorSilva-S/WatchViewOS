@@ -11,6 +11,20 @@ body {
     font-family: "Quicksand", sans-serif;
 }
 
+.wallpaper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-position: center;
+    background-size: cover;
+    overflow: hidden;
+    z-index: -1;
+    opacity: .2;
+    transition-duration: .4s;
+}
+
 h1, h2, h3, h4, h5, h6 {
     font-weight: normal;
 }
@@ -22,7 +36,7 @@ h1, h2, h3, h4, h5, h6 {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    transition: .5s ease-out;
+    transition: .4s ease-out;
     gap: 10px
 }
 
@@ -38,7 +52,7 @@ h1, h2, h3, h4, h5, h6 {
     width: 40px;
     height: 40px;
     border-radius: 120px;
-    background-color: aqua;
+    background-color: #0078d4;
     animation: upAndDown 2s infinite;
 }
 
@@ -71,11 +85,29 @@ h1, h2, h3, h4, h5, h6 {
     background-color: #19191999;
     width: 100%;
     height: 60%;
-    transition: .5s ease-out;
+    transition: .4s ease-out;
     box-sizing: border-box;
     padding: 30px;
 }
 
 .homeMenu h1 {
     font-size: 50px;
+}
+
+.homeMenu .abContainer {
+    display: flex;
+    width: 100%;
+    height: 80%;
+    justify-content: space-evenly;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 30px;
+}
+
+.abContainer button {
+    height: 80%;
+    aspect-ratio: 1;
+    background-color: #191919cc;
+    border-radius: 8px;
+    border: none;
 }

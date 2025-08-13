@@ -35,8 +35,8 @@ async function getWebDate() {
             updateDate()
             updateWatch()
         }, 1000);
-
-        setInterval(async () => {
+        
+        async function resync() {
             console.log('Ressincronizando')
             try {
                 webUpdate = await fetch('http://worldtimeapi.org/api/ip')
@@ -48,9 +48,13 @@ async function getWebDate() {
                     lastResync = 0
                 }
             } catch (err) {
-                console.error(`Problema para chamada: ${err}`)
+                console.error(`Problema para ressincronização: ${err}`)
+                console.warn('Reinciando sincronização')
+                resync()
             }
-        }, 600000);
+        }
+
+        setInterval(resync, 600000);
 
         setInterval(() => {
             lastResync++
