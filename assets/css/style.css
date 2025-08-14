@@ -1,5 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
 
+@font-face {
+    font-family: "Segoe Fluent Icons";
+    src: url(../fonts/SegoeFluentIcons.ttf);
+}
+
+:root {
+    --primary: #292ccc;
+    --transPrimary: #292ccc77;
+}
+
 * {
     padding: 0;
     margin: 0;
@@ -9,6 +19,18 @@ body {
     background-color: black;
     color: aliceblue;
     font-family: "Quicksand", sans-serif;
+}
+
+.phoneTurn {
+    display: none;
+}
+
+button {
+    font-family: "Quicksand", sans-serif;
+}
+
+f-icon {
+    font-family: "Segoe Fluent Icons";
 }
 
 .wallpaper {
@@ -23,9 +45,15 @@ body {
     z-index: -1;
     opacity: .2;
     transition-duration: .4s;
+    background-image: url();
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-weight: normal;
 }
 
@@ -52,7 +80,7 @@ h1, h2, h3, h4, h5, h6 {
     width: 40px;
     height: 40px;
     border-radius: 120px;
-    background-color: #0078d4;
+    background-color: var(--primary);
     animation: upAndDown 2s infinite;
 }
 
@@ -73,6 +101,7 @@ h1, h2, h3, h4, h5, h6 {
 .defaultWatch h1 {
     font-size: 160px;
 }
+
 .defaultWatch h2 {
     font-size: 50px;
 }
@@ -110,4 +139,108 @@ h1, h2, h3, h4, h5, h6 {
     background-color: #191919cc;
     border-radius: 8px;
     border: none;
+    color: white;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    font-size: 40px;
+    transition-duration: .25s;
+}
+
+.abContainer button:hover {
+    box-shadow: 0 0 12px 5px var(--primary);
+}
+
+.abContainer button f-icon {
+    font-size: 80px;
+}
+
+.appBackground {
+    background-color: #19191999;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    backdrop-filter: blur(30px);
+}
+
+@media (max-height: 500px) {
+    .defaultWatch h1 {
+        font-size: 100px;
+    }
+
+    .defaultWatch h2 {
+        font-size: 25px;
+    }
+
+    .homeMenu {
+        bottom: -50%;
+        height: 50%;
+    }
+
+    .homeMenu h1 {
+        display: none;
+    }
+
+    .homeMenu .abContainer {
+        height: 100%;
+        padding: 5px;
+    }
+
+    .abContainer button {
+        height: 100%;
+        aspect-ratio: 1;
+    }
+
+    .abContainer button span {
+        font-size: 20px;
+    }
+
+    .abContainer button f-icon {
+        font-size: 50px;
+    }
+}
+
+@media (max-width: 500px) {
+    .phoneTurn {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        flex-direction: column;
+        position: fixed;
+        z-index: 999;
+        background-color: var(--primary);
+        color: white;
+        top: 0;
+        left: 0;
+        width: 100dvw;
+        height: 100dvh;
+        text-align: center;
+        animation: colorBloom 7s linear infinite;
+    }
+
+    @keyframes colorBloom {
+        0% {
+            background-color: black;
+        }
+
+        50% {
+            background-color: var(--primary);
+        }
+
+        100% {
+            background-color: black;
+        }
+
+    }
+
+    .phoneTurn f-icon {
+        font-size: 120px;
+    }
+
+    .phoneTurn h1 {
+        font-size: 40px;
+    }
 }
