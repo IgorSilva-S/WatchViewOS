@@ -1,0 +1,386 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+
+@font-face {
+    font-family: "Segoe Fluent Icons";
+    src: url(../fonts/SegoeFluentIcons.ttf);
+}
+
+:root {
+    --primary: #292ccc;
+    --primaryColor: #f0f8ff;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: black;
+    color: aliceblue;
+    font-family: "Quicksand", sans-serif;
+}
+
+.phoneTurn {
+    display: none;
+}
+
+button {
+    font-family: "Quicksand", sans-serif;
+}
+
+f-icon {
+    font-family: "Segoe Fluent Icons";
+}
+
+.wallpaper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-position: center;
+    background-size: cover;
+    overflow: hidden;
+    z-index: -1;
+    opacity: 1;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: normal;
+}
+
+.defaultWatch {
+    width: 100dvw;
+    height: 100dvh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px
+}
+
+.loadingContainer {
+    display: none;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 15px;
+    height: 60px;
+}
+
+.loadingDot {
+    width: 40px;
+    height: 40px;
+    border-radius: 120px;
+    background-color: var(--primary);
+}
+
+.defaultWatch h1 {
+    font-size: 160px;
+}
+
+.defaultWatch h2 {
+    font-size: 50px;
+}
+
+.homeMenu {
+    position: fixed;
+    bottom: -60%;
+    left: 0;
+    border-radius: 24px 24px 0 0;
+    background-color: #252525;
+    width: 100%;
+    height: 60%;
+    box-sizing: border-box;
+    padding: 30px;
+    z-index: 998;
+}
+
+.homeMenuAccent {
+    position: fixed;
+    bottom: -60%;
+    left: 0;
+    border-radius: 24px 24px 0 0;
+    background-color: var(--primary);
+    color: var(--primaryColor);
+    width: 100%;
+    height: 60%;
+    box-sizing: border-box;
+    padding: 30px;
+    z-index: 998;
+}
+
+.homeMenu h1,
+.homeMenuAccent h1 {
+    font-size: 50px;
+}
+
+.homeMenu .abContainer,
+.homeMenuAccent .abContainer {
+    display: flex;
+    width: 100%;
+    height: 80%;
+    justify-content: space-evenly;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 30px;
+}
+
+.abContainer button {
+    height: 80%;
+    aspect-ratio: 1;
+    background-color: #353535;
+    border-radius: 8px;
+    border: none;
+    color: white;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    font-size: 40px;
+}
+
+.abContainer button:hover {
+    box-shadow: 0 0 0px 5px var(--primary);
+}
+
+.abContainer button f-icon {
+    font-size: 80px;
+}
+
+.app {
+    background-color: #191919;
+    position: fixed;
+    width: 100dvw;
+    height: 100dvh;
+    top: 0;
+    left: 0;
+    display: none;
+    padding-top: 80px;
+}
+
+.appHeader {
+    width: 100%;
+    height: 80px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 0 30px;
+    font-size: 30px;
+}
+
+.appHeader.backHeader {
+    width: calc(100% - 40px)
+}
+
+.appHeader .loading {
+    width: 50px;
+    height: 50px;
+    animation: circleLoading 1s steps(4, jump-start) infinite;
+}
+
+@keyframes circleLoading {
+    from {
+        rotate: 0deg;
+    }
+
+    to {
+        rotate: 360deg;
+    }
+}
+
+.appContent {
+    width: 100%;
+    height: calc(100dvh - 80px);
+    box-sizing: border-box;
+    padding: 30px;
+    overflow-y: auto;
+}
+
+.primBtn {
+    background-color: var(--primary);
+    color: var(--primaryColor);
+    padding: 15px;
+    width: 160px;
+    border-radius: 120px;
+    border: none;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+.secBtn {
+    background-color: #191919;
+    color: aliceblue;
+    padding: 15px;
+    width: 160px;
+    border-radius: 120px;
+    border: none;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+.primBtn:hover,
+.secBtn:hover {
+    box-shadow: 0 0 0px 5px var(--primary);
+}
+
+/*Settings*/
+
+.sSubPage {
+    display: none;
+}
+
+.sSubPage .introMsg {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.sSubPage .introMsg h1 {
+    font-size: 60px;
+}
+
+
+.sSubPage .introMsg h2 {
+    font-size: 40px;
+}
+
+.setBtns {
+    display: flex;
+    gap: 30px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.configBtn {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 30px;
+    border: none;
+    border-radius: 120px;
+    font-size: 30px;
+    padding: 20px 40px;
+    background-color: #252525;
+    color: aliceblue;
+}
+
+.configBtn:hover {
+    background-color: #353535;
+    box-shadow: 0 0 0px 5px var(--primary);
+}
+
+#backSettings {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    border: none;
+    background-color: transparent;
+    padding: 5px;
+    position: absolute;
+    left: -15px;
+    color: aliceblue;
+    font-size: 20px;
+}
+
+.configInfo {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 30px 50px;
+    border: none;
+    border-radius: 16px;
+    font-size: 30px;
+    padding: 20px 40px;
+    background-color: #252525;
+    color: aliceblue;
+    transition-duration: .25s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+
+
+@media (max-height: 500px) {
+    .defaultWatch h1 {
+        font-size: 100px;
+    }
+
+    .defaultWatch h2 {
+        font-size: 25px;
+    }
+
+    .homeMenu {
+        bottom: -50%;
+        height: 50%;
+    }
+
+    .homeMenu h1 {
+        display: none;
+    }
+
+    .homeMenu .abContainer {
+        height: 100%;
+        padding: 5px;
+    }
+
+    .abContainer button {
+        height: 100%;
+        aspect-ratio: 1;
+    }
+
+    .abContainer button span {
+        font-size: 20px;
+    }
+
+    .abContainer button f-icon {
+        font-size: 50px;
+    }
+}
+
+@media (max-width: 500px) {
+    .phoneTurn {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        flex-direction: column;
+        position: fixed;
+        z-index: 999;
+        background-color: black;
+        color: white;
+        top: 0;
+        left: 0;
+        width: 100dvw;
+        height: 100dvh;
+        text-align: center;
+    }
+
+    .phoneTurn f-icon {
+        font-size: 120px;
+    }
+
+    .phoneTurn h1 {
+        font-size: 40px;
+    }
+}

@@ -5,7 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Watch View</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css" id="mainCss">
+
+    <!--Do not disable screen-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/nosleep/0.12.0/NoSleep.min.js"></script>
 </head>
 
 <body>
@@ -27,36 +30,121 @@
     <div class="homeMenu" id="HM">
         <h1>Menu Home</h1>
         <div class="abContainer" id="abc">
-            <button>
+            <button id="watchBtn">
+                <f-icon>&#xF182;</f-icon>
+                <span>Relógio</span>
+            </button>
+            <button id="alarmBtn">
                 <f-icon>&#xe916;</f-icon>
                 <span>Alarme</span>
             </button>
-            <button>
+            <button id="todoBtn">
                 <f-icon>&#xe73a;</f-icon>
                 <span>Afazeres</span>
             </button>
-            <button>
+            <button id="eventsBtn">
                 <f-icon>&#xe787;</f-icon>
-                <span>Marcações</span>
+                <span>Eventos</span>
             </button>
-            <button>
+            <button id="settingsBtn">
                 <f-icon>&#xe713;</f-icon>
                 <span>Config.</span>
             </button>
         </div>
-        <audio src="assets/sounds/HomeUp.mp3" id="openHome"></audio>
+        <audio src="assets/sounds/HomeUp - WiiU.mp3" id="openHome"></audio>
         <audio src="assets/sounds/HomeClose.mp3" id="closeHome"></audio>
     </div>
-    <section class="appBackground">
+    <section class="app" id="alarm">
+        <div class="appHeader">
+            <span>Alarmes</span>
+            <span id="aClock">
+                <img class="loading" src="https://clubwumpus.github.io/wumpshop/img/loading.png" alt="">
+            </span>
+        </div>
+    </section>
+    <section class="app" id="todo">
+        <div class="appHeader">
+            <span>Afazeres</span>
+            <span id="tClock">
+                <img class="loading" src="https://clubwumpus.github.io/wumpshop/img/loading.png" alt="">
+            </span>
+        </div>
+    </section>
+    <section class="app" id="events">
+        <div class="appHeader">
+            <span>Eventos</span>
+            <span id="eClock">
+                <img class="loading" src="https://clubwumpus.github.io/wumpshop/img/loading.png" alt="">
+            </span>
+        </div>
+    </section>
+    <section class="app" id="settings">
+        <div class="appHeader" id="stgHeader">
+            <button id="backSettings"><f-icon>&#xE72B;</f-icon></button>
+            <span id="settingName">Configurações</span>
+            <span id="sClock">
+                <img class="loading" src="https://clubwumpus.github.io/wumpshop/img/loading.png" alt="">
+            </span>
+        </div>
+        <div class="appContent setBtns" id="sHome">
+            <button class="configBtn">Data e Hora</button>
+            <button class="configBtn">Personalização</button>
+            <button class="configBtn" id="sysBtn">Sistema</button>
+            <button class="configBtn">Dados</button>
+            <button class="configBtn">Mini Apps</button>
+        </div>
 
+        <div class="appContent sSubPage" id="sysInfo">
+            <div class="introMsg">
+                <h1>WatchViewOS</h1>
+                <h2>Ver 1.0</h2>
+            </div>
+            <div class="configInfo">
+                <label for="dblclkFS">Tela cheia com dois cliques</label>
+                <input type="checkbox" name="" id="dblclkFS" checked>
+            </div>
+            <div class="configInfo">
+                <div>
+                    <label for="sysSounds">Tocar sons ao interagir com o sistema</label>
+                </div>
+                <input type="checkbox" name="" id="sysSounds">
+            </div>
+            <div class="configInfo">
+                <div>
+                    <label for="liteModel">Reduzir efeitos</label>
+                </div>
+                <input type="checkbox" name="" id="liteModel">
+            </div>
+            <div class="configInfo">
+                Repositório projeto
+                <a href="https://github.com/IgorSilva-S/WatchViewOS" target="_blank" class="secBtn">Abrir</a>
+            </div>
+            <div class="configInfo">
+                Versão insider
+                <a href="https://github.com/IgorSilva-S/WatchViewOS/insider" target="_blank" class="secBtn">Insider</a>
+            </div>
+            <div class="configInfo">
+                Relatar bug
+                <a href="https://github.com/IgorSilva-S/WatchViewOS/issues" target="_blank" class="secBtn">Relatar</a>
+            </div>
+            <div class="configInfo">
+                Sugerir melhorias
+                <a href="mailto:igorsilva.s4336@gmail.com" target="_blank" class="secBtn">Sugerir</a>
+            </div>
+            <button class="configBtn">
+                Créditos
+            </button>
+        </div>
     </section>
     <section class="phoneTurn">
         <f-icon>&#xe7ad;</f-icon>
         <h1>Gire o telefone para usar o WatchViewOS</h1>
     </section>
 
+    <script src="assets/js/boot.js"></script>
     <script src="assets/js/homeMenu.js"></script>
     <script src="assets/js/timecount.js"></script>
+    <script src="assets/js/settings.js"></script>
 </body>
 
 </html>

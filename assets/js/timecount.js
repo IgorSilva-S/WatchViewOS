@@ -1,6 +1,9 @@
 const dfTime = document.getElementById('time')
 const dfDate = document.getElementById('date')
 
+// Apps clock
+const sClock = document.getElementById('sClock')
+
 let webUpdate, webData, date, localStart, apiDate, lastResync
 
 async function getWebDate() {
@@ -23,6 +26,7 @@ async function getWebDate() {
             const wDate = new Date(date)
             dfTime.innerText = `${addZero(wDate.getHours())}:${addZero(wDate.getMinutes())}`
             dfDate.innerHTML = `${weekDay[wDate.getDay()]}, ${addZero(wDate.getDate())}/${addZero(wDate.getMonth() + 1)}/${wDate.getFullYear()}`
+            sClock.innerText = `${addZero(wDate.getHours())}:${addZero(wDate.getMinutes())} - ${weekDay[wDate.getDay()]}, ${addZero(wDate.getDate())}/${addZero(wDate.getMonth() + 1)}/${wDate.getFullYear()}`
         }
 
         function updateDate() {
@@ -35,7 +39,7 @@ async function getWebDate() {
             updateDate()
             updateWatch()
         }, 1000);
-        
+
         async function resync() {
             console.log('Ressincronizando')
             try {
