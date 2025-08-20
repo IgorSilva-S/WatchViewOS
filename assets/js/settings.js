@@ -2,6 +2,7 @@ const sHome = document.getElementById('sHome')
 const sHeader = document.getElementById('stgHeader')
 const backBtn = document.getElementById('backSettings')
 const sName = document.getElementById('settingName')
+const cusInfo = document.getElementById('cusInfo')
 const sysInfo = document.getElementById('sysInfo')
 
 document.getElementById('sysBtn').addEventListener('click', () => {
@@ -15,10 +16,23 @@ document.getElementById('sysBtn').addEventListener('click', () => {
     }, 400);
 })
 
+document.getElementById('cusBtn').addEventListener('click', () => {
+    sHome.style.opacity = '0'
+    setTimeout(() => {
+        cusInfo.style.display = 'block'
+        sHome.style.display = 'none'
+        backBtn.style.display = 'flex'
+        sHeader.classList.add('backHeader')
+        sName.innerHTML = 'Personalização'
+    }, 400);
+})
+
 backBtn.addEventListener('click', () => {
     sysInfo.style.opacity = '0'
+    cusInfo.style.opacity = '0'
     setTimeout(() => {
         sysInfo.removeAttribute('style')
+        cusInfo.removeAttribute('style')
         sHome.removeAttribute('style')
         backBtn.removeAttribute('style')
         sHeader.classList.remove('backHeader')

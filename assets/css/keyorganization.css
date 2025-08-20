@@ -1,45 +1,4 @@
-.flex {
+.col {
     display: flex;
-}
-
-.g-5 {
-    gap: 5px
-}
-
-.g-10 {
-    gap: 10px
-}
-
-.g-15 {
-    gap: 15px
-}
-
-.g-20 {
-    gap: 20px
-}
-
-.jcai-cnt {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.jcai-cnt-cl {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-.jcai-sec {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.jcai-sec-cl {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
 }

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Watch View</title>
     <link rel="stylesheet" href="assets/css/style.css" id="mainCss">
+    <link rel="stylesheet" href="assets/css/keyorganization.css">
 
     <!--Do not disable screen-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/nosleep/0.12.0/NoSleep.min.js"></script>
@@ -88,16 +89,48 @@
         </div>
         <div class="appContent setBtns" id="sHome">
             <button class="configBtn">Data e Hora</button>
-            <button class="configBtn">Personalização</button>
+            <button class="configBtn" id="cusBtn">Personalização</button>
             <button class="configBtn" id="sysBtn">Sistema</button>
             <button class="configBtn">Dados</button>
             <button class="configBtn">Mini Apps</button>
         </div>
 
+        <div class="appContent sSubPage" id="cusInfo">
+            <div class="introMsg">
+                <div class="configInfo">
+                    <div class="col">
+                        Papel de parede
+                        <span>Padrão</span>
+                    </div>
+                    <button class="primBtn">Alterar</button>
+                </div>
+            </div>
+            <div class="configInfo">
+                <label for="wpOpacity">Opacidade papel de parede</label>
+                <input type="number" name="" id="wpOpacity" min="0" max="100">
+            </div>
+            <div class="configInfo">
+                Cor de destaque
+                <label for="aColor" style="position: absolute; right: 50px;">C</label>
+                <input type="color" name="" id="aColor" style="width: 0; height: 0;">
+            </div>
+            <div class="configInfo">
+                Cor de fundo
+                <label for="bColor" style="position: absolute; right: 50px;">C</label>
+                <input type="color" name="" id="bColor" style="width: 0; height: 0;">
+            </div>
+            <div class="configInfo">
+                <label for="homeColor">Usar cor de destaque no Menu Home</label>
+                <input type="checkbox" name="" id="homeColor">
+            </div>
+        </div>
+
         <div class="appContent sSubPage" id="sysInfo">
             <div class="introMsg">
-                <h1>WatchViewOS</h1>
-                <h2>Ver 1.0</h2>
+                <div>
+                    <h1>WatchViewOS</h1>
+                    <h2>Ver 1.0</h2>
+                </div>
             </div>
             <div class="configInfo">
                 <label for="dblclkFS">Tela cheia com dois cliques</label>
