@@ -67,7 +67,7 @@
         <div class="appHeader">
             <span>Afazeres</span>
             <span id="tClock">
-                <img class="loading" src="https://clubwumpus.github.io/wumpshop/img/loading.png" alt="">
+                <div class="loading"></div>
             </span>
         </div>
     </section>
@@ -75,7 +75,7 @@
         <div class="appHeader">
             <span>Eventos</span>
             <span id="eClock">
-                <img class="loading" src="https://clubwumpus.github.io/wumpshop/img/loading.png" alt="">
+                <div class="loading"></div>
             </span>
         </div>
     </section>
@@ -84,7 +84,7 @@
             <button id="backSettings"><f-icon>&#xE72B;</f-icon></button>
             <span id="settingName">Configurações</span>
             <span id="sClock">
-                <img class="loading" src="https://clubwumpus.github.io/wumpshop/img/loading.png" alt="">
+                <div class="loading"></div>
             </span>
         </div>
         <div class="appContent setBtns" id="sHome">
@@ -100,14 +100,14 @@
                 <div class="configInfo">
                     <div class="col">
                         Papel de parede
-                        <span>Padrão</span>
+                        <span id="tyWall">Nenhum</span>
                     </div>
                     <button class="primBtn">Alterar</button>
                 </div>
             </div>
             <div class="configInfo">
                 <label for="wpOpacity">Opacidade papel de parede</label>
-                <input type="number" name="" id="wpOpacity" min="0" max="100">
+                <input type="number" name="" id="wpOpacity" min="0" max="100" value="100">
             </div>
             <div class="configInfo">
                 Cor de destaque
@@ -133,7 +133,10 @@
                 </div>
             </div>
             <div class="configInfo">
-                <label for="dblclkFS">Tela cheia com dois cliques</label>
+                <div class="col">
+                    <label for="dblclkFS">Tela cheia com dois cliques</label>
+                    <span class="subText">Obs: Essa configuração não se aplica em computadores</span>
+                </div>
                 <input type="checkbox" name="" id="dblclkFS" checked>
             </div>
             <div class="configInfo">
@@ -173,6 +176,8 @@
         <f-icon>&#xe7ad;</f-icon>
         <h1>Gire o telefone para usar o WatchViewOS</h1>
     </section>
+
+    <div class="popUp"></div>
 
     <script src="assets/js/boot.js"></script>
     <script src="assets/js/homeMenu.js"></script>

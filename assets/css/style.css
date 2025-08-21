@@ -212,8 +212,8 @@ h6 {
 }
 
 .appHeader .loading {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     border: 5px solid var(--primary);
     animation: circleLoading 1s linear infinite;
@@ -221,12 +221,14 @@ h6 {
 }
 
 .appHeader .loading::after {
-    width: 40px;
-    height: 40px;
+    width: 16px;
+    height: 16px;
     content: '';
-    background-color: #191919;
+    background-color: var(--primary);
     border-radius: 50%;
     position: absolute;
+    top: -8px;
+    box-shadow: 0 0 5px 1px white;
 }
 
 @keyframes circleLoading {
@@ -282,6 +284,19 @@ h6 {
 .primBtn:hover,
 .secBtn:hover {
     box-shadow: 0 0 12px 5px var(--primary);
+}
+
+.popUp {
+    width: 60%;
+    height: 80%;
+    background-color: #191919;
+    position: absolute;
+    top: -80%;
+    left: calc(50% - 30%);
+    z-index: 990;
+    border-radius: 30px;
+    transition-duration: .5s;
+
 }
 
 /*Settings*/
