@@ -13,6 +13,10 @@
 </head>
 
 <body>
+    <style id="wallColor"></style>
+    <style id="wallTxt"></style>
+    <style id="RAColor"></style>
+    <style id="RAText"></style>
     <div class="wallpaper" id="wallpaper"></div>
     <section class="defaultWatch" id="watch">
         <h1 id="time">
@@ -97,7 +101,8 @@
 
         <div class="appContent sSubPage" id="cusInfo">
             <div class="introMsg">
-                <div class="configInfo">
+                <div class="screen"></div>
+                <div class="configInfo persona">
                     <div class="col">
                         Papel de parede
                         <span id="tyWall">Nenhum</span>
@@ -111,17 +116,37 @@
             </div>
             <div class="configInfo">
                 Cor de destaque
-                <label for="aColor" style="position: absolute; right: 50px;">C</label>
-                <input type="color" name="" id="aColor" style="width: 0; height: 0;">
+                <label for="aColor" class="colorLabel"></label>
+                <input type="color" name="" id="aColor" style="width: 0; height: 0;" value="#292ccc">
+            </div>
+            <div class="configInfo">
+                <label for="txtColor">
+                    <div class="col">
+                        Inverter cor de texto destaque
+                        <span class="subText">Isso inverte somente as cores dos botões com fundo colorido com a cor de
+                            destaque</span>
+                    </div>
+                </label>
+                <input type="checkbox" name="" id="txtColor">
             </div>
             <div class="configInfo">
                 Cor de fundo
-                <label for="bColor" style="position: absolute; right: 50px;">C</label>
+                <label for="bColor" class="colorLabel" id="BCLabel"></label>
                 <input type="color" name="" id="bColor" style="width: 0; height: 0;">
+            </div>
+            <div class="configInfo">
+                <label for="watchColor">
+                    Inverter cor do relógio
+                </label>
+                <input type="checkbox" name="" id="watchColor">
             </div>
             <div class="configInfo">
                 <label for="homeColor">Usar cor de destaque no Menu Home</label>
                 <input type="checkbox" name="" id="homeColor">
+            </div>
+            <div class="configInfo">
+                <label for="homeColor">Reduzir efeitos</label>
+                <button class="secBtn" id="linkLE">Sistema</button>
             </div>
         </div>
 
@@ -133,10 +158,12 @@
                 </div>
             </div>
             <div class="configInfo">
-                <div class="col">
-                    <label for="dblclkFS">Tela cheia com dois cliques</label>
-                    <span class="subText">Obs: Essa configuração não se aplica em computadores</span>
-                </div>
+                <label for="dblclkFS">
+                    <div class="col">
+                        Tela cheia com dois cliques
+                        <span class="subText">Obs: Essa configuração não se aplica em computadores</span>
+                    </div>
+                </label>
                 <input type="checkbox" name="" id="dblclkFS" checked>
             </div>
             <div class="configInfo">
@@ -164,7 +191,10 @@
                 <a href="https://github.com/IgorSilva-S/WatchViewOS/issues" target="_blank" class="secBtn">Relatar</a>
             </div>
             <div class="configInfo">
-                Sugerir melhorias
+                <div class="col">
+                    Sugerir melhorias
+                    <span class="subText">Você vai ser redirecionado para o seu aplicativo padrão de emails</span>
+                </div>
                 <a href="mailto:igorsilva.s4336@gmail.com" target="_blank" class="secBtn">Sugerir</a>
             </div>
             <button class="configBtn">
@@ -172,12 +202,20 @@
             </button>
         </div>
     </section>
+    <div class="dnc" id="dnc"></div>
     <section class="phoneTurn">
         <f-icon>&#xe7ad;</f-icon>
         <h1>Gire o telefone para usar o WatchViewOS</h1>
     </section>
 
-    <div class="popUp"></div>
+    <div class="popUp">
+        <div class="PUC">
+            
+        </div>
+        <div class="PUF">
+            <button class="secBtn">AAAAA</button><button class="primBtn">BBBBB</button>
+        </div>
+    </div>
 
     <script src="assets/js/boot.js"></script>
     <script src="assets/js/homeMenu.js"></script>

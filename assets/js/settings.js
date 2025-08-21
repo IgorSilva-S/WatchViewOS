@@ -40,7 +40,83 @@ backBtn.addEventListener('click', () => {
     }, 400);
 })
 
+// Personalization
+document.getElementById('wpOpacity').addEventListener('change', () => {
+    let val = document.getElementById('wpOpacity').value / 100
+    let color = document.getElementById('bColor').value
+    document.getElementById('wallColor').innerHTML = `
+        :root {
+            --wallpaperColor: ${color};
+            --wallpaperOpacity: ${val}
+        }
+    `
+})
+
+document.getElementById('aColor').addEventListener('change', () => {
+    document.getElementById('RAColor').innerHTML = `
+        :root {
+            --primary: ${document.getElementById('aColor').value};
+            --transPrimary: ${document.getElementById('aColor').value}77;
+        }
+    `
+})
+
+document.getElementById('txtColor').addEventListener('change', () => {
+    let checked = document.getElementById('txtColor').checked
+    if (checked) {
+        document.getElementById('RAText').innerHTML = `
+            :root {
+               --primaryColor: #191919;
+            }
+        `
+    } else {
+        document.getElementById('RAText').innerHTML = ""
+    }
+})
+
+document.getElementById('bColor').addEventListener('change', () => {
+    let color = document.getElementById('bColor').value
+    let val = document.getElementById('wpOpacity').value / 100
+    document.getElementById('BCLabel').style.backgroundColor = color
+    document.getElementById('wallColor').innerHTML = `
+        :root {
+            --wallpaperColor: ${color};
+            --wallpaperOpacity: ${val}
+        }
+    `
+})
+
+document.getElementById('watchColor').addEventListener('change', () => {
+    let checked = document.getElementById('watchColor').checked
+    if (checked) {
+        document.getElementById('wallTxt').innerHTML = `
+            :root {
+               --watchColor: #191919;
+            }
+        `
+    } else {
+        document.getElementById('wallTxt').innerHTML = ""
+    }
+})
+
 // System basics
+
+document.getElementById('linkLE').addEventListener('click', () => {
+    backBtn.click()
+    dncScreen.style.display = 'block'
+    setTimeout(() => {
+        document.getElementById('sysBtn').click()
+        setTimeout(() => {
+            document.getElementById('liteModel').classList.add('showEffect')
+            setTimeout(() => {
+                document.getElementById('liteModel').click()
+                document.getElementById('liteModel').classList.remove('showEffect')
+                dncScreen.removeAttribute('style')
+            }, 2700);
+        }, 1200);
+    }, 1200);
+})
+
 document.getElementById('liteModel').addEventListener('change', () => {
     let lm = document.getElementById('liteModel').checked
     if (lm) {

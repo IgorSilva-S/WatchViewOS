@@ -6,3 +6,21 @@
 .subText {
     font-size: 16px;
 }
+
+.showEffect {
+    animation: attention .5s linear 5;
+}
+
+@keyframes attention {
+    0% {
+        margin-bottom: 0;
+    }
+
+    50% {
+        margin-bottom: 8px;
+    }
+
+    100% {
+        margin-bottom: 0;
+    }
+}

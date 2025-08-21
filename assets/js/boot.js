@@ -2,6 +2,8 @@ const noSleep = new NoSleep();
 
 noSleep.enable()
 
+const dncScreen = document.getElementById('dnc')
+
 // Fullscreen 
 let isFS = false
 const fsToggle = document.getElementById('dblclkFS')
@@ -30,3 +32,8 @@ document.documentElement.addEventListener('dblclick', (e) => {
         }
     }
 })
+
+// Apps Boot
+
+// Settings
+document.getElementById('BCLabel').style.backgroundColor = document.getElementById('bColor').value

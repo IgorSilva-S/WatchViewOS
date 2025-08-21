@@ -21,6 +21,16 @@ body {
     font-family: "Quicksand", sans-serif;
 }
 
+.dnc {
+    width: 100dvw;
+    height: 100dvh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    z-index: 1000;
+}
+
 .phoneTurn {
     display: none;
 }
