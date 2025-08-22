@@ -364,12 +364,16 @@ h6 {
     height: 80%;
     background-color: #191919;
     position: absolute;
-    top: -80%;
+    top: 10%;
     left: calc(50% - 30%);
     z-index: 990;
     border-radius: 30px;
     transition-duration: .2s;
+    transition-timing-function: ease-out;
     overflow: hidden;
+    display: none;
+    opacity: 0;
+    scale: .9;
 }
 
 .popUp .PUC {

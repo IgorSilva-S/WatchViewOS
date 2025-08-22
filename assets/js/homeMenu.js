@@ -28,6 +28,7 @@ document.addEventListener('contextmenu', (e) => {
         }
         wallpaper.style.filter = 'blur(15px)'
         homeMenuOpened = true
+        lSound()
     } else if (!phoneUp) {
         homeMenu.removeAttribute('style')
         if (canPlaySFX) {
@@ -42,6 +43,7 @@ document.addEventListener('contextmenu', (e) => {
         }
         wallpaper.removeAttribute('style')
         homeMenuOpened = false
+        lSound()
     }
 })
 
@@ -74,6 +76,7 @@ const settingsBtn = document.getElementById('settingsBtn')
 
 watchBtn.addEventListener('click', () => {
     if (actualApp != 'watch') {
+        dncScreen.style.display = 'block'
         wallpaper.style.opacity = '0'
         watchApp.style.opacity = '0'
         alarmApp.style.opacity = '0'
@@ -82,19 +85,21 @@ watchBtn.addEventListener('click', () => {
         settingsApp.style.opacity = '0'
         actualApp = 'watch'
         setTimeout(() => {
+            dncScreen.removeAttribute('style')
             wallpaper.removeAttribute('style')
             watchApp.removeAttribute('style')
             alarmApp.removeAttribute('style')
             todoApp.removeAttribute('style')
             eventsApp.removeAttribute('style')
             settingsApp.removeAttribute('style')
+            lSound()
         }, 700);
     }
 })
 
 alarmBtn.addEventListener('click', () => {
     if (actualApp != 'alarm') {
-
+        dncScreen.style.display = 'block'
         wallpaper.style.opacity = '0'
         watchApp.style.opacity = '0'
         alarmApp.style.opacity = '0'
@@ -103,6 +108,7 @@ alarmBtn.addEventListener('click', () => {
         settingsApp.style.opacity = '0'
         actualApp = 'alarm'
         setTimeout(() => {
+            dncScreen.removeAttribute('style')
             wallpaper.removeAttribute('style')
             watchApp.style.display = 'none'
             alarmApp.removeAttribute('style')
@@ -110,13 +116,14 @@ alarmBtn.addEventListener('click', () => {
             eventsApp.removeAttribute('style')
             settingsApp.removeAttribute('style')
             alarmApp.style.display = 'block'
+            lSound()
         }, 700);
     }
 })
 
 todoBtn.addEventListener('click', () => {
     if (actualApp != 'todo') {
-
+        dncScreen.style.display = 'block'
         wallpaper.style.opacity = '0'
         watchApp.style.opacity = '0'
         alarmApp.style.opacity = '0'
@@ -125,6 +132,7 @@ todoBtn.addEventListener('click', () => {
         settingsApp.style.opacity = '0'
         actualApp = 'todo'
         setTimeout(() => {
+            dncScreen.removeAttribute('style')
             wallpaper.removeAttribute('style')
             watchApp.style.display = 'none'
             alarmApp.removeAttribute('style')
@@ -132,13 +140,14 @@ todoBtn.addEventListener('click', () => {
             eventsApp.removeAttribute('style')
             settingsApp.removeAttribute('style')
             todoApp.style.display = 'block'
+            lSound()
         }, 700);
     }
 })
 
 eventsBtn.addEventListener('click', () => {
     if (actualApp != 'events') {
-
+        dncScreen.style.display = 'block'
         wallpaper.style.opacity = '0'
         watchApp.style.opacity = '0'
         alarmApp.style.opacity = '0'
@@ -147,6 +156,7 @@ eventsBtn.addEventListener('click', () => {
         settingsApp.style.opacity = '0'
         actualApp = 'events'
         setTimeout(() => {
+            dncScreen.removeAttribute('style')
             wallpaper.removeAttribute('style')
             watchApp.style.display = 'none'
             alarmApp.removeAttribute('style')
@@ -154,13 +164,14 @@ eventsBtn.addEventListener('click', () => {
             eventsApp.removeAttribute('style')
             settingsApp.removeAttribute('style')
             eventsApp.style.display = 'block'
+            lSound()
         }, 700);
     }
 })
 
 settingsBtn.addEventListener('click', () => {
     if (actualApp != 'settings') {
-
+        dncScreen.style.display = 'block'
         wallpaper.style.opacity = '0'
         watchApp.style.opacity = '0'
         alarmApp.style.opacity = '0'
@@ -169,6 +180,7 @@ settingsBtn.addEventListener('click', () => {
         settingsApp.style.opacity = '0'
         actualApp = 'settings'
         setTimeout(() => {
+            dncScreen.removeAttribute('style')
             wallpaper.removeAttribute('style')
             watchApp.style.display = 'none'
             alarmApp.removeAttribute('style')
@@ -176,6 +188,7 @@ settingsBtn.addEventListener('click', () => {
             eventsApp.removeAttribute('style')
             settingsApp.removeAttribute('style')
             settingsApp.style.display = 'block'
+            lSound()
         }, 700);
     }
 })

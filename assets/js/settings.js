@@ -41,6 +41,10 @@ backBtn.addEventListener('click', () => {
 })
 
 // Personalization
+document.getElementById('cgWall').addEventListener('click', () => {
+    openPopup()
+})
+
 document.getElementById('wpOpacity').addEventListener('change', () => {
     let val = document.getElementById('wpOpacity').value / 100
     let color = document.getElementById('bColor').value
@@ -101,6 +105,10 @@ document.getElementById('watchColor').addEventListener('change', () => {
 
 // System basics
 
+document.getElementById('sysSounds').addEventListener('change', () => {
+    lSound()
+})
+
 document.getElementById('linkLE').addEventListener('click', () => {
     backBtn.click()
     dncScreen.style.display = 'block'
@@ -124,4 +132,15 @@ document.getElementById('liteModel').addEventListener('change', () => {
     } else {
         document.getElementById('mainCss').href = 'assets/css/style.css'
     }
+})
+
+document.getElementById('openCredits').addEventListener('click', () => {
+    document.getElementById('popContent').innerHTML = `
+        <h1>Créditos</h1>
+        <br><br>
+        Design, funcionalidade: Igor Silva Santos (IgorSilva-S)<br>
+        Sons: Nintendo / The Sounds Resource<br>
+        Horário: WorldTimeAPI<br>
+    `
+    openPopup()
 })

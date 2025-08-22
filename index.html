@@ -107,7 +107,7 @@
                         Papel de parede
                         <span id="tyWall">Nenhum</span>
                     </div>
-                    <button class="primBtn">Alterar</button>
+                    <button class="primBtn" id="cgWall">Alterar</button>
                 </div>
             </div>
             <div class="configInfo">
@@ -170,7 +170,7 @@
                 <div>
                     <label for="sysSounds">Tocar sons ao interagir com o sistema</label>
                 </div>
-                <input type="checkbox" name="" id="sysSounds">
+                <input type="checkbox" name="" id="sysSounds" checked>
             </div>
             <div class="configInfo">
                 <div>
@@ -197,7 +197,7 @@
                 </div>
                 <a href="mailto:igorsilva.s4336@gmail.com" target="_blank" class="secBtn">Sugerir</a>
             </div>
-            <button class="configBtn">
+            <button class="configBtn" id="openCredits">
                 Créditos
             </button>
         </div>
@@ -208,19 +208,30 @@
         <h1>Gire o telefone para usar o WatchViewOS</h1>
     </section>
 
-    <div class="popUp">
-        <div class="PUC">
-            
+    <div class="popUp" id="popUp">
+        <div class="PUC" id="popContent">
+
         </div>
         <div class="PUF">
-            <button class="secBtn">AAAAA</button><button class="primBtn">BBBBB</button>
+            <button class="secBtn" id="closePop">Fechar</button><button class="primBtn"></button>
         </div>
     </div>
 
+    <!-- SFX -->
+    <audio src="assets/sounds/HoverBtn.wav" id="hover"></audio>
+    <audio src="assets/sounds/OpenApp.wav" id="openApp"></audio>
+    <audio src="assets/sounds/ClickBtn.wav" id="clickbtn"></audio>
+    <audio src="assets/sounds/LinkOpen.wav" id="clicklink"></audio>
+    <audio src="assets/sounds/ClickCB.wav" id="clickcb"></audio>
+    <audio src="assets/sounds/Back.wav" id="backsound"></audio>
+    <audio src="assets/sounds/Loading.wav" id="loadingAudio"></audio>
+
     <script src="assets/js/boot.js"></script>
+    <script src="assets/js/popup.js"></script>
     <script src="assets/js/homeMenu.js"></script>
     <script src="assets/js/timecount.js"></script>
     <script src="assets/js/settings.js"></script>
+    <script src="assets/js/sounds.js"></script>
 </body>
 
 </html>

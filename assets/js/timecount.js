@@ -1,7 +1,11 @@
 const dfTime = document.getElementById('time')
 const dfDate = document.getElementById('date')
+let isLoadingTime = true
 
 // Apps clock
+const aClock = document.getElementById('aClock')
+const tClock = document.getElementById('tClock')
+const eClock = document.getElementById('eClock')
 const sClock = document.getElementById('sClock')
 
 let webUpdate, webData, date, localStart, apiDate, lastResync
@@ -14,6 +18,7 @@ async function getWebDate() {
         localStart = performance.now()
         if (webUpdate.ok) {
             lastResync = 0
+            isLoadingTime = false
         }
 
         const addZero = (n) => {
@@ -26,6 +31,9 @@ async function getWebDate() {
             const wDate = new Date(date)
             dfTime.innerText = `${addZero(wDate.getHours())}:${addZero(wDate.getMinutes())}`
             dfDate.innerHTML = `${weekDay[wDate.getDay()]}, ${addZero(wDate.getDate())}/${addZero(wDate.getMonth() + 1)}/${wDate.getFullYear()}`
+            aClock.innerText = `${addZero(wDate.getHours())}:${addZero(wDate.getMinutes())} - ${weekDay[wDate.getDay()]}, ${addZero(wDate.getDate())}/${addZero(wDate.getMonth() + 1)}/${wDate.getFullYear()}`
+            tClock.innerText = `${addZero(wDate.getHours())}:${addZero(wDate.getMinutes())} - ${weekDay[wDate.getDay()]}, ${addZero(wDate.getDate())}/${addZero(wDate.getMonth() + 1)}/${wDate.getFullYear()}`
+            eClock.innerText = `${addZero(wDate.getHours())}:${addZero(wDate.getMinutes())} - ${weekDay[wDate.getDay()]}, ${addZero(wDate.getDate())}/${addZero(wDate.getMonth() + 1)}/${wDate.getFullYear()}`
             sClock.innerText = `${addZero(wDate.getHours())}:${addZero(wDate.getMinutes())} - ${weekDay[wDate.getDay()]}, ${addZero(wDate.getDate())}/${addZero(wDate.getMonth() + 1)}/${wDate.getFullYear()}`
         }
 
@@ -42,6 +50,7 @@ async function getWebDate() {
 
         async function resync() {
             console.log('Ressincronizando')
+            isLoadingTime = false
             try {
                 webUpdate = await fetch('http://worldtimeapi.org/api/ip')
                 webData = await webUpdate.json()
