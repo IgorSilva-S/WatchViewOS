@@ -3,6 +3,12 @@
     flex-direction: column;
 }
 
+.line {
+    display: flex;
+    flex-grow: 1;
+    gap: 15px
+}
+
 .subText {
     font-size: 16px;
 }

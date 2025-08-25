@@ -362,11 +362,11 @@ h6 {
 .popUp {
     width: 60%;
     height: 80%;
-    background-color: #191919;
+    background-color: #202020;
     position: absolute;
     top: 10%;
     left: calc(50% - 30%);
-    z-index: 990;
+    z-index: 1001;
     border-radius: 30px;
     transition-duration: .2s;
     transition-timing-function: ease-out;
@@ -398,7 +398,7 @@ h6 {
     position: absolute;
     bottom: 0;
     left: 0;
-    background-color: #292929;
+    background-color: #101010;
     border-top: 2px solid var(--primary);
     display: flex;
     box-sizing: border-box;
@@ -406,6 +406,57 @@ h6 {
     gap: 15px;
     justify-content: flex-end;
     align-items: center;
+}
+
+.addBtn {
+    width: 100%;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 120px;
+    font-size: 20px;
+    padding: 10px;
+    background-color: #19191999;
+    color: aliceblue;
+    transition-duration: .25s;
+}
+
+.addBtn:hover {
+    background-color: #191919;
+    box-shadow: 0 0 12px 5px var(--primary);
+}
+
+/*Todo*/
+.todoBox {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 30px 50px;
+    border: none;
+    border-radius: 16px;
+    font-size: 30px;
+    padding: 20px 40px;
+    background-color: #19191999;
+    color: aliceblue;
+    transition-duration: .25s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.todoBox.todoChecked {
+    opacity: 0.6;
+    text-decoration: line-through;
+}
+
+.todoBox:hover {
+    background-color: #191919;
+    box-shadow: 0 0 12px 5px var(--primary);
+}
+
+.todoBox:hover.todoRemove {
+    background-color: #191919;
+    box-shadow: 0 0 12px 5px rgb(255, 66, 66);
 }
 
 /*Settings*/
@@ -487,6 +538,11 @@ h6 {
     left: -15px;
     color: aliceblue;
     font-size: 20px;
+    transition-duration: .1s;
+}
+
+#backSettings:hover {
+    filter: drop-shadow(1px 1px 5px white);
 }
 
 .configInfo {

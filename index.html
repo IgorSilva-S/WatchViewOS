@@ -74,6 +74,12 @@
                 <div class="loading"></div>
             </span>
         </div>
+        <div class="appContent" id="todoContent">
+            <div class="line">
+                <button class="addBtn" id="addTodo">Adicionar</button>
+                <button class="addBtn" id="removeTodo">Remover</button>
+            </div>
+        </div>
     </section>
     <section class="app" id="events">
         <div class="appHeader">
@@ -213,7 +219,7 @@
 
         </div>
         <div class="PUF">
-            <button class="secBtn" id="closePop">Fechar</button><button class="primBtn"></button>
+            <button class="secBtn" id="closePop">Fechar</button><button class="primBtn" id="primBtn"></button>
         </div>
     </div>
 
@@ -224,12 +230,13 @@
     <audio src="assets/sounds/LinkOpen.wav" id="clicklink"></audio>
     <audio src="assets/sounds/ClickCB.wav" id="clickcb"></audio>
     <audio src="assets/sounds/Back.wav" id="backsound"></audio>
-    <audio src="assets/sounds/Loading.wav" id="loadingAudio"></audio>
+    <audio src="assets/sounds/Loading.wav" id="loadingAudio" loop></audio>
 
     <script src="assets/js/boot.js"></script>
     <script src="assets/js/popup.js"></script>
     <script src="assets/js/homeMenu.js"></script>
     <script src="assets/js/timecount.js"></script>
+    <script src="assets/js/todo.js"></script>
     <script src="assets/js/settings.js"></script>
     <script src="assets/js/sounds.js"></script>
 </body>
