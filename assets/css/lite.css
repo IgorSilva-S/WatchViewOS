@@ -8,6 +8,10 @@
 :root {
     --primary: #292ccc;
     --primaryColor: #f0f8ff;
+    --wallpaperColor: #000000;
+    --wallpaperOpacity: 1;
+    --watchColor: #f0f8ff;
+    --wallpaperImg: transparent;
 }
 
 * {
@@ -15,10 +19,21 @@
     margin: 0;
 }
 
+::-webkit-scrollbar-thumb {
+    border-radius: 120px;
+    background-color: var(--primary);
+}
+
+::-webkit-scrollbar {
+    appearance: none;
+    width: 10px;
+}
+
 body {
     background-color: black;
     color: aliceblue;
     font-family: "Quicksand", sans-serif;
+    accent-color: var(--primary);
 }
 
 .dnc {
@@ -29,6 +44,54 @@ body {
     left: 0;
     display: none;
     z-index: 1000;
+}
+
+input[type="checkbox"] {
+    appearance: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 4px;
+    background-color: #292929;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+input[type="checkbox"]:checked {
+    background-color: var(--primary);
+}
+
+input[type="checkbox"]::after {
+    width: 20px;
+    height: 20px;
+    font-family: "Segoe Fluent Icons";
+    content: '';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--primaryColor);
+    opacity: 0;
+    font-size: 14px;
+}
+
+input[type="checkbox"]:active:after {
+    scale: 0.7;
+}
+
+input[type="checkbox"]:checked:after {
+    opacity: 1;
+}
+
+.colorLabel {
+    z-index: 2;
+    appearance: none;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    right: 40px;
+    background-color: var(--primary);
+    border-radius: 4px;
 }
 
 .phoneTurn {
@@ -53,7 +116,9 @@ f-icon {
     background-size: cover;
     overflow: hidden;
     z-index: -1;
-    opacity: 1;
+    opacity: var(--wallpaperOpacity);
+    background-color: var(--wallpaperColor);
+    background-image: var(--wallpaperImg);
 }
 
 h1,
@@ -76,7 +141,7 @@ h6 {
 }
 
 .loadingContainer {
-    display: none;
+    display: flex;
     justify-content: center;
     align-items: flex-end;
     gap: 15px;
@@ -92,10 +157,12 @@ h6 {
 
 .defaultWatch h1 {
     font-size: 160px;
+    color: var(--watchColor)
 }
 
 .defaultWatch h2 {
     font-size: 50px;
+    color: var(--watchColor)
 }
 
 .homeMenu {
@@ -112,8 +179,7 @@ h6 {
 }
 
 .homeMenuAccent {
-    background-color: var(--primary);
-    color: var(--primaryColor);
+    background-color: var(--transPrimary);
 }
 
 .homeMenu h1,
@@ -184,9 +250,22 @@ h6 {
 }
 
 .appHeader .loading {
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 5px solid var(--primary);
+    position: relative;
+}
+
+.appHeader .loading::after {
+    width: 16px;
+    height: 16px;
+    content: '';
+    background-color: var(--primary);
+    border-radius: 50%;
+    position: absolute;
     animation: circleLoading 1s steps(4, jump-start) infinite;
+    top: -8px;
 }
 
 @keyframes circleLoading {
@@ -210,8 +289,7 @@ h6 {
 .primBtn {
     background-color: var(--primary);
     color: var(--primaryColor);
-    padding: 15px;
-    width: 160px;
+    padding: 15px 40px;
     border-radius: 120px;
     border: none;
     font-size: 20px;
@@ -224,8 +302,7 @@ h6 {
 .secBtn {
     background-color: #191919;
     color: aliceblue;
-    padding: 15px;
-    width: 160px;
+    padding: 15px 40px;
     border-radius: 120px;
     border: none;
     font-size: 20px;
@@ -240,6 +317,105 @@ h6 {
     box-shadow: 0 0 0px 5px var(--primary);
 }
 
+.popUp {
+    width: 60%;
+    height: 80%;
+    background-color: #202020;
+    position: absolute;
+    top: 10%;
+    left: calc(50% - 30%);
+    z-index: 1001;
+    border-radius: 30px;
+    transition-timing-function: ease-out;
+    overflow: hidden;
+    display: none;
+    opacity: 0;
+    scale: .9;
+}
+
+.popUp .PUC {
+    width: 100%;
+    height: 85%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: column;
+    padding: 30px;
+    gap: 15px;
+    justify-content: flex-start;
+    align-items: center;
+    overflow-y: auto;
+}
+
+.popUp .PUF {
+    width: 100%;
+    height: 15%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: #101010;
+    border-top: 2px solid var(--primary);
+    display: flex;
+    box-sizing: border-box;
+    padding: 0 30px;
+    gap: 15px;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.addBtn {
+    width: 100%;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 120px;
+    font-size: 20px;
+    padding: 10px;
+    background-color: #191919;
+    color: aliceblue;
+    transition-duration: .25s;
+}
+
+.addBtn:hover {
+    background-color: #191919;
+    box-shadow: 0 0 12px 5px var(--primary);
+}
+
+/*Todo*/
+.todoBox {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 30px 50px;
+    border: none;
+    border-radius: 16px;
+    font-size: 30px;
+    padding: 20px 40px;
+    background-color: #252525;
+    color: aliceblue;
+    transition-duration: .25s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.todoBox.todoChecked {
+    opacity: 0.6;
+    text-decoration: line-through;
+}
+
+.todoBox:hover {
+    background-color: #252525;
+    box-shadow: 0 0 0px 5px var(--primary);
+}
+
+.todoBox:hover.todoRemove {
+    background-color: #252525;
+    box-shadow: 0 0 0px 5px rgb(255, 66, 66);
+}
+
 /*Settings*/
 
 .sSubPage {
@@ -249,9 +425,8 @@ h6 {
 .sSubPage .introMsg {
     width: 100%;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 20px;
     height: 150px;
 }
@@ -263,6 +438,24 @@ h6 {
 
 .sSubPage .introMsg h2 {
     font-size: 40px;
+}
+
+.sSubPage .introMsg .screen {
+    width: 266px;
+    height: 150px;
+    border-radius: 8px;
+    box-sizing: border-box;
+    border: 10px solid #000;
+    background-position: center;
+    background-size: cover;
+    background-color: var(--wallpaperColor);
+    background-image: var(--wallpaperImg);
+}
+
+.sSubPage .introMsg .configInfo.persona {
+    width: calc(100% - 286px);
+    height: 150px;
+    margin-bottom: 0;
 }
 
 .setBtns {
@@ -305,6 +498,10 @@ h6 {
     font-size: 20px;
 }
 
+#backSettings:hover {
+    filter: drop-shadow(1px 1px 0px white);
+}
+
 .configInfo {
     width: 100%;
     box-sizing: border-box;
@@ -320,11 +517,17 @@ h6 {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
+    position: relative;
 }
 
 
 
 @media (max-height: 500px) {
+    ::-webkit-scrollbar {
+        appearance: none;
+        width: 3px;
+    }
+
     .defaultWatch h1 {
         font-size: 100px;
     }
@@ -359,6 +562,14 @@ h6 {
     .abContainer button f-icon {
         font-size: 50px;
     }
+
+    .popUp .PUC {
+        height: 75%;
+    }
+
+    .popUp .PUF {
+        height: 25%;
+    }
 }
 
 @media (max-width: 500px) {
@@ -369,13 +580,29 @@ h6 {
         flex-direction: column;
         position: fixed;
         z-index: 999;
-        background-color: black;
+        background-color: var(--primary);
         color: white;
         top: 0;
         left: 0;
         width: 100dvw;
         height: 100dvh;
         text-align: center;
+        animation: colorBloom 7s linear infinite;
+    }
+
+    @keyframes colorBloom {
+        0% {
+            background-color: black;
+        }
+
+        50% {
+            background-color: var(--primary);
+        }
+
+        100% {
+            background-color: black;
+        }
+
     }
 
     .phoneTurn f-icon {
