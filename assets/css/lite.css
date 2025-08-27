@@ -372,14 +372,13 @@ h6 {
     border-radius: 120px;
     font-size: 20px;
     padding: 10px;
-    background-color: #191919;
+    background-color: #252525;
     color: aliceblue;
-    transition-duration: .25s;
 }
 
 .addBtn:hover {
-    background-color: #191919;
-    box-shadow: 0 0 12px 5px var(--primary);
+    background-color: #252525;
+    box-shadow: 0 0 0px 5px var(--primary);
 }
 
 /*Todo*/
@@ -393,7 +392,6 @@ h6 {
     padding: 20px 40px;
     background-color: #252525;
     color: aliceblue;
-    transition-duration: .25s;
     display: flex;
     justify-content: space-between;
     align-items: center;
