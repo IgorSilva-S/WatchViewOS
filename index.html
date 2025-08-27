@@ -17,6 +17,7 @@
     <style id="wallTxt"></style>
     <style id="RAColor"></style>
     <style id="RAText"></style>
+    <style id="wallImg"></style>
     <div class="wallpaper" id="wallpaper"></div>
     <section class="defaultWatch" id="watch">
         <h1 id="time">
@@ -101,19 +102,24 @@
             <button class="configBtn">Data e Hora</button>
             <button class="configBtn" id="cusBtn">Personalização</button>
             <button class="configBtn" id="sysBtn">Sistema</button>
-            <button class="configBtn">Dados</button>
+            <button class="configBtn" id="dataBtn">Dados</button>
             <button class="configBtn">Mini Apps</button>
         </div>
 
+        <!--Personalização-->
         <div class="appContent sSubPage" id="cusInfo">
             <div class="introMsg">
-                <div class="screen"></div>
+                <div class="screen" id="screenPrev"></div>
                 <div class="configInfo persona">
                     <div class="col">
                         Papel de parede
-                        <span id="tyWall">Nenhum</span>
+                        <span id="tyWall">Cores</span>
                     </div>
-                    <button class="primBtn" id="cgWall">Alterar</button>
+                    <div class="lLine">
+                        <label for="cgWall" class="primBtn">Alterar</label>
+                        <input type="file" name="" id="cgWall" accept="image/*" style="display: none;">
+                        <button class="secBtn" id="rWall">Remover</button>
+                    </div>
                 </div>
             </div>
             <div class="configInfo">
@@ -156,6 +162,7 @@
             </div>
         </div>
 
+        <!--Sistema-->
         <div class="appContent sSubPage" id="sysInfo">
             <div class="introMsg">
                 <div>
@@ -189,10 +196,6 @@
                 <a href="https://github.com/IgorSilva-S/WatchViewOS" target="_blank" class="secBtn">Abrir</a>
             </div>
             <div class="configInfo">
-                Versão insider
-                <a href="https://github.com/IgorSilva-S/WatchViewOS/insider" target="_blank" class="secBtn">Insider</a>
-            </div>
-            <div class="configInfo">
                 Relatar bug
                 <a href="https://github.com/IgorSilva-S/WatchViewOS/issues" target="_blank" class="secBtn">Relatar</a>
             </div>
@@ -206,6 +209,41 @@
             <button class="configBtn" id="openCredits">
                 Créditos
             </button>
+        </div>
+
+        <!--Dados-->
+        <div class="appContent sSubPage" id="dataInfo">
+            <div class="introMsg">
+                <div>
+                    <h1>Olá!</h1>
+                    <h2>Dados salvos desde 01/01/1970</h2>
+                    <span class="subCol">Seus dados são salvos somente nesse navegador, e os devs não tem acesso algum sobre eles</span>
+                </div>
+            </div>
+            <div class="configInfo">
+                <div class="col">
+                    Formatar sistema
+                </div>
+            </div>
+            <div class="configInfo">
+                Clonar dados
+            </div>
+            <div class="configInfo">
+                <div class="col">
+                    Remover dados dos mini apps
+                    <span class="subText">Escolha todos ou específicos para apagar</span>
+                </div>
+            </div>
+            <div class="configInfo">
+                <div class="col">
+                    Visualizar dados
+                </div>
+            </div>
+            <div class="configInfo">
+                <div class="col">
+                    Transferir dados
+                </div>
+            </div>
         </div>
     </section>
     <div class="dnc" id="dnc"></div>

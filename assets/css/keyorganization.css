@@ -9,6 +9,11 @@
     gap: 15px
 }
 
+.lLine {
+    display: flex;
+    gap: 15px;
+}
+
 .subText {
     font-size: 16px;
 }

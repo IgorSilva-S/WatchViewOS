@@ -12,6 +12,7 @@
     --wallpaperColor: #000000;
     --wallpaperOpacity: 1;
     --watchColor: #f0f8ff;
+    --wallpaperImg: transparent;
 }
 
 * {
@@ -127,6 +128,7 @@ f-icon {
     transition-duration: .4s;
     animation: hubOpening .4s;
     background-color: var(--wallpaperColor);
+    background-image: var(--wallpaperImg);
 }
 
 @keyframes hubOpening {
@@ -491,6 +493,8 @@ h6 {
     border: 10px solid #000;
     background-position: center;
     background-size: cover;
+    background-color: var(--wallpaperColor);
+    background-image: var(--wallpaperImg);
 }
 
 .sSubPage .introMsg .configInfo.persona {

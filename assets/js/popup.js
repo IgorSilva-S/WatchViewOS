@@ -14,6 +14,7 @@ document.getElementById('closePop').addEventListener('click', () => {
     document.getElementById('popUp').style.scale = '.9'
     setTimeout(() => {
         document.getElementById('popUp').removeAttribute('style')
+        document.getElementById('dnc').removeAttribute('style')
     }, 200);
 })
 

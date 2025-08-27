@@ -4,6 +4,7 @@ const backBtn = document.getElementById('backSettings')
 const sName = document.getElementById('settingName')
 const cusInfo = document.getElementById('cusInfo')
 const sysInfo = document.getElementById('sysInfo')
+const dataInfo = document.getElementById('dataInfo')
 
 document.getElementById('sysBtn').addEventListener('click', () => {
     sHome.style.opacity = '0'
@@ -27,12 +28,25 @@ document.getElementById('cusBtn').addEventListener('click', () => {
     }, 400);
 })
 
+document.getElementById('dataBtn').addEventListener('click', () => {
+    sHome.style.opacity = '0'
+    setTimeout(() => {
+        dataInfo.style.display = 'block'
+        sHome.style.display = 'none'
+        backBtn.style.display = 'flex'
+        sHeader.classList.add('backHeader')
+        sName.innerHTML = 'Dados'
+    }, 400);
+})
+
 backBtn.addEventListener('click', () => {
     sysInfo.style.opacity = '0'
     cusInfo.style.opacity = '0'
+    dataInfo.style.opacity = '0'
     setTimeout(() => {
         sysInfo.removeAttribute('style')
         cusInfo.removeAttribute('style')
+        dataInfo.removeAttribute('style')
         sHome.removeAttribute('style')
         backBtn.removeAttribute('style')
         sHeader.classList.remove('backHeader')
@@ -41,8 +55,30 @@ backBtn.addEventListener('click', () => {
 })
 
 // Personalization
-document.getElementById('cgWall').addEventListener('click', () => {
-    openPopup()
+document.getElementById('cgWall').addEventListener('change', () => {
+    const fileInput = document.getElementById('cgWall');
+    const file = fileInput.files[0];
+    const reader = new FileReader();
+
+    reader.onload = () => {
+        const imageUrl = reader.result;
+        document.getElementById('wallImg').innerHTML = `
+        :root {
+            --wallpaperImg: url(${imageUrl});
+        }
+    `
+        document.getElementById('tyWall').innerText = `Imagem`;
+    };
+
+    if (file) {
+        reader.readAsDataURL(file);
+    }
+});
+
+document.getElementById('rWall').addEventListener('click', () => {
+    document.getElementById('wallImg').innerHTML = ""
+    document.getElementById('tyWall').innerText = `Cores`;
+    document.getElementById('cgWall').value = '';
 })
 
 document.getElementById('wpOpacity').addEventListener('change', () => {
