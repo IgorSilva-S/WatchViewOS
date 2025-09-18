@@ -32,6 +32,7 @@
         <h2 id="date">
             Buscando horário
         </h2>
+                <button class="primBtn" id="syncNow">Ressincronizar</button>
     </section>
     <div class="homeMenu" id="HM">
         <h1>Menu Home</h1>
@@ -101,11 +102,27 @@
             </span>
         </div>
         <div class="appContent setBtns" id="sHome">
-            <button class="configBtn">Data e Hora</button>
+            <button class="configBtn" id="timeBtn">Data e Hora</button>
             <button class="configBtn" id="cusBtn">Personalização</button>
             <button class="configBtn" id="sysBtn">Sistema</button>
             <button class="configBtn" id="dataBtn">Dados</button>
-            <button class="configBtn">Mini Apps</button>
+        </div>
+
+        <!--Data e Hora-->
+        <div class="appContent sSubPage" id="timeInfo">
+            <div class="introMsg">
+                <div>
+                    <h1 style="font-size: 90px;" id="dtClock"></h1>
+                    <h2 style="font-size: 30px;" id="dtDate"></h2>
+                </div>
+                <div class="configInfo persona">
+                    <div class="col">
+                        Ultima Ressincronização
+                        <span id="lastResync">0 minutos</span>
+                    </div>
+            
+                </div>
+            </div>
         </div>
 
         <!--Personalização-->
@@ -215,13 +232,6 @@
 
         <!--Dados-->
         <div class="appContent sSubPage" id="dataInfo">
-            <div class="introMsg">
-                <div>
-                    <h1>Olá!</h1>
-                    <h2>Dados salvos desde 01/01/1970</h2>
-                    <span class="subCol">Seus dados são salvos somente nesse navegador, e os devs não tem acesso algum sobre eles</span>
-                </div>
-            </div>
             <div class="configInfo">
                 <div class="col">
                     Formatar sistema
@@ -246,6 +256,9 @@
                     Transferir dados
                 </div>
             </div>
+
+            <span class="subCol">Seus dados são salvos somente nesse navegador, e os devs não tem acesso algum sobre
+                eles</span>
         </div>
     </section>
     <div class="dnc" id="dnc"></div>

@@ -2,9 +2,21 @@ const sHome = document.getElementById('sHome')
 const sHeader = document.getElementById('stgHeader')
 const backBtn = document.getElementById('backSettings')
 const sName = document.getElementById('settingName')
+const timeInfo = document.getElementById('timeInfo')
 const cusInfo = document.getElementById('cusInfo')
 const sysInfo = document.getElementById('sysInfo')
 const dataInfo = document.getElementById('dataInfo')
+
+document.getElementById('timeBtn').addEventListener('click', () => {
+    sHome.style.opacity = '0'
+    setTimeout(() => {
+        timeInfo.style.display = 'block'
+        sHome.style.display = 'none'
+        backBtn.style.display = 'flex'
+        sHeader.classList.add('backHeader')
+        sName.innerHTML = 'Data e Hora'
+    }, 400);
+})
 
 document.getElementById('sysBtn').addEventListener('click', () => {
     sHome.style.opacity = '0'
@@ -40,10 +52,12 @@ document.getElementById('dataBtn').addEventListener('click', () => {
 })
 
 backBtn.addEventListener('click', () => {
+    timeInfo.style.opacity = '0'
     sysInfo.style.opacity = '0'
     cusInfo.style.opacity = '0'
     dataInfo.style.opacity = '0'
     setTimeout(() => {
+        timeInfo.removeAttribute('style')
         sysInfo.removeAttribute('style')
         cusInfo.removeAttribute('style')
         dataInfo.removeAttribute('style')
