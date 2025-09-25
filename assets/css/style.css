@@ -289,23 +289,41 @@ h6 {
     width: calc(100% - 40px)
 }
 
+.loading {
+    border-radius: 50%;
+    animation: circleLoading 1s linear infinite;
+    position: relative;
+}
+
+.loading::after {
+    content: '';
+    background-color: var(--primary);
+    border-radius: 50%;
+    position: absolute;
+}
+
 .appHeader .loading {
     width: 30px;
     height: 30px;
-    border-radius: 50%;
     border: 5px solid var(--primary);
-    animation: circleLoading 1s linear infinite;
-    position: relative;
 }
 
 .appHeader .loading::after {
     width: 16px;
     height: 16px;
-    content: '';
-    background-color: var(--primary);
-    border-radius: 50%;
-    position: absolute;
     top: -8px;
+}
+
+.introMsg .loading {
+    width: 60px;
+    height: 60px;
+    border: 10px solid var(--primary);
+}
+
+.introMsg .loading::after {
+    width: 30px;
+    height: 30px;
+    top: -15px;
 }
 
 @keyframes circleLoading {

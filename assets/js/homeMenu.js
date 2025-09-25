@@ -5,6 +5,7 @@ const wallpaper = document.getElementById('wallpaper')
 document.addEventListener('contextmenu', (e) => {
     e.preventDefault()
     let canPlaySFX = document.getElementById('sysSounds').checked
+    let isLowEffects = document.getElementById('liteModel').checked
     let isMobile = window.matchMedia("(max-height: 500px)").matches ? true : false
     let phoneUp = window.matchMedia("(max-width: 500px)").matches ? true : false
     if (!homeMenuOpened && !phoneUp) {
@@ -26,7 +27,11 @@ document.addEventListener('contextmenu', (e) => {
             document.getElementById('openHome').currentTime = 0
             document.getElementById('openHome').play()
         }
-        wallpaper.style.filter = 'blur(15px)'
+        if (!isLowEffects && actualApp == 'watch') {
+            wallpaper.style.filter = 'blur(15px)'
+        } else if (isLowEffects) {
+            wallpaper.style.filter = 'brightness(20%)'
+        }
         homeMenuOpened = true
         lSound()
     } else if (!phoneUp) {

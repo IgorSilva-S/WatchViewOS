@@ -32,7 +32,6 @@
         <h2 id="date">
             Buscando horário
         </h2>
-                <button class="primBtn" id="syncNow">Ressincronizar</button>
     </section>
     <div class="homeMenu" id="HM">
         <h1>Menu Home</h1>
@@ -112,16 +111,35 @@
         <div class="appContent sSubPage" id="timeInfo">
             <div class="introMsg">
                 <div>
-                    <h1 style="font-size: 90px;" id="dtClock"></h1>
-                    <h2 style="font-size: 30px;" id="dtDate"></h2>
+                    <h1 style="font-size: 90px;" id="dtClock">
+                        <div class="loading"></div>
+                    </h1>
+                    <h2 style="font-size: 30px;" id="dtDate">
+
+                    </h2>
                 </div>
                 <div class="configInfo persona">
                     <div class="col">
                         Ultima Ressincronização
                         <span id="lastResync">0 minutos</span>
                     </div>
-            
+                    <button class="primBtn" id="syncNow">Ressincronizar</button>
                 </div>
+            </div>
+            <div class="configInfo">
+                <label for="utcChoose">
+                    UTC
+                </label>
+                <input type="number" name="" id="utcChoose" min="-12" max="14" value="-3">
+            </div>
+            <div class="configInfo">
+                <label for="ipSync">
+                    <div class="col">
+                        Sincronizar por IP
+                        <span class="subText">Isso irá sobrepor o UTC escolhido</span>
+                    </div>
+                </label>
+                <input type="checkbox" name="" id="ipSync" checked>
             </div>
         </div>
 

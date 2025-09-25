@@ -1,6 +1,9 @@
 const dfTime = document.getElementById('time')
 const dfDate = document.getElementById('date')
 let isLoadingTime = true
+let UTC = document.getElementById('utcChoose').value
+UTC = Number(UTC)
+let apiLink = 'https://worldtimeapi.org/api/ip'
 
 // Apps clock
 const aClock = document.getElementById('aClock')
@@ -15,9 +18,9 @@ let webUpdate, webData, date, localStart, apiDate, lastResync
 
 async function getWebDate() {
     try {
-        webUpdate = await fetch('http://worldtimeapi.org/api/ip')
+        webUpdate = await fetch(apiLink)
         webData = await webUpdate.json()
-        apiDate = new Date(webData.datetime).getTime()
+        apiDate = Date.parse(webData.utc_datetime)
         localStart = performance.now()
         if (webUpdate.ok) {
             lastResync = 0
@@ -31,6 +34,7 @@ async function getWebDate() {
         const weekDay = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb']
 
         function updateWatch() {
+            if (isLoadingTime || typeof date !== 'number' || isNaN(date)) return;
             const wDate = new Date(date)
             dfTime.innerText = `${addZero(wDate.getHours())}:${addZero(wDate.getMinutes())}`
             dfDate.innerHTML = `${weekDay[wDate.getDay()]}, ${addZero(wDate.getDate())}/${addZero(wDate.getMonth() + 1)}/${wDate.getFullYear()}`
@@ -55,6 +59,9 @@ async function getWebDate() {
 
         async function resync() {
             console.log('Ressincronizando')
+            console.log(`Ressincronizando de ${apiLink}`)
+            apiDate = null
+            date = null
             isLoadingTime = true
             dfTime.innerHTML = `           
             <div class="loadingContainer">
@@ -69,10 +76,12 @@ async function getWebDate() {
             tClock.innerHTML = `<div class="loading"></div>`
             eClock.innerHTML = `<div class="loading"></div>`
             sClock.innerHTML = `<div class="loading"></div>`
+            dtClock.innerHTML = `<div class="loading"></div>`
+            dtDate.innerHTML = ``
             try {
-                webUpdate = await fetch('http://worldtimeapi.org/api/ip')
+                webUpdate = await fetch(apiLink)
                 webData = await webUpdate.json()
-                apiDate = new Date(webData.datetime).getTime()
+                apiDate = Date.parse(webData.utc_datetime)
                 localStart = performance.now()
                 if (webUpdate.ok) {
                     console.log('Ressincronização feita com sucesso')
@@ -104,6 +113,34 @@ async function getWebDate() {
 
         document.getElementById('syncNow').addEventListener('click', () => {
             resync()
+        })
+
+        document.getElementById('ipSync').addEventListener('change', () => {
+            const ch = document.getElementById('ipSync').checked
+            if (ch) {
+                apiLink = 'http://worldtimeapi.org/api/ip'
+            } else {
+                let utcValue = Number(document.getElementById('utcChoose').value)
+                let utcString = utcValue === 0 ? '' : (utcValue > 0 ? `-${utcValue}` : `+${Math.abs(utcValue)}`)
+                apiLink = `https://worldtimeapi.org/api/timezone/Etc/GMT${utcString}`
+            }
+
+            resync()
+        })
+
+        document.getElementById('utcChoose').addEventListener('change', () => {
+            UTC = document.getElementById('utcChoose').value
+            UTC = Number(UTC)
+            const ch = document.getElementById('ipSync').checked
+            if (ch) {
+                apiLink = 'http://worldtimeapi.org/api/ip'
+            } else {
+                let utcString = UTC === 0 ? '' : (UTC > 0 ? `-${UTC}` : `+${Math.abs(UTC)}`)
+                apiLink = `https://worldtimeapi.org/api/timezone/Etc/GMT${utcString}`
+
+                resync()
+            }
+
         })
 
     } catch (err) {
