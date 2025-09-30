@@ -6,6 +6,7 @@ const timeInfo = document.getElementById('timeInfo')
 const cusInfo = document.getElementById('cusInfo')
 const sysInfo = document.getElementById('sysInfo')
 const dataInfo = document.getElementById('dataInfo')
+const appsInfo = document.getElementById('appsInfo')
 
 document.getElementById('timeBtn').addEventListener('click', () => {
     sHome.style.opacity = '0'
@@ -51,21 +52,44 @@ document.getElementById('dataBtn').addEventListener('click', () => {
     }, 400);
 })
 
+document.getElementById('appsBtn').addEventListener('click', () => {
+    sHome.style.opacity = '0'
+    setTimeout(() => {
+        appsInfo.style.display = 'block'
+        sHome.style.display = 'none'
+        backBtn.style.display = 'flex'
+        sHeader.classList.add('backHeader')
+        sName.innerHTML = 'Mini Apps e Menu Home'
+    }, 400);
+})
+
 backBtn.addEventListener('click', () => {
     timeInfo.style.opacity = '0'
     sysInfo.style.opacity = '0'
     cusInfo.style.opacity = '0'
     dataInfo.style.opacity = '0'
+    appsInfo.style.opacity = '0'
     setTimeout(() => {
         timeInfo.removeAttribute('style')
         sysInfo.removeAttribute('style')
         cusInfo.removeAttribute('style')
         dataInfo.removeAttribute('style')
+        appsInfo.removeAttribute('style')
         sHome.removeAttribute('style')
         backBtn.removeAttribute('style')
         sHeader.classList.remove('backHeader')
         sName.innerHTML = 'Configurações'
     }, 400);
+})
+
+// Date and Time
+document.getElementById('extraBarCB').addEventListener('change', () => {
+    let isChecked = document.getElementById('extraBarCB').checked
+    if (isChecked) {
+        document.getElementById('extraBar').style.opacity = '1'
+    } else {
+        document.getElementById('extraBar').removeAttribute('style')
+    }
 })
 
 // Personalization
@@ -193,4 +217,14 @@ document.getElementById('openCredits').addEventListener('click', () => {
         Horário: WorldTimeAPI<br>
     `
     openPopup()
+})
+
+// Mini Apps
+document.getElementById('lgHome').addEventListener('change', () => {
+    let isChecked = document.getElementById('lgHome').checked
+    if (isChecked) {
+        homeMenu.className = 'homeMenuLG'
+    } else {
+        homeMenu.className = 'homeMenu'
+    }
 })

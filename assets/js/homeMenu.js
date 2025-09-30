@@ -1,5 +1,6 @@
 let homeMenuOpened = false
 const homeMenu = document.getElementById('HM')
+const hmClose = document.getElementById('hmClose')
 const wallpaper = document.getElementById('wallpaper')
 
 document.addEventListener('contextmenu', (e) => {
@@ -8,8 +9,10 @@ document.addEventListener('contextmenu', (e) => {
     let isLowEffects = document.getElementById('liteModel').checked
     let isMobile = window.matchMedia("(max-height: 500px)").matches ? true : false
     let phoneUp = window.matchMedia("(max-width: 500px)").matches ? true : false
-    if (!homeMenuOpened && !phoneUp) {
+    let extraBarCheck = document.getElementById('extraBarCB').checked
+    if (!homeMenuOpened && !phoneUp && !popOpen) {
         homeMenu.style.bottom = '0'
+        hmClose.style.bottom = '0'
         if (actualApp == 'watch') {
             if (!isMobile) {
                 document.getElementById('watch').style.height = '40vh'
@@ -34,8 +37,13 @@ document.addEventListener('contextmenu', (e) => {
         }
         homeMenuOpened = true
         lSound()
-    } else if (!phoneUp) {
+
+        if (extraBarCheck) {
+            document.getElementById('extraBar').removeAttribute('style')
+        }
+    } else if (!phoneUp && !popOpen) {
         homeMenu.removeAttribute('style')
+        hmClose.removeAttribute('style')
         if (canPlaySFX) {
             document.getElementById('closeHome').pause()
             document.getElementById('closeHome').currentTime = 0
@@ -49,19 +57,50 @@ document.addEventListener('contextmenu', (e) => {
         wallpaper.removeAttribute('style')
         homeMenuOpened = false
         lSound()
+        if (extraBarCheck) {
+            document.getElementById('extraBar').style.opacity = '1'
+        }
     }
 })
 
 Array.from(document.getElementById('abc').children).forEach(element => {
+    let extraBarCheck = document.getElementById('extraBarCB').checked
     element.addEventListener('click', () => {
         homeMenu.removeAttribute('style')
+        hmClose.removeAttribute('style')
         if (actualApp == 'watch') {
             document.getElementById('watch').removeAttribute('style')
         }
         wallpaper.removeAttribute('style')
         homeMenuOpened = false
+        if (extraBarCheck) {
+            document.getElementById('extraBar').style.opacity = '1'
+        }
     })
 });
+
+hmClose.addEventListener('click', () => {
+    let extraBarCheck = document.getElementById('extraBarCB').checked
+    let canPlaySFX = document.getElementById('sysSounds').checked
+    homeMenu.removeAttribute('style')
+    hmClose.removeAttribute('style')
+    if (canPlaySFX) {
+        document.getElementById('closeHome').pause()
+        document.getElementById('closeHome').currentTime = 0
+        document.getElementById('openHome').pause()
+        document.getElementById('openHome').currentTime = 0
+        document.getElementById('closeHome').play()
+    }
+    if (actualApp == 'watch') {
+        document.getElementById('watch').removeAttribute('style')
+    }
+    wallpaper.removeAttribute('style')
+    homeMenuOpened = false
+    if (extraBarCheck) {
+        document.getElementById('extraBar').style.opacity = '1'
+    }
+    lSound()
+})
 
 // Nav
 // Apps

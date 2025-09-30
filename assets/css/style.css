@@ -35,6 +35,11 @@ body {
     color: aliceblue;
     font-family: "Quicksand", sans-serif;
     accent-color: var(--primary);
+    user-select: none;
+}
+
+pre {
+    user-select: text;
 }
 
 .dnc {
@@ -201,6 +206,29 @@ h6 {
     color: var(--watchColor)
 }
 
+.extraBar {
+    position: fixed;
+    top: 0%;
+    right: 0;
+    background-color: #19191999;
+    width: 15%;
+    height: 100%;
+    backdrop-filter: blur(5px);
+    box-sizing: border-box;
+    padding: 30px;
+    transition: .15s ease-out;
+    opacity: 0;
+}
+
+.extraBar h1 {
+    font-size: 50px;
+    margin-bottom: 30px;
+}
+
+.extraBar #ebDetails {
+    font-size: 20px;
+}
+
 .homeMenu {
     position: fixed;
     bottom: -60%;
@@ -216,17 +244,76 @@ h6 {
     backdrop-filter: blur(14px);
 }
 
+.homeMenuAero {
+    position: fixed;
+    bottom: -60%;
+    left: 0;
+    border-radius: 24px 24px 0 0;
+    background-color: #19191999;
+    width: 100%;
+    height: 60%;
+    transition: .4s ease-out;
+    box-sizing: border-box;
+    padding: 30px;
+    z-index: 998;
+    backdrop-filter: blur(4px);
+}
+
+.homeMenuAero::before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    background-image: url(../img/texture/aeroGlass.png);
+    background-position: center;
+    background-size: cover;
+    opacity: .1;
+}
+
+
+.homeMenuLG {
+    position: fixed;
+    bottom: -60%;
+    left: 0;
+    border-radius: 24px 24px 0 0;
+    background-color: #19191999;
+    width: 100%;
+    height: 60%;
+    transition: .4s ease-out;
+    box-sizing: border-box;
+    padding: 30px;
+    z-index: 998;
+    filter: drop-shadow(-8px -10px 46px #0000005f);
+    backdrop-filter: brightness(1.1) blur(2px) url(#displacementFilter);
+}
+
+#hmClose {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    bottom: -100%;
+    left: 0;
+    transition: .4s ease-out;
+    z-index: 997;
+
+}
+
 .homeMenuAccent {
     background-color: var(--transPrimary);
 }
 
 .homeMenu h1,
-.homeMenuAccent h1 {
+.homeMenuAccent h1,
+.homeMenuLG h1 {
     font-size: 50px;
 }
 
 .homeMenu .abContainer,
-.homeMenuAccent .abContainer {
+.homeMenuAccent .abContainer,
+.homeMenuLG .abContainer {
     display: flex;
     width: 100%;
     height: 80%;
@@ -408,8 +495,44 @@ h6 {
     padding: 30px;
     gap: 15px;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
     overflow-y: auto;
+    overflow-x: hidden;
+
+    font-size: 20px;
+}
+
+.popUp h1 {
+    font-size: 40px;
+}
+
+.popUp label {
+    font-size: 25px;
+}
+
+.popUp input[type="text"] {
+    font-size: 20px;
+    padding: 5px;
+    padding-left: 10px;
+    font-family: "Quicksand";
+    border-radius: 8px;
+    background-color: #595959;
+    color: aliceblue;
+    border: 1px solid #494949;
+    border-bottom: 2px solid #494949;
+    box-sizing: border-box;
+    transition-duration: .2s;
+    width: 100%;
+}
+
+.popUp input[type="text"]::placeholder {
+    color: #a0a0a0;
+}
+
+.popUp input[type="text"]:focus {
+    outline: none;
+    border-bottom-color: var(--primary);
+    box-shadow: 0 0 12px 2px var(--primary);
 }
 
 .popUp .PUF {
@@ -593,6 +716,10 @@ h6 {
         width: 3px;
     }
 
+    .noPhoneShow {
+        display: none;
+    }
+
     .defaultWatch h1 {
         font-size: 100px;
     }
@@ -630,6 +757,7 @@ h6 {
 
     .popUp .PUC {
         height: 75%;
+        font-size: 15px;
     }
 
     .popUp .PUF {

@@ -1,8 +1,6 @@
 const dfTime = document.getElementById('time')
 const dfDate = document.getElementById('date')
 let isLoadingTime = true
-let UTC = document.getElementById('utcChoose').value
-UTC = Number(UTC)
 let apiLink = 'https://worldtimeapi.org/api/ip'
 
 // Apps clock
@@ -20,7 +18,7 @@ async function getWebDate() {
     try {
         webUpdate = await fetch(apiLink)
         webData = await webUpdate.json()
-        apiDate = Date.parse(webData.utc_datetime)
+        apiDate = Date.parse(webData.datetime)
         localStart = performance.now()
         if (webUpdate.ok) {
             lastResync = 0
@@ -32,6 +30,7 @@ async function getWebDate() {
         }
 
         const weekDay = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb']
+        const cWeekDay = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado']
 
         function updateWatch() {
             if (isLoadingTime || typeof date !== 'number' || isNaN(date)) return;
@@ -51,6 +50,14 @@ async function getWebDate() {
             const timeNow = performance.now() - localStart
             date = apiDate + timeNow
         }
+
+        document.getElementById('ebDetails').innerHTML = `
+                UTC: ${webData.utc_offset} (${webData.abbreviation}); <br>
+                IANA Timezone (Fuso horário IANA): ${webData.timezone}; <br>
+                Dia da semana: ${webData.day_of_week} (ou, ${cWeekDay[webData.day_of_week]}); <br>
+                Dia do ano: ${webData.day_of_year}; <br>
+                Marca temporal Unix: ${webData.unixtime}; <br>
+                Número da semana: ${webData.week_number}.`
 
         setInterval(() => {
             updateDate()
@@ -115,32 +122,34 @@ async function getWebDate() {
             resync()
         })
 
-        document.getElementById('ipSync').addEventListener('change', () => {
-            const ch = document.getElementById('ipSync').checked
-            if (ch) {
-                apiLink = 'http://worldtimeapi.org/api/ip'
-            } else {
-                let utcValue = Number(document.getElementById('utcChoose').value)
-                let utcString = utcValue === 0 ? '' : (utcValue > 0 ? `-${utcValue}` : `+${Math.abs(utcValue)}`)
-                apiLink = `https://worldtimeapi.org/api/timezone/Etc/GMT${utcString}`
-            }
+        document.getElementById('extraResponse').addEventListener('click', () => {
+            document.getElementById('popContent').innerHTML = `
+                <h1>Detalhes da Data e Hora</h1>
 
-            resync()
+                UTC: ${webData.utc_offset} (${webData.abbreviation}); <br>
+                IANA Timezone (Fuso horário IANA): ${webData.timezone}; <br>
+                Dia da semana: ${webData.day_of_week} (ou, ${cWeekDay[webData.day_of_week]}); <br>
+                Dia do ano: ${webData.day_of_year}; <br>
+                Marca temporal Unix: ${webData.unixtime}; <br>
+                Número da semana: ${webData.week_number}.
+            `
+            openPopup()
         })
 
-        document.getElementById('utcChoose').addEventListener('change', () => {
-            UTC = document.getElementById('utcChoose').value
-            UTC = Number(UTC)
-            const ch = document.getElementById('ipSync').checked
-            if (ch) {
-                apiLink = 'http://worldtimeapi.org/api/ip'
-            } else {
-                let utcString = UTC === 0 ? '' : (UTC > 0 ? `-${UTC}` : `+${Math.abs(UTC)}`)
-                apiLink = `https://worldtimeapi.org/api/timezone/Etc/GMT${utcString}`
+        document.getElementById('bruteResp').addEventListener('click', () => {
+            let luDate = new Date(apiDate)
+            document.getElementById('popContent').innerHTML = `
+                <h1>Resposta bruta API</h1>
 
-                resync()
-            }
+                Checado de: ${apiLink} <br>
+                Data da API: ${apiDate} <br>
+                Ultima atualização: ${luDate.getHours()}:${luDate.getMinutes()}:${luDate.getSeconds()}:${luDate.getMilliseconds()}
 
+                <br>
+                Resposta completa: <br>
+                <pre>${JSON.stringify(webData, null, 2)}</pre>
+            `
+            openPopup()
         })
 
     } catch (err) {

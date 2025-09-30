@@ -1,6 +1,7 @@
 let removingTodo = false
 
 document.getElementById('addTodo').addEventListener('click', () => {
+    document.getElementById('primBtn').removeAttribute('style')
     openPopup()
     funcBtn = 'todoAdd'
     document.getElementById('popContent').innerHTML = `
