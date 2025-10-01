@@ -30,10 +30,8 @@ document.addEventListener('contextmenu', (e) => {
             document.getElementById('openHome').currentTime = 0
             document.getElementById('openHome').play()
         }
-        if (!isLowEffects && actualApp == 'watch') {
-            wallpaper.style.filter = 'blur(15px)'
-        } else if (isLowEffects) {
-            wallpaper.style.filter = 'brightness(20%)'
+        if (actualApp == 'watch') {
+            wallpaper.style.filter = 'brightness(50%)'
         }
         homeMenuOpened = true
         lSound()

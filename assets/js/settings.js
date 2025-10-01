@@ -228,3 +228,12 @@ document.getElementById('lgHome').addEventListener('change', () => {
         homeMenu.className = 'homeMenu'
     }
 })
+
+document.getElementById('aeroHome').addEventListener('change', () => {
+    let isChecked = document.getElementById('aeroHome').checked
+    if (isChecked) {
+        homeMenu.className = 'homeMenuAero'
+    } else {
+        homeMenu.className = 'homeMenu'
+    }
+})
