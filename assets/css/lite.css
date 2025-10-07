@@ -404,6 +404,8 @@ h6 {
     text-decoration: line-through;
 }
 
+
+
 .todoBox:hover {
     background-color: #252525;
     box-shadow: 0 0 0px 5px var(--primary);

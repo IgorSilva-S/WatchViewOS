@@ -590,19 +590,27 @@ h6 {
     position: relative;
 }
 
+.todoDelBtn {
+    font-size: 25px;
+    font-family: 'Segoe Fluent Icons';
+    background-color: transparent;
+    border: none;
+    color: aliceblue;
+}
+
+.todoBox div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
 .todoBox.todoChecked {
     opacity: 0.6;
+}
+
+.todoBox.todoChecked p {
     text-decoration: line-through;
-}
-
-.todoBox:hover {
-    background-color: #191919;
-    box-shadow: 0 0 12px 5px var(--primary);
-}
-
-.todoBox:hover.todoRemove {
-    background-color: #191919;
-    box-shadow: 0 0 12px 5px rgb(255, 66, 66);
 }
 
 /*Settings*/

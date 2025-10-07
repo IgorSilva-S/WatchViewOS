@@ -65,8 +65,8 @@
                 <span>Config.</span>
             </button>
         </div>
-        <audio src="assets/sounds/HomeUp - WiiU.mp3" id="openHome"></audio>
-        <audio src="assets/sounds/HomeClose.mp3" id="closeHome"></audio>
+        <audio src="assets/sounds/WiiU/HomeUp.mp3" id="openHome"></audio>
+        <audio src="assets/sounds/WiiU/HomeClose.mp3" id="closeHome"></audio>
     </div>
     <section class="app" id="alarm">
         <div class="appHeader">
@@ -84,11 +84,9 @@
             </span>
         </div>
         <div class="appContent">
-            <h1 id="todoMode" style="font-size: 40px;">Modo marcação</h1>
             <div id="todoContent" style="margin-top: 20px;"></div>
             <div class="line">
                 <button class="addBtn" id="addTodo">Adicionar</button>
-                <button class="addBtn" id="removeTodo">Remover</button>
             </div>
         </div>
     </section>
@@ -98,6 +96,12 @@
             <span id="eClock">
                 <div class="loading"></div>
             </span>
+        </div>
+        <div class="appContent">
+            <div class="eventsContent" style="margin-top: 20px;"></div>
+            <div class="line">
+                <button class="addBtn" id="addEvent">Adicionar</button>
+            </div>
         </div>
     </section>
     <section class="app" id="settings">
@@ -329,13 +333,13 @@
     </div>
 
     <!-- SFX -->
-    <audio src="assets/sounds/HoverBtn.wav" id="hover"></audio>
-    <audio src="assets/sounds/OpenApp.wav" id="openApp"></audio>
-    <audio src="assets/sounds/ClickBtn.wav" id="clickbtn"></audio>
-    <audio src="assets/sounds/LinkOpen.wav" id="clicklink"></audio>
-    <audio src="assets/sounds/ClickCB.wav" id="clickcb"></audio>
-    <audio src="assets/sounds/Back.wav" id="backsound"></audio>
-    <audio src="assets/sounds/Loading.wav" id="loadingAudio" loop></audio>
+    <audio src="assets/sounds/WiiU/HoverBtn.wav" id="hover"></audio>
+    <audio src="assets/sounds/WiiU/OpenApp.wav" id="openApp"></audio>
+    <audio src="assets/sounds/WiiU/ClickBtn.wav" id="clickbtn"></audio>
+    <audio src="assets/sounds/WiiU/LinkOpen.wav" id="clicklink"></audio>
+    <audio src="assets/sounds/WiiU/ClickCB.wav" id="clickcb"></audio>
+    <audio src="assets/sounds/WiiU/Back.wav" id="backsound"></audio>
+    <audio src="assets/sounds/WiiU/Loading.wav" id="loadingAudio" loop></audio>
 
     <!--Liquid Glass Effect-->
     <svg style="display:none;">
@@ -355,8 +359,10 @@
     <script src="assets/js/homeMenu.js"></script>
     <script src="assets/js/timecount.js"></script>
     <script src="assets/js/todo.js"></script>
+    <script src="assets/js/events.js"></script>
     <script src="assets/js/settings.js"></script>
     <script src="assets/js/sounds.js"></script>
+    <script src="assets/js/changeSounds.js"></script>
 </body>
 
 </html>
