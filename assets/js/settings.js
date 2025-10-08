@@ -221,19 +221,29 @@ document.getElementById('openCredits').addEventListener('click', () => {
 
 // Mini Apps
 document.getElementById('lgHome').addEventListener('change', () => {
+    let accentChecked = document.getElementById('homeColor').checked
     let isChecked = document.getElementById('lgHome').checked
     if (isChecked) {
         homeMenu.className = 'homeMenuLG'
     } else {
         homeMenu.className = 'homeMenu'
     }
+
+    if (accentChecked) {
+        homeMenu.classList.add('homeMenuAccent')
+    }
 })
 
 document.getElementById('aeroHome').addEventListener('change', () => {
+    let accentChecked = document.getElementById('homeColor').checked
     let isChecked = document.getElementById('aeroHome').checked
     if (isChecked) {
         homeMenu.className = 'homeMenuAero'
     } else {
         homeMenu.className = 'homeMenu'
+    }
+
+    if (accentChecked) {
+        homeMenu.classList.add('homeMenuAccent')
     }
 })

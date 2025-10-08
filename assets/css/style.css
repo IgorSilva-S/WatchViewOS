@@ -52,6 +52,33 @@ pre {
     z-index: 1000;
 }
 
+input[type="text"],
+input[type="number"] {
+    font-size: 20px;
+    padding: 5px;
+    padding-left: 10px;
+    font-family: "Quicksand";
+    border-radius: 4px;
+    background-color: #595959;
+    color: aliceblue;
+    border: 1px solid #494949;
+    border-bottom: 2px solid #494949;
+    box-sizing: border-box;
+    transition-duration: .2s;
+}
+
+input[type="text"]::placeholder,
+input[type="number"]::placeholder {
+    color: #a0a0a0;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+    outline: none;
+    border-bottom-color: var(--primary);
+    box-shadow: 0 0 12px 2px var(--primary);
+}
+
 input[type="checkbox"] {
     appearance: none;
     width: 30px;
@@ -513,7 +540,8 @@ h6 {
     font-size: 25px;
 }
 
-.popUp input[type="text"] {
+.popUp input[type="text"],
+.popUp input[type="date"] {
     font-size: 20px;
     padding: 5px;
     padding-left: 10px;
@@ -528,11 +556,13 @@ h6 {
     width: 100%;
 }
 
-.popUp input[type="text"]::placeholder {
+.popUp input[type="text"]::placeholder,
+.popUp input[type="date"]::placeholder {
     color: #a0a0a0;
 }
 
-.popUp input[type="text"]:focus {
+.popUp input[type="text"]:focus,
+.popUp input[type="date"]:focus {
     outline: none;
     border-bottom-color: var(--primary);
     box-shadow: 0 0 12px 2px var(--primary);
@@ -603,6 +633,17 @@ h6 {
     justify-content: center;
     align-items: center;
     gap: 15px;
+}
+
+.todoBox .infoDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+}
+
+.todoBox .infoDiv span {
+    font-size: 20px;
 }
 
 .todoBox.todoChecked {
