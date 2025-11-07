@@ -34,6 +34,8 @@ document.documentElement.addEventListener('dblclick', (e) => {
 })
 
 // Apps Boot
+bootData()
+todoManager('load')
 
 // Settings
 document.getElementById('BCLabel').style.backgroundColor = document.getElementById('bColor').value

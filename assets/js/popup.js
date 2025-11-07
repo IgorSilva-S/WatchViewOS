@@ -24,32 +24,7 @@ document.getElementById('closePop').addEventListener('click', () => {
 
 document.getElementById('primBtn').addEventListener('click', () => {
     if (funcBtn == 'todoAdd') {
-        let todoBox = document.createElement('div')
-        todoBox.innerHTML = `
-            <p>${document.getElementById('todoName').value}</p>
-        `
-        let delBtn = document.createElement('button')
-        delBtn.className = 'todoDelBtn'
-        delBtn.innerHTML = '&#xe74d;'
-        delBtn.addEventListener('click', () => {
-            todoBox.remove()
-        })
-        let makeTodo = document.createElement('input')
-        makeTodo.type = 'checkbox'
-        makeTodo.addEventListener('change', () => {
-            if (todoBox.classList.contains('todoChecked')) {
-                todoBox.classList.remove('todoChecked')
-            } else {
-                todoBox.classList.add('todoChecked')
-            }
-        })
-        let contDiv = document.createElement('div')
-        contDiv.insertAdjacentElement('beforeend', delBtn)
-        contDiv.insertAdjacentElement('beforeend', makeTodo)
-        todoBox.insertAdjacentElement('beforeend', contDiv)
-        todoBox.className = 'todoBox'
-
-        document.getElementById('todoContent').insertAdjacentElement('afterbegin', todoBox)
+        todoManager('add')
         closePopup()
     } 
     if (funcBtn == 'eventAdd') {
