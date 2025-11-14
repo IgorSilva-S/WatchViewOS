@@ -28,27 +28,7 @@ document.getElementById('primBtn').addEventListener('click', () => {
         closePopup()
     } 
     if (funcBtn == 'eventAdd') {
-         let todoBox = document.createElement('div')
-         let dateValue = document.getElementById('eventDate').value
-         const [y, m, d] = dateValue.split("-");
-        todoBox.innerHTML = `
-            <div class="infoDiv">
-                <span>${d}/${m}/${y}</span>
-                <p>${document.getElementById('eventName').value}</p>
-            </div>
-        `
-        let delBtn = document.createElement('button')
-        delBtn.className = 'todoDelBtn'
-        delBtn.innerHTML = '&#xe74d;'
-        delBtn.addEventListener('click', () => {
-            todoBox.remove()
-        })
-        let contDiv = document.createElement('div')
-        contDiv.insertAdjacentElement('beforeend', delBtn)
-        todoBox.insertAdjacentElement('beforeend', contDiv)
-        todoBox.className = 'todoBox'
-
-        document.getElementById('eventsContent').insertAdjacentElement('afterbegin', todoBox)
+        eventManager('add', document.getElementById('eventName').value)
         closePopup()
     }
     funcBtn = null

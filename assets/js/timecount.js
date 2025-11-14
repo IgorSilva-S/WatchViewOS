@@ -35,14 +35,37 @@ async function getWebDate() {
         function updateWatch() {
             if (isLoadingTime || typeof date !== 'number' || isNaN(date)) return;
             const wDate = new Date(date)
-            dfTime.innerText = `${addZero(wDate.getHours())}:${addZero(wDate.getMinutes())}`
+            let showSec = document.getElementById('clockSec').checked
+            let showYD = document.getElementById('clockYearDay').checked
+            let showYW = document.getElementById('clockYearWeek').checked
+            if (showSec) {
+                dfTime.innerText = `${addZero(wDate.getHours())}:${addZero(wDate.getMinutes())}:${addZero(wDate.getSeconds())}`
+            } else {
+                dfTime.innerText = `${addZero(wDate.getHours())}:${addZero(wDate.getMinutes())}`
+            }
             dfDate.innerHTML = `${weekDay[wDate.getDay()]}, ${addZero(wDate.getDate())}/${addZero(wDate.getMonth() + 1)}/${wDate.getFullYear()}`
+            if (showYD) {
+                document.getElementById('yearDay').innerText = `Dia nº ${webData.day_of_year}`
+            } else {
+                document.getElementById('yearDay').innerText = ''
+            }
+            if (showYW) {
+                document.getElementById('yearWeek').innerText = `Semana nº ${webData.week_number}`
+            } else {
+                document.getElementById('yearWeek').innerText = ''
+            }
             aClock.innerText = `${addZero(wDate.getHours())}:${addZero(wDate.getMinutes())} - ${weekDay[wDate.getDay()]}, ${addZero(wDate.getDate())}/${addZero(wDate.getMonth() + 1)}/${wDate.getFullYear()}`
             tClock.innerText = `${addZero(wDate.getHours())}:${addZero(wDate.getMinutes())} - ${weekDay[wDate.getDay()]}, ${addZero(wDate.getDate())}/${addZero(wDate.getMonth() + 1)}/${wDate.getFullYear()}`
             eClock.innerText = `${addZero(wDate.getHours())}:${addZero(wDate.getMinutes())} - ${weekDay[wDate.getDay()]}, ${addZero(wDate.getDate())}/${addZero(wDate.getMonth() + 1)}/${wDate.getFullYear()}`
             sClock.innerText = `${addZero(wDate.getHours())}:${addZero(wDate.getMinutes())} - ${weekDay[wDate.getDay()]}, ${addZero(wDate.getDate())}/${addZero(wDate.getMonth() + 1)}/${wDate.getFullYear()}`
             dtClock.innerText = `${addZero(wDate.getHours())}:${addZero(wDate.getMinutes())}`
             dtDate.innerHTML = `${weekDay[wDate.getDay()]}, ${addZero(wDate.getDate())}/${addZero(wDate.getMonth() + 1)}/${wDate.getFullYear()}`
+
+            if (!showYD && !showYW) {
+                document.getElementById('eData').style.display = 'none'
+            } else {
+                document.getElementById('eData').removeAttribute('style')
+            }
         }
 
         function updateDate() {
@@ -50,14 +73,6 @@ async function getWebDate() {
             const timeNow = performance.now() - localStart
             date = apiDate + timeNow
         }
-
-        document.getElementById('ebDetails').innerHTML = `
-                UTC: ${webData.utc_offset} (${webData.abbreviation}); <br>
-                IANA Timezone (Fuso horário IANA): ${webData.timezone}; <br>
-                Dia da semana: ${webData.day_of_week} (ou, ${cWeekDay[webData.day_of_week]}); <br>
-                Dia do ano: ${webData.day_of_year}; <br>
-                Marca temporal Unix: ${webData.unixtime}; <br>
-                Número da semana: ${webData.week_number}.`
 
         setInterval(() => {
             updateDate()

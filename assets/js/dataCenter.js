@@ -103,3 +103,38 @@ function todoManager(act) {
 
     }
 }
+
+function eventManager(act, name) {
+    console.log(name)
+    if (act == 'add') {
+         let todoBox = document.createElement('div')
+         let dateValue = document.getElementById('eventDate').value
+         let eventName = name
+         const [y, m, d] = dateValue.split("-");
+        todoBox.innerHTML = `
+            <div class="infoDiv">
+                <span>${d}/${m}/${y}</span>
+                <p>${eventName}</p>
+            </div>
+        `
+        let delBtn = document.createElement('button')
+        delBtn.className = 'todoDelBtn'
+        delBtn.innerHTML = '&#xe74d;'
+        delBtn.addEventListener('click', () => {
+            todoBox.remove()
+        })
+        let contDiv = document.createElement('div')
+        contDiv.insertAdjacentElement('beforeend', delBtn)
+        todoBox.insertAdjacentElement('beforeend', contDiv)
+        todoBox.className = 'todoBox'
+        let event = {
+            name: eventName,
+            date: dateValue
+        }
+
+        events.push(event)
+        localStorage.setItem('events', JSON.stringify(events))
+
+        document.getElementById('eventsContent').insertAdjacentElement('afterbegin', todoBox)
+    }
+}

@@ -1,4 +1,6 @@
-document.getElementById('addEvent').addEventListener('click', () => {
+
+document.getElementById('createEvent').addEventListener('click', () => {
+    console.log(events)
     document.getElementById('primBtn').removeAttribute('style')
     openPopup()
     funcBtn = 'eventAdd'

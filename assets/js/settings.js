@@ -82,15 +82,6 @@ backBtn.addEventListener('click', () => {
     }, 400);
 })
 
-// Date and Time
-document.getElementById('extraBarCB').addEventListener('change', () => {
-    let isChecked = document.getElementById('extraBarCB').checked
-    if (isChecked) {
-        document.getElementById('extraBar').style.opacity = '1'
-    } else {
-        document.getElementById('extraBar').removeAttribute('style')
-    }
-})
 
 // Personalization
 document.getElementById('cgWall').addEventListener('change', () => {
@@ -212,9 +203,10 @@ document.getElementById('openCredits').addEventListener('click', () => {
     document.getElementById('popContent').innerHTML = `
         <h1>Créditos</h1>
         <br><br>
-        Design, funcionalidade: Igor Silva Santos (IgorSilva-S)<br>
         Sons: Nintendo / The Sounds Resource<br>
         Horário: WorldTimeAPI<br>
+        Ícones: Microsoft<br>
+        Estilo do programa: IgorSilva-S<br>
     `
     openPopup()
 })

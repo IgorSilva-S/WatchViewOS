@@ -32,11 +32,16 @@
         <h2 id="date">
             Buscando horário
         </h2>
+        <h3 id="eData" style="display: none;">
+            <span id="yearDay"></span>
+            <span id="yearWeek"></span>
+        </h3>
 
-        <div class="extraBar noPhoneShow" id="extraBar">
-            <h1>Detalhes</h1>
-            <div id="ebDetails">
+        <div class="eventsBar" id="eventbar">
+            <f-icon>&#xe787;</f-icon>
 
+            <div>
+                <h1 class="eventName" id="eventName">Nome Evento</h1>
             </div>
         </div>
     </section>
@@ -100,7 +105,7 @@
         <div class="appContent">
             <div id="eventsContent" style="margin-top: 20px;"></div>
             <div class="line">
-                <button class="addBtn" id="addEvent">Adicionar</button>
+                <button class="addBtn" id="createEvent">Adicionar</button>
             </div>
         </div>
     </section>
@@ -140,14 +145,26 @@
                 </div>
             </div>
             <div class="configInfo">
+                <div>
+                    <label for="clockSec">Mostrar segundos no relógio principal</label>
+                </div>
+                <input type="checkbox" name="" id="clockSec">
+            </div>
+            <div class="configInfo">
+                <div>
+                    <label for="clockYearDay">Mostrar dia do ano no relógio principal</label>
+                </div>
+                <input type="checkbox" name="" id="clockYearDay">
+            </div>
+            <div class="configInfo">
+                <div>
+                    <label for="clockYearWeek">Mostrar semana do ano no relógio principal</label>
+                </div>
+                <input type="checkbox" name="" id="clockYearWeek">
+            </div>
+            <div class="configInfo">
                 Ver detalhes extras sobre a data e hora
                 <button class="secBtn" id="extraResponse">Ver</button>
-            </div>
-            <div class="configInfo noPhoneShow">
-                <div>
-                    <label for="extraBarCB">Barra lateral com os dados extras no relógio</label>
-                </div>
-                <input type="checkbox" name="" id="extraBarCB">
             </div>
             <div class="configInfo">
                 Resposta bruta da API
