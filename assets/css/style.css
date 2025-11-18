@@ -785,6 +785,14 @@ h6 {
         font-size: 25px;
     }
 
+    .eventsBar {
+        gap: 30px
+    }
+
+    .eventsBar h1 {
+        font-size: 4vw;
+    }
+
     .homeMenu {
         bottom: -50%;
         height: 50%;

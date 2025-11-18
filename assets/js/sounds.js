@@ -31,6 +31,22 @@ buttons.forEach(button => {
     })
 })
 
+document.getElementById('fButton').addEventListener('mouseenter', () => {
+    let canPlaySFX = document.getElementById('sysSounds').checked
+    if (canPlaySFX && !isMobile) {
+        hoverSound.currentTime = 0
+        hoverSound.play()
+    }
+})
+
+document.getElementById('fButton').addEventListener('click', () => {
+    let canPlaySFX = document.getElementById('sysSounds').checked
+    if (canPlaySFX) {
+        clickSound.currentTime = 0
+        clickSound.play()
+    }
+})
+
 checks.forEach(check => {
     check.addEventListener('mouseenter', () => {
         let canPlaySFX = document.getElementById('sysSounds').checked

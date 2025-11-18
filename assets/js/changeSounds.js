@@ -20,5 +20,28 @@ function switchSounds() {
     document.getElementById("clickcb").src = "assets/sounds/Switch/ClickCB.wav";
     document.getElementById("backsound").src = "assets/sounds/Switch/Back.wav";
     document.getElementById("loadingAudio").src = "assets/sounds/Switch/Loading.wav";
+}
 
+function eShopSounds() {
+    document.getElementById("openHome").src = "assets/sounds/FAeShop/HomeUp.wav";
+    document.getElementById("closeHome").src = "assets/sounds/FAeShop/HomeClose.wav";
+    document.getElementById("hover").src = "assets/sounds/FAeShop/HoverBtn.wav";
+    document.getElementById("openApp").src = "assets/sounds/FAeShop/OpenApp.wav";
+    document.getElementById("clickbtn").src = "assets/sounds/FAeShop/ClickBtn.wav";
+    document.getElementById("clicklink").src = "assets/sounds/FAeShop/LinkOpen.wav";
+    document.getElementById("clickcb").src = "assets/sounds/FAeShop/ClickCB.wav";
+    document.getElementById("backsound").src = "assets/sounds/FAeShop/Back.wav";
+    document.getElementById("loadingAudio").src = "assets/sounds/FAeShop/Loading.wav";
+}
+
+function DS3Sounds() {
+    document.getElementById("openHome").src = "assets/sounds/3DS/HomeUp.wav";
+    document.getElementById("closeHome").src = "assets/sounds/3DS/HomeClose.wav";
+    document.getElementById("hover").src = "assets/sounds/3DS/HoverBtn.wav";
+    document.getElementById("openApp").src = "assets/sounds/3DS/OpenApp.wav";
+    document.getElementById("clickbtn").src = "assets/sounds/3DS/ClickBtn.wav";
+    document.getElementById("clicklink").src = "assets/sounds/3DS/LinkOpen.wav";
+    document.getElementById("clickcb").src = "assets/sounds/3DS/ClickCB.wav";
+    document.getElementById("backsound").src = "assets/sounds/3DS/Back.wav";
+    document.getElementById("loadingAudio").src = "assets/sounds/3DS/Loading.wav";
 }

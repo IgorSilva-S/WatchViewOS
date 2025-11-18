@@ -26,12 +26,10 @@ document.getElementById('primBtn').addEventListener('click', () => {
     if (funcBtn == 'todoAdd') {
         todoManager('add')
         closePopup()
-    } 
-    if (funcBtn == 'eventAdd') {
-        eventManager('add', document.getElementById('eventName').value)
-        closePopup()
     }
-    funcBtn = null
+    if (funcBtn == 'eventAdd') {
+        eventManager('add')
+    }
 })
 
 document.getElementById('dnc').addEventListener('click', () => {
@@ -46,5 +44,6 @@ function closePopup() {
         document.getElementById('dnc').removeAttribute('style')
         document.getElementById('primBtn').style.display = 'none'
         popOpen = false
+        funcBtn = null
     }, 200);
 }

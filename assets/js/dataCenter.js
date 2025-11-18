@@ -1,7 +1,8 @@
-let events, todos, alarms, personalization, settings, datas;
+let events, todos, alarms, personalization, settings, datas, fBoot;
 
 function bootData() {
     console.log(`Booting... \nGetting Data...`);
+
 
     events = JSON.parse(localStorage.getItem('events')) || [];
     todos = JSON.parse(localStorage.getItem('todos')) || [];
@@ -9,6 +10,7 @@ function bootData() {
     personalization = JSON.parse(localStorage.getItem('personalization')) || [];
     settings = JSON.parse(localStorage.getItem('settings')) || [];
     datas = JSON.parse(localStorage.getItem('datas')) || [];
+    fBoot = localStorage.getItem('initialBoot')
 
     // Salva os dados no localStorage se estiverem vazios
     localStorage.setItem('events', JSON.stringify(events));
@@ -17,6 +19,13 @@ function bootData() {
     localStorage.setItem('personalization', JSON.stringify(personalization));
     localStorage.setItem('settings', JSON.stringify(settings));
     localStorage.setItem('datas', JSON.stringify(datas));
+    if (fBoot === null) {
+        let d = new Date
+        localStorage.setItem('initialBoot', d)
+        fBoot = localStorage.getItem('initialBoot')
+    }
+
+    insertDay(fBoot)
 }
 
 function todoManager(act) {
@@ -63,9 +72,7 @@ function todoManager(act) {
         // Salva no localStorage
         todos.push({ name: todoName, checked: checked });
         localStorage.setItem('todos', JSON.stringify(todos));
-    }
-
-    if (act.toLowerCase() === 'load') {
+    } else if (act.toLowerCase() === 'load') {
         todos.forEach(todo => {
             let todoBox = document.createElement('div');
             todoBox.className = 'todoBox';
@@ -101,16 +108,20 @@ function todoManager(act) {
             document.getElementById('todoContent').prepend(todoBox);
         });
 
+    } else {
+        console.log('Todo Manager: Não há essa função para o Todo Manager')
     }
 }
 
-function eventManager(act, name) {
-    console.log(name)
-    if (act == 'add') {
-         let todoBox = document.createElement('div')
-         let dateValue = document.getElementById('eventDate').value
-         let eventName = name
-         const [y, m, d] = dateValue.split("-");
+function eventManager(act, date) {
+    if (act.toLowerCase() == 'add') {
+        let todoBox = document.createElement('div')
+        let dateValue = document.getElementById('eventDate').value
+        let eventName = document.getElementById('eventInfo').value
+        if (dateValue === '' || eventName.trim() === '') {
+            return
+        }
+        const [y, m, d] = dateValue.split("-");
         todoBox.innerHTML = `
             <div class="infoDiv">
                 <span>${d}/${m}/${y}</span>
@@ -122,6 +133,9 @@ function eventManager(act, name) {
         delBtn.innerHTML = '&#xe74d;'
         delBtn.addEventListener('click', () => {
             todoBox.remove()
+            events = events.filter(t => t.name !== eventName);
+            localStorage.setItem('events', JSON.stringify(events));
+            events = JSON.parse(localStorage.getItem('events'))
         })
         let contDiv = document.createElement('div')
         contDiv.insertAdjacentElement('beforeend', delBtn)
@@ -134,7 +148,62 @@ function eventManager(act, name) {
 
         events.push(event)
         localStorage.setItem('events', JSON.stringify(events))
+        closePopup()
 
         document.getElementById('eventsContent').insertAdjacentElement('afterbegin', todoBox)
+    } else if (act.toLowerCase() == 'check') {
+        document.getElementById('eventbar').removeAttribute('style')
+        events.forEach((e) => {
+            let AZ = (n) => {
+                return ('0' + n).slice(-2)
+            }
+            let d = new Date()
+            let fDate = `${d.getFullYear()}-${AZ(d.getMonth() + 1)}-${AZ(d.getDate())}`
+            if (fDate == e.date) {
+                document.getElementById('eventName').innerText = e.name
+                document.getElementById('eventbar').style.display = 'flex'
+            }
+        })
+    } else if (act.toLowerCase() == 'load') {
+        events.forEach((e) => {
+            let todoBox = document.createElement('div')
+            let dateValue = e.date
+            let eventName = e.name
+            if (dateValue === '' || eventName.trim() === '') {
+                return
+            }
+            const [y, m, d] = dateValue.split("-");
+            todoBox.innerHTML = `
+            <div class="infoDiv">
+                <span>${d}/${m}/${y}</span>
+                <p>${eventName}</p>
+            </div>
+        `
+            let delBtn = document.createElement('button')
+            delBtn.className = 'todoDelBtn'
+            delBtn.innerHTML = '&#xe74d;'
+            delBtn.addEventListener('click', () => {
+                todoBox.remove()
+                events = events.filter(t => t.name !== eventName);
+                localStorage.setItem('events', JSON.stringify(events));
+                events = JSON.parse(localStorage.getItem('events'))
+            })
+            let contDiv = document.createElement('div')
+            contDiv.insertAdjacentElement('beforeend', delBtn)
+            todoBox.insertAdjacentElement('beforeend', contDiv)
+            todoBox.className = 'todoBox'
+
+            document.getElementById('eventsContent').insertAdjacentElement('afterbegin', todoBox)
+        })
+    } else {
+        console.log('Event Manager: Não há essa função para o Event Manager')
     }
+}
+
+function insertDay(date) {
+    let d = new Date(date)
+    let AZ = (n) => {
+        return ('0' + n).slice(-2)
+    }
+    document.getElementById('fdUse').innerText = `${AZ(d.getDate())}/${AZ(d.getMonth() + 1)}/${d.getFullYear()}`
 }

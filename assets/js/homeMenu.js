@@ -9,6 +9,7 @@ document.addEventListener('contextmenu', (e) => {
     let isLowEffects = document.getElementById('liteModel').checked
     let isMobile = window.matchMedia("(max-height: 500px)").matches ? true : false
     let phoneUp = window.matchMedia("(max-width: 500px)").matches ? true : false
+    eventManager('check')
     if (!homeMenuOpened && !phoneUp && !popOpen) {
         homeMenu.style.bottom = '0'
         hmClose.style.bottom = '0'
@@ -33,6 +34,7 @@ document.addEventListener('contextmenu', (e) => {
             wallpaper.style.filter = 'brightness(50%)'
         }
         homeMenuOpened = true
+        document.getElementById('eventbar').removeAttribute('style')
         lSound()
     } else if (!phoneUp && !popOpen) {
         homeMenu.removeAttribute('style')
@@ -103,6 +105,7 @@ const settingsBtn = document.getElementById('settingsBtn')
 
 watchBtn.addEventListener('click', () => {
     if (actualApp != 'watch') {
+        eventManager('check')
         dncScreen.style.display = 'block'
         wallpaper.style.opacity = '0'
         watchApp.style.opacity = '0'
