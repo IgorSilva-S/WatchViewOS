@@ -366,6 +366,10 @@ h6 {
     background-color: var(--transPrimary);
 }
 
+.homeMenuOP.homeMenuAccent {
+    background-color: var(--primary);
+}
+
 .homeMenu h1,
 .homeMenuAccent h1,
 .homeMenuLG h1,
