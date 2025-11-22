@@ -27,6 +27,10 @@ function bootData() {
 
     insertDay(fBoot)
 }
+ 
+function alarmManager(act) {
+
+}
 
 function todoManager(act) {
     if (act.toLowerCase() === 'add') {
@@ -108,6 +112,8 @@ function todoManager(act) {
             document.getElementById('todoContent').prepend(todoBox);
         });
 
+    } else if (act.toLowerCase() == 'format') {
+        localStorage.removeItem('todos')
     } else {
         console.log('Todo Manager: Não há essa função para o Todo Manager')
     }
@@ -195,6 +201,8 @@ function eventManager(act, date) {
 
             document.getElementById('eventsContent').insertAdjacentElement('afterbegin', todoBox)
         })
+    } else if (act.toLowerCase() == 'format') {
+        localStorage.removeItem('events')
     } else {
         console.log('Event Manager: Não há essa função para o Event Manager')
     }

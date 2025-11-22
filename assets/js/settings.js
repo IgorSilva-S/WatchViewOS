@@ -212,30 +212,8 @@ document.getElementById('openCredits').addEventListener('click', () => {
 })
 
 // Mini Apps
-document.getElementById('lgHome').addEventListener('change', () => {
-    let accentChecked = document.getElementById('homeColor').checked
-    let isChecked = document.getElementById('lgHome').checked
-    if (isChecked) {
-        homeMenu.className = 'homeMenuLG'
-    } else {
-        homeMenu.className = 'homeMenu'
-    }
+document.getElementById('homeStyle').addEventListener('change', () => {
+    let val = document.getElementById('homeStyle').value
 
-    if (accentChecked) {
-        homeMenu.classList.add('homeMenuAccent')
-    }
-})
-
-document.getElementById('aeroHome').addEventListener('change', () => {
-    let accentChecked = document.getElementById('homeColor').checked
-    let isChecked = document.getElementById('aeroHome').checked
-    if (isChecked) {
-        homeMenu.className = 'homeMenuAero'
-    } else {
-        homeMenu.className = 'homeMenu'
-    }
-
-    if (accentChecked) {
-        homeMenu.classList.add('homeMenuAccent')
-    }
+    val == 'fglass' ? homeMenu.className = 'homeMenu' : val == 'lglass' ? homeMenu.className = 'homeMenuLG' : val == 'aero' ? homeMenu.className = 'homeMenuAero' : val == 'opaque' ? homeMenu.className = 'homeMenuOP' : val == 'transparent' ? homeMenu.className = 'homeMenuTP' : homeMenu.className = 'homeMenu'
 })

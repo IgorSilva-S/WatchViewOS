@@ -7,6 +7,7 @@
     <title>Watch View</title>
     <link rel="stylesheet" href="assets/css/style.css" id="mainCss">
     <link rel="stylesheet" href="assets/css/keyorganization.css">
+    <link rel="shortcut icon" href="assets/img/logo/Colored.png" type="image/x-icon">
 
     <!--Do not disable screen-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/nosleep/0.12.0/NoSleep.min.js"></script>
@@ -241,6 +242,7 @@
                     <h1>WatchViewOS</h1>
                     <h2>Ver 1.0</h2>
                 </div>
+                <div class="logoImage colored"></div>
             </div>
             <div class="configInfo">
                 <label for="dblclkFS">
@@ -325,6 +327,13 @@
             </div>
             <div class="configInfo">
                 Sons do sistema
+                <select name="" id="soundChanger">
+                    <option value="wiiu">Wii U</option>
+                    <option value="switch">Switch</option>
+                    <option value="eshop">eShop</option>
+                    <option value="3DS">3DS</option>
+                    <option value="steamDeck">Steam Deck</option>
+                </select>
             </div>
             <div class="configInfo">
                 Som do alarme
@@ -333,16 +342,14 @@
                 Ocultar mini apps
             </div>
             <div class="configInfo">
-                <div>
-                    <label for="lgHome">Liquid Glass Home Menu</label>
-                </div>
-                <input type="checkbox" name="" id="lgHome">
-            </div>
-            <div class="configInfo">
-                <div>
-                    <label for="aeroHome">Aero Home Menu</label>
-                </div>
-                <input type="checkbox" name="" id="aeroHome">
+                Estilo do Menu Home
+                <select name="" id="homeStyle">
+                    <option value="fglass">Frosted Glass</option>
+                    <option value="lglass">Liquid Glass</option>
+                    <option value="aero">Aero</option>
+                    <option value="transparent">Transparente</option>
+                    <option value="opaque">Opaco</option>
+                </select>
             </div>
         </div>
     </section>

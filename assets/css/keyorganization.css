@@ -43,3 +43,20 @@
         margin-bottom: 0;
     }
 }
+
+.logoImage {
+    background-position: center;
+    background-size: cover;
+}
+
+.logoImage.white {
+    background-image: url(../img/logo/White.png);
+}
+
+.logoImage.black {
+    background-image: url(../img/logo/Black.png);
+}
+
+.logoImage.colored {
+    background-image: url(../img/logo/Colored.png);
+}

@@ -1,3 +1,5 @@
+let playingAlarm = false
+
 document.getElementById("addAlarm").addEventListener("click", () => {
   document.getElementById("primBtn").removeAttribute("style");
   openPopup();
@@ -42,7 +44,7 @@ document.getElementById("addAlarm").addEventListener("click", () => {
                 <label for="aSab">Sáb</label>
             </div>
         </div>
-        <span>Lembre-se de adicionar nome e hora são campos obrigatórios</span>
+        <span>Lembre-se de adicionar nome e hora, são campos obrigatórios</span>
     `;
   document.getElementById("primBtn").innerText = "Adicionar";
 });

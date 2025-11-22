@@ -1,4 +1,4 @@
-let buttons, checks, colorLabels, secBtns
+let buttons, checks, colorLabels, secBtns;
 let isMobile = window.matchMedia("(max-height: 500px)").matches ? true : false;
 
 // Sounds
@@ -157,11 +157,9 @@ function lSound() {
   }
 }
 
-soundManager('load')
+soundManager("load");
 
 setInterval(() => {
-    soundManager('unload')
-    setTimeout(() => {
-        soundManager('load')
-    }, 1);
+  soundManager("unload");
+  soundManager("load");
 }, 1);
