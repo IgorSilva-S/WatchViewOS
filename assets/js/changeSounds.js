@@ -45,3 +45,15 @@ function DS3Sounds() {
     document.getElementById("backsound").src = "assets/sounds/3DS/Back.wav";
     document.getElementById("loadingAudio").src = "assets/sounds/3DS/Loading.wav";
 }
+
+function steamSounds() {
+    document.getElementById("openHome").src = "assets/sounds/SDeck/HomeUp.wav";
+    document.getElementById("closeHome").src = "assets/sounds/SDeck/HomeClose.wav";
+    document.getElementById("hover").src = "assets/sounds/SDeck/HoverBtn.wav";
+    document.getElementById("openApp").src = "assets/sounds/SDeck/OpenApp.wav";
+    document.getElementById("clickbtn").src = "assets/sounds/SDeck/ClickBtn.wav";
+    document.getElementById("clicklink").src = "assets/sounds/SDeck/LinkOpen.wav";
+    document.getElementById("clickcb").src = "assets/sounds/SDeck/ClickCB.wav";
+    document.getElementById("backsound").src = "assets/sounds/SDeck/Back.wav";
+    document.getElementById("loadingAudio").src = "assets/sounds/SDeck/Loading.wav";
+}

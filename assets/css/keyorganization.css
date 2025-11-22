@@ -3,6 +3,14 @@
     flex-direction: column;
 }
 
+.cCol {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
 .line {
     display: flex;
     flex-grow: 1;
