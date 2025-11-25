@@ -82,6 +82,8 @@ backBtn.addEventListener('click', () => {
     }, 400);
 })
 
+// Date and time
+
 
 // Personalization
 document.getElementById('cgWall').addEventListener('change', () => {
@@ -170,8 +172,27 @@ document.getElementById('watchColor').addEventListener('change', () => {
 
 // System basics
 
+document.getElementById('dblclkFS').addEventListener('change', () => {
+    let checker = document.getElementById('dblclkFS').checked
+    if (checker) {
+        settings.noFS = false
+    } else {
+        settings.noFS = true
+    }
+
+    localStorage.setItem('settings', JSON.stringify(settings))
+})
+
 document.getElementById('sysSounds').addEventListener('change', () => {
     lSound()
+    let checker = document.getElementById("sysSounds").checked
+    if (checker) {
+        settings.noSound = false
+    } else {
+        settings.noSound = true
+    }
+
+    localStorage.setItem('settings', JSON.stringify(settings))
 })
 
 document.getElementById('linkLE').addEventListener('click', () => {
@@ -194,9 +215,13 @@ document.getElementById('liteModel').addEventListener('change', () => {
     let lm = document.getElementById('liteModel').checked
     if (lm) {
         document.getElementById('mainCss').href = 'assets/css/lite.css'
+        settings.lite = true
     } else {
         document.getElementById('mainCss').href = 'assets/css/style.css'
+        settings.lite = false
     }
+
+    localStorage.setItem('settings', JSON.stringify(settings))
 })
 
 document.getElementById('openCredits').addEventListener('click', () => {
