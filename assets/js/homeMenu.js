@@ -10,7 +10,7 @@ document.addEventListener('contextmenu', (e) => {
     let isMobile = window.matchMedia("(max-height: 500px)").matches ? true : false
     let phoneUp = window.matchMedia("(max-width: 500px)").matches ? true : false
     eventManager('check')
-    if (!homeMenuOpened && !phoneUp && !popOpen) {
+    if (!homeMenuOpened && !phoneUp && !popOpen && connected) {
         homeMenu.style.bottom = '0'
         hmClose.style.bottom = '0'
         if (actualApp == 'watch') {
@@ -36,7 +36,7 @@ document.addEventListener('contextmenu', (e) => {
         homeMenuOpened = true
         document.getElementById('eventbar').removeAttribute('style')
         lSound()
-    } else if (!phoneUp && !popOpen) {
+    } else if (!phoneUp && !popOpen && connected) {
         homeMenu.removeAttribute('style')
         hmClose.removeAttribute('style')
         if (canPlaySFX) {
@@ -228,7 +228,11 @@ document.getElementById('homeColor').addEventListener('change', () => {
     let check = document.getElementById('homeColor').checked
     if (check) {
         homeMenu.classList.add('homeMenuAccent')
+        personalization.accentMenu = true
     } else {
         homeMenu.classList.remove('homeMenuAccent')
+        personalization.accentMenu = false
     }
+
+    localStorage.setItem('personalization', JSON.stringify(personalization))
 })

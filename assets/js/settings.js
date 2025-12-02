@@ -99,6 +99,10 @@ document.getElementById('cgWall').addEventListener('change', () => {
         }
     `
         document.getElementById('tyWall').innerText = `Imagem`;
+
+        personalization.img = imageUrl
+        localStorage.setItem('personalization', JSON.stringify(personalization))
+
     };
 
     if (file) {
@@ -110,6 +114,8 @@ document.getElementById('rWall').addEventListener('click', () => {
     document.getElementById('wallImg').innerHTML = ""
     document.getElementById('tyWall').innerText = `Cores`;
     document.getElementById('cgWall').value = '';
+    personalization.img = "nothing"
+    localStorage.setItem('personalization', JSON.stringify(personalization))
 })
 
 document.getElementById('wpOpacity').addEventListener('change', () => {
@@ -121,15 +127,27 @@ document.getElementById('wpOpacity').addEventListener('change', () => {
             --wallpaperOpacity: ${val}
         }
     `
+    personalization.opacity = val
+    localStorage.setItem('personalization', JSON.stringify(personalization))
 })
 
 document.getElementById('aColor').addEventListener('change', () => {
+    personalization.primaryColor = document.getElementById('aColor').value
+    localStorage.setItem('personalization', JSON.stringify(personalization))
     document.getElementById('RAColor').innerHTML = `
         :root {
             --primary: ${document.getElementById('aColor').value};
             --transPrimary: ${document.getElementById('aColor').value}77;
         }
     `
+})
+
+
+document.getElementById('cLabel').addEventListener('dblclick', () => {
+    personalization.primaryColor = '#292ccc'
+    localStorage.setItem('personalization', JSON.stringify(personalization))
+    document.getElementById('aColor').value = personalization.primaryColor
+    document.getElementById('RAColor').innerHTML = ""
 })
 
 document.getElementById('txtColor').addEventListener('change', () => {
@@ -140,9 +158,13 @@ document.getElementById('txtColor').addEventListener('change', () => {
                --primaryColor: #191919;
             }
         `
+        personalization.swapAccent = true
     } else {
         document.getElementById('RAText').innerHTML = ""
+        personalization.swapAccent = false
     }
+
+    localStorage.setItem('personalization', JSON.stringify(personalization))
 })
 
 document.getElementById('bColor').addEventListener('change', () => {
@@ -155,6 +177,9 @@ document.getElementById('bColor').addEventListener('change', () => {
             --wallpaperOpacity: ${val}
         }
     `
+
+    personalization.wallColor = color
+    localStorage.setItem('personalization', JSON.stringify(personalization))
 })
 
 document.getElementById('watchColor').addEventListener('change', () => {
@@ -165,9 +190,14 @@ document.getElementById('watchColor').addEventListener('change', () => {
                --watchColor: #191919;
             }
         `
+
+        personalization.swapWatch = true
     } else {
         document.getElementById('wallTxt').innerHTML = ""
+        personalization.swapWatch = false
     }
+
+    localStorage.setItem('personalization', JSON.stringify(personalization))
 })
 
 // System basics

@@ -7,7 +7,7 @@ function bootData() {
     events = JSON.parse(localStorage.getItem('events')) || [];
     todos = JSON.parse(localStorage.getItem('todos')) || [];
     alarms = JSON.parse(localStorage.getItem('alarms')) || [];
-    personalization = JSON.parse(localStorage.getItem('personalization')) || [];
+    personalization = JSON.parse(localStorage.getItem('personalization')) || {};
     settings = JSON.parse(localStorage.getItem('settings')) || {};
     datas = JSON.parse(localStorage.getItem('datas')) || [];
     fBoot = localStorage.getItem('initialBoot')

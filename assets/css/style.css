@@ -276,6 +276,13 @@ h6 {
     backdrop-filter: blur(14px);
 }
 
+[type="fullScreen"] {
+    bottom: -100%;
+    height: 100%;
+    border-radius: 0;
+    transition-duration: .6s;
+}
+
 .homeMenuAero {
     position: fixed;
     bottom: -60%;
@@ -398,7 +405,7 @@ h6 {
     height: 80%;
     aspect-ratio: 1;
     background-color: #191919cc;
-    border-radius: 8px;
+    border-radius: 30px;
     border: none;
     color: white;
     display: flex;
@@ -407,6 +414,10 @@ h6 {
     flex-direction: column;
     font-size: 40px;
     transition-duration: .25s;
+}
+
+[type="fullScreen"] .abContainer button {
+    height: 40%;
 }
 
 .homeMenuOP .abContainer button {
@@ -739,8 +750,8 @@ h6 {
 }
 
 .sSubPage .introMsg .logoImage {
-    width: 266px;
-    height: 266px;
+    width: 180px;
+    height: 180px;
 }
 
 .sSubPage .introMsg .configInfo.persona {
@@ -800,7 +811,7 @@ h6 {
     box-sizing: border-box;
     padding: 30px 50px;
     border: none;
-    border-radius: 16px;
+    border-radius: 30px;
     font-size: 30px;
     padding: 20px 40px;
     background-color: #19191999;
@@ -813,7 +824,30 @@ h6 {
     position: relative;
 }
 
+.noNet {
+    display: none;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    position: fixed;
+    z-index: 999;
+    background-color: #191919cc;
+    backdrop-filter: blur(50px);
+    color: white;
+    top: 0;
+    left: 0;
+    width: 100dvw;
+    height: 100dvh;
+    text-align: center;
+}
 
+.noNet f-icon {
+    font-size: 120px;
+}
+
+.noNet h1 {
+    font-size: 40px;
+}
 
 @media (max-height: 500px) {
     ::-webkit-scrollbar {

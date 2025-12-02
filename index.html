@@ -7,7 +7,7 @@
     <title>Watch View</title>
     <link rel="stylesheet" href="assets/css/style.css" id="mainCss">
     <link rel="stylesheet" href="assets/css/keyorganization.css">
-    <link rel="shortcut icon" href="assets/img/logo/Colored.png" type="image/x-icon">
+    <link rel="shortcut icon" href="assets/img/logo/Monitor.png" type="image/x-icon">
 
     <!--Do not disable screen-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/nosleep/0.12.0/NoSleep.min.js"></script>
@@ -201,7 +201,7 @@
             </div>
             <div class="configInfo">
                 Cor de destaque
-                <label for="aColor" class="colorLabel"></label>
+                <label for="aColor" class="colorLabel" id="cLabel"></label>
                 <input type="color" name="" id="aColor" style="width: 0; height: 0;" value="#292ccc">
             </div>
             <div class="configInfo">
@@ -354,6 +354,10 @@
         </div>
     </section>
     <div class="dnc" id="dnc"></div>
+    <section class="noNet" id="noNet">
+        <f-icon>&#xf384;</f-icon>
+        <h1>Verifique a conexão com à internet de sua máquina!</h1>
+    </section>
     <section class="phoneTurn">
         <f-icon>&#xe7ad;</f-icon>
         <h1>Gire o telefone para usar o WatchViewOS</h1>
@@ -402,6 +406,7 @@
     <script src="assets/js/settings.js"></script>
     <script src="assets/js/sounds.js"></script>
     <script src="assets/js/changeSounds.js"></script>
+    <script src="assets/js/connection.js"></script>
 
 </body>
 

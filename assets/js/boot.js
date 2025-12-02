@@ -4,6 +4,8 @@ noSleep.enable()
 
 const dncScreen = document.getElementById('dnc')
 
+let connected = true
+
 // Fullscreen 
 let isFS = false
 const fsToggle = document.getElementById('dblclkFS')
