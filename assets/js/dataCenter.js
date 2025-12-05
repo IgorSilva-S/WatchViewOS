@@ -160,6 +160,7 @@ function eventManager(act, date) {
         document.getElementById('eventsContent').insertAdjacentElement('afterbegin', todoBox)
     } else if (act.toLowerCase() == 'check') {
         document.getElementById('eventbar').removeAttribute('style')
+        document.getElementById('eventPill').removeAttribute('style')
         events.forEach((e) => {
             let AZ = (n) => {
                 return ('0' + n).slice(-2)
@@ -169,6 +170,8 @@ function eventManager(act, date) {
             if (fDate == e.date) {
                 document.getElementById('eventName').innerText = e.name
                 document.getElementById('eventbar').style.display = 'flex'
+                document.getElementById('ePillName').innerText = e.name
+                document.getElementById('eventPill').style.display = 'flex'
             }
         })
     } else if (act.toLowerCase() == 'load') {

@@ -16,12 +16,9 @@ document.addEventListener('contextmenu', (e) => {
         if (actualApp == 'watch') {
             if (!isMobile) {
                 document.getElementById('watch').style.height = '40vh'
-            } else {
-                document.getElementById('watch').style.height = '50vh'
+                document.getElementById('watch').style.flexDirection = 'row'
+                document.getElementById('watch').style.justifyContent = 'space-evenly'
             }
-
-            document.getElementById('watch').style.flexDirection = 'row'
-            document.getElementById('watch').style.justifyContent = 'space-evenly'
         }
         if (canPlaySFX) {
             document.getElementById('closeHome').pause()

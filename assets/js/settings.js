@@ -6,7 +6,6 @@ const timeInfo = document.getElementById('timeInfo')
 const cusInfo = document.getElementById('cusInfo')
 const sysInfo = document.getElementById('sysInfo')
 const dataInfo = document.getElementById('dataInfo')
-const appsInfo = document.getElementById('appsInfo')
 
 document.getElementById('timeBtn').addEventListener('click', () => {
     sHome.style.opacity = '0'
@@ -52,29 +51,17 @@ document.getElementById('dataBtn').addEventListener('click', () => {
     }, 400);
 })
 
-document.getElementById('appsBtn').addEventListener('click', () => {
-    sHome.style.opacity = '0'
-    setTimeout(() => {
-        appsInfo.style.display = 'block'
-        sHome.style.display = 'none'
-        backBtn.style.display = 'flex'
-        sHeader.classList.add('backHeader')
-        sName.innerHTML = 'Mini Apps e Menu Home'
-    }, 400);
-})
 
 backBtn.addEventListener('click', () => {
     timeInfo.style.opacity = '0'
     sysInfo.style.opacity = '0'
     cusInfo.style.opacity = '0'
     dataInfo.style.opacity = '0'
-    appsInfo.style.opacity = '0'
     setTimeout(() => {
         timeInfo.removeAttribute('style')
         sysInfo.removeAttribute('style')
         cusInfo.removeAttribute('style')
         dataInfo.removeAttribute('style')
-        appsInfo.removeAttribute('style')
         sHome.removeAttribute('style')
         backBtn.removeAttribute('style')
         sHeader.classList.remove('backHeader')
@@ -271,4 +258,8 @@ document.getElementById('homeStyle').addEventListener('change', () => {
     let val = document.getElementById('homeStyle').value
 
     val == 'fglass' ? homeMenu.className = 'homeMenu' : val == 'lglass' ? homeMenu.className = 'homeMenuLG' : val == 'aero' ? homeMenu.className = 'homeMenuAero' : val == 'opaque' ? homeMenu.className = 'homeMenuOP' : val == 'transparent' ? homeMenu.className = 'homeMenuTP' : homeMenu.className = 'homeMenu'
+
+    if (document.getElementById('homeColor').checked) {
+        homeMenu.classList.add('homeMenuAccent')
+    }
 })

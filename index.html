@@ -49,6 +49,10 @@
     <div id="hmClose"></div>
     <div class="homeMenu" id="HM">
         <h1>Menu Home</h1>
+        <div class="eventPill" id="eventPill">
+            <f-icon>&#xe787;</f-icon>
+            <span id="ePillName">EVENTO</span>
+        </div>
         <div class="abContainer" id="abc">
             <button id="watchBtn">
                 <f-icon>&#xF182;</f-icon>
@@ -129,7 +133,6 @@
             <button class="configBtn" id="cusBtn">Personalização</button>
             <button class="configBtn" id="sysBtn">Sistema</button>
             <button class="configBtn" id="dataBtn">Dados</button>
-            <button class="configBtn" id="appsBtn">Mini Apps e Menu Home</button>
         </div>
 
         <!--Data e Hora-->
@@ -230,6 +233,16 @@
                 <input type="checkbox" name="" id="homeColor">
             </div>
             <div class="configInfo">
+                Estilo do Menu Home
+                <select name="" id="homeStyle">
+                    <option value="fglass">Frosted Glass</option>
+                    <option value="lglass">Liquid Glass</option>
+                    <option value="aero">Aero</option>
+                    <option value="transparent">Transparente</option>
+                    <option value="opaque">Opaco</option>
+                </select>
+            </div>
+            <div class="configInfo">
                 <label for="homeColor">Reduzir efeitos</label>
                 <button class="secBtn" id="linkLE">Sistema</button>
             </div>
@@ -258,6 +271,16 @@
                     <label for="sysSounds">Tocar sons ao interagir com o sistema</label>
                 </div>
                 <input type="checkbox" name="" id="sysSounds" checked>
+            </div>
+            <div class="configInfo">
+                Sons do sistema
+                <select name="" id="soundChanger">
+                    <option value="wiiu">Wii U</option>
+                    <option value="switch">Switch</option>
+                    <option value="eshop">eShop</option>
+                    <option value="3DS">3DS</option>
+                    <option value="steamDeck">Steam Deck</option>
+                </select>
             </div>
             <div class="configInfo">
                 <div>
@@ -318,39 +341,6 @@
 
             <span class="subCol">Seus dados são salvos somente nesse navegador, e os devs não tem acesso algum sobre
                 eles</span>
-        </div>
-
-        <!--Mini apps-->
-        <div class="appContent sSubPage" id="appsInfo">
-            <div class="configInfo">
-                Não pertube
-            </div>
-            <div class="configInfo">
-                Sons do sistema
-                <select name="" id="soundChanger">
-                    <option value="wiiu">Wii U</option>
-                    <option value="switch">Switch</option>
-                    <option value="eshop">eShop</option>
-                    <option value="3DS">3DS</option>
-                    <option value="steamDeck">Steam Deck</option>
-                </select>
-            </div>
-            <div class="configInfo">
-                Som do alarme
-            </div>
-            <div class="configInfo">
-                Ocultar mini apps
-            </div>
-            <div class="configInfo">
-                Estilo do Menu Home
-                <select name="" id="homeStyle">
-                    <option value="fglass">Frosted Glass</option>
-                    <option value="lglass">Liquid Glass</option>
-                    <option value="aero">Aero</option>
-                    <option value="transparent">Transparente</option>
-                    <option value="opaque">Opaco</option>
-                </select>
-            </div>
         </div>
     </section>
     <div class="dnc" id="dnc"></div>
