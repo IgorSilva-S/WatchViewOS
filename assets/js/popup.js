@@ -30,6 +30,9 @@ document.getElementById('primBtn').addEventListener('click', () => {
     if (funcBtn == 'eventAdd') {
         eventManager('add')
     }
+    if (funcBtn == 'alarmAdd') {
+        alarmManager('add')
+    }
 })
 
 document.getElementById('dnc').addEventListener('click', () => {

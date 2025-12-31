@@ -31,7 +31,139 @@ function bootData() {
 
 function alarmManager(act) {
 
+    /* ================= ADD ================= */
+    if (act.toLowerCase() === 'add') {
+
+        let name = document.getElementById('alarmName').value;
+        let hour = document.getElementById('alarmHour').value;
+
+        if (!name.trim() || !hour) return;
+
+        let days = {
+            dom: document.getElementById('aDom').checked,
+            seg: document.getElementById('aSeg').checked,
+            ter: document.getElementById('aTer').checked,
+            qua: document.getElementById('aQua').checked,
+            qui: document.getElementById('aQui').checked,
+            sex: document.getElementById('aSex').checked,
+            sab: document.getElementById('aSab').checked
+        };
+
+        let alarm = {
+            name,
+            hour,
+            enabled: true,
+            days
+        };
+
+        alarms.push(alarm);
+        localStorage.setItem('alarms', JSON.stringify(alarms));
+
+        act = 'load';
+        closePopup();
+    }
+
+    /* ================= LOAD ================= */
+    if (act.toLowerCase() === 'load') {
+
+        let alarmContent = document.getElementById('alarmContent');
+        alarmContent.innerHTML = '';
+
+        alarms.forEach(alarm => {
+
+            let alarmBox = document.createElement('div');
+            alarmBox.className = 'todoBox';
+
+            alarmBox.innerHTML = `
+                <div class="alarmInfo">
+                    <span class="alarmName">${alarm.name}</span>
+                    <span class="alarmHour">${alarm.hour}</span>
+                </div>
+            `;
+
+            let alarmExtra = document.createElement('div')
+            alarmExtra.classList.add('alarmExtra')
+            alarmExtra.innerHTML = `
+              <div>
+                <div class="alarmDays">
+                    <span data-day="dom" class="${alarm.days.dom ? 'active' : ''}">D</span>
+                    <span data-day="seg" class="${alarm.days.seg ? 'active' : ''}">S</span>
+                    <span data-day="ter" class="${alarm.days.ter ? 'active' : ''}">T</span>
+                    <span data-day="qua" class="${alarm.days.qua ? 'active' : ''}">Q</span>
+                    <span data-day="qui" class="${alarm.days.qui ? 'active' : ''}">Q</span>
+                    <span data-day="sex" class="${alarm.days.sex ? 'active' : ''}">S</span>
+                    <span data-day="sab" class="${alarm.days.sab ? 'active' : ''}">S</span>
+                </div>
+             </div>
+
+            <div>
+                <label class="switch">
+                    <input type="checkbox" ${alarm.enabled ? 'checked' : ''}>
+                    <span class="slider"></span>
+                </label>
+
+            </div>`
+
+            alarmBox.appendChild(alarmExtra)
+
+
+            /* ===== Atualizar dias ===== */
+            alarmBox.querySelectorAll('.alarmDays span').forEach(span => {
+                span.addEventListener('click', () => {
+                    let day = span.dataset.day;
+                    span.classList.toggle('active');
+
+                    let index = alarms.findIndex(a =>
+                        a.name === alarm.name && a.hour === alarm.hour
+                    );
+
+                    if (index !== -1) {
+                        alarms[index].days[day] = span.classList.contains('active');
+                        localStorage.setItem('alarms', JSON.stringify(alarms));
+                    }
+                });
+            });
+
+
+            /* ===== Botão deletar ===== */
+            let delBtn = document.createElement('button');
+            delBtn.className = 'todoDelBtn';
+            delBtn.innerHTML = '&#xe74d;';
+            delBtn.addEventListener('click', () => {
+                alarmBox.remove();
+                alarms = alarms.filter(a =>
+                    !(a.name === alarm.name && a.hour === alarm.hour)
+                );
+                localStorage.setItem('alarms', JSON.stringify(alarms));
+            });
+
+            let switchInput = alarmBox.querySelector('.switch input');
+
+            switchInput.addEventListener('change', () => {
+                let index = alarms.findIndex(a =>
+                    a.name === alarm.name && a.hour === alarm.hour
+                );
+
+                if (index !== -1) {
+                    alarms[index].enabled = switchInput.checked;
+                    localStorage.setItem('alarms', JSON.stringify(alarms));
+                }
+            });
+
+            alarmExtra.appendChild(delBtn);
+            alarmContent.prepend(alarmBox);
+        });
+    }
+
+
+    /* ================= FORMAT ================= */
+    if (act.toLowerCase() === 'format') {
+        alarms = [];
+        localStorage.removeItem('alarms');
+        document.getElementById('alarmContent').innerHTML = '';
+    }
 }
+
 
 function todoManager(act) {
     if (act.toLowerCase() === 'add') {
