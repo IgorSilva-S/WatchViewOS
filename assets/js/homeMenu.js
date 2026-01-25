@@ -9,15 +9,19 @@ document.addEventListener('contextmenu', (e) => {
     let isLowEffects = document.getElementById('liteModel').checked
     let isMobile = window.matchMedia("(max-height: 500px)").matches ? true : false
     let phoneUp = window.matchMedia("(max-width: 500px)").matches ? true : false
+    let fullHomeMenu = document.getElementById('fullHomeMenu').checked
     eventManager('check')
     if (!homeMenuOpened && !phoneUp && !popOpen && connected) {
         homeMenu.style.bottom = '0'
         hmClose.style.bottom = '0'
         if (actualApp == 'watch') {
+            let divideWatch = document.getElementById('watchDivider').checked
             if (!isMobile) {
                 document.getElementById('watch').style.height = '40vh'
-                document.getElementById('watch').style.flexDirection = 'row'
-                document.getElementById('watch').style.justifyContent = 'space-evenly'
+                if (divideWatch) {
+                    document.getElementById('watch').style.flexDirection = 'row'
+                    document.getElementById('watch').style.justifyContent = 'space-evenly'
+                }
             }
         }
         if (canPlaySFX) {
@@ -30,6 +34,22 @@ document.addEventListener('contextmenu', (e) => {
         if (actualApp == 'watch') {
             wallpaper.style.filter = 'brightness(50%)'
         }
+
+        if (fullHomeMenu) {
+            watchApp.style.opacity = '0'
+            alarmApp.style.opacity = '0'
+            todoApp.style.opacity = '0'
+            eventsApp.style.opacity = '0'
+            settingsApp.style.opacity = '0'
+            setTimeout(() => {
+                watchApp.style.display = 'none'
+                alarmApp.removeAttribute('style')
+                todoApp.removeAttribute('style')
+                eventsApp.removeAttribute('style')
+                settingsApp.removeAttribute('style')
+            }, 700);
+        }
+
         homeMenuOpened = true
         document.getElementById('eventbar').removeAttribute('style')
         lSound()
@@ -47,6 +67,19 @@ document.addEventListener('contextmenu', (e) => {
             document.getElementById('watch').removeAttribute('style')
         }
         wallpaper.removeAttribute('style')
+        if (fullHomeMenu) {
+            if (actualApp == 'watch') {
+                watchApp.removeAttribute('style')
+            } else if (actualApp == 'alarm') {
+                alarmApp.style.display = 'block'
+            } else if (actualApp == 'todo') {
+                todoApp.style.display = 'block'
+            } else if (actualApp == 'events') {
+                eventsApp.style.display = 'block'
+            } else if (actualApp == 'settings') {
+                settingsApp.style.display = 'block'
+            }
+        }
         homeMenuOpened = false
         lSound()
     }
@@ -220,16 +253,3 @@ settingsBtn.addEventListener('click', () => {
     }
 })
 
-// Home Menu Colorizer
-document.getElementById('homeColor').addEventListener('change', () => {
-    let check = document.getElementById('homeColor').checked
-    if (check) {
-        homeMenu.classList.add('homeMenuAccent')
-        personalization.accentMenu = true
-    } else {
-        homeMenu.classList.remove('homeMenuAccent')
-        personalization.accentMenu = false
-    }
-
-    localStorage.setItem('personalization', JSON.stringify(personalization))
-})

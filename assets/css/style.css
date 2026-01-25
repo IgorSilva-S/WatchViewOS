@@ -261,7 +261,8 @@ h6 {
     font-size: 3vw;
 }
 
-.homeMenu {
+.homeMenu,
+.alarmAlert {
     position: fixed;
     bottom: -60%;
     left: 0;
@@ -276,11 +277,40 @@ h6 {
     backdrop-filter: blur(14px);
 }
 
-[type="fullScreen"] {
-    bottom: -100%;
-    height: 100%;
-    border-radius: 0;
-    transition-duration: .6s;
+.alarmAlert {
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+.alarmAlert .timeAndName {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+    box-sizing: border-box;
+    padding: 30px;
+}
+
+.alarmAlert .timeAndName .timeTxt {
+    font-size: 160px;
+}
+
+.alarmAlert .timeAndName .nameTxt {
+    font-size: 60px;
+}
+
+.alarmAlert .alarmButtonContent {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    box-sizing: border-box;
+    padding: 30px;
+    justify-content: center;
+}
+
+.alarmAlert .alarmButtonContent button {
+    font-size: 50px;
 }
 
 .homeMenuAero {
@@ -358,6 +388,13 @@ h6 {
     z-index: 998;
 }
 
+[type="fullScreen"] {
+    bottom: -100%;
+    height: 100%;
+    border-radius: 0;
+    transition-duration: .6s;
+}
+
 #hmClose {
     width: 100%;
     height: 100%;
@@ -411,6 +448,27 @@ h6 {
     padding: 30px;
 }
 
+[type="fullscreen"] .abContainer {
+    position: absolute;
+    bottom: 20px;
+    align-items: flex-end;
+    margin-bottom: 120px;
+}
+
+[type="fullscreen"] .abContainer::after {
+    position: absolute;
+    width: 100%;
+    content: '';
+    height: 350px;
+    background-color: #19191977;
+    bottom: -150px;
+    left: -30px;
+}
+
+.homeMenuOP[type="fullscreen"] .abContainer::after {
+    background-color: #353535;
+}
+
 .abContainer button {
     height: 80%;
     aspect-ratio: 1;
@@ -426,12 +484,23 @@ h6 {
     transition-duration: .25s;
 }
 
+[type="fullscreen"] .abContainer button {
+    height: 40%;
+    aspect-ratio: 1;
+    z-index: 2;
+    background-color: #191919;
+}
+
 .homeMenuOP .abContainer button {
     background-color: #353535;
 }
 
 .abContainer button:hover {
     box-shadow: 0 0 12px 5px var(--primary);
+}
+
+[type="fullscreen"] .abContainer button:hover {
+    margin-bottom: 30px;
 }
 
 .abContainer button f-icon {
@@ -891,6 +960,14 @@ h6 {
         border-radius: 0;
     }
 
+    .alarmAlert .timeAndName .timeTxt {
+        font-size: 100px;
+    }
+
+    .alarmAlert .timeAndName .nameTxt {
+        font-size: 40px;
+    }
+
     .abContainer {
         height: 100%;
         padding: 5px;
@@ -959,6 +1036,7 @@ h6 {
     .phoneTurn h1 {
         font-size: 40px;
     }
+
 }
 
 
@@ -967,24 +1045,24 @@ h6 {
 }
 
 .alarmHour {
-  font-size: 50px;
+    font-size: 50px;
 }
 
 .alarmDays {
-  display: flex;
-  gap: 0px;
-  font-size: 20px;
+    display: flex;
+    gap: 0px;
+    font-size: 20px;
 }
 
 .alarmDays span {
-  color: #666;
-  cursor: pointer;
-  user-select: none;
-  transition-duration: .1s;
+    color: #666;
+    cursor: pointer;
+    user-select: none;
+    transition-duration: .1s;
 }
 
 .alarmDays span.active {
-  color: var(--primary);
+    color: var(--primary);
 }
 
 .alarmExtra {
@@ -1000,42 +1078,42 @@ h6 {
 
 /* ===== Switch ===== */
 .switch {
-  position: relative;
-  width: 46px;
-  height: 26px;
+    position: relative;
+    width: 46px;
+    height: 26px;
 }
 
 .switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
+    opacity: 0;
+    width: 0;
+    height: 0;
 }
 
 .slider {
-  position: absolute;
-  inset: 0;
-  background-color: #333;
-  border-radius: 26px;
-  transition: .3s;
+    position: absolute;
+    inset: 0;
+    background-color: #333;
+    border-radius: 26px;
+    transition: .3s;
 }
 
 .slider::before {
-  content: "";
-  position: absolute;
-  height: 20px;
-  width: 20px;
-  left: 3px;
-  bottom: 3px;
-  background-color: white;
-  border-radius: 50%;
-  transition: .3s;
+    content: "";
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    border-radius: 50%;
+    transition: .3s;
 }
 
-.switch input:checked + .slider {
-  background-color: var(--primary);
+.switch input:checked+.slider {
+    background-color: var(--primary);
 }
 
-.switch input:checked + .slider::before {
-  transform: translateX(20px);
-  background-color: var(--primaryColor);
+.switch input:checked+.slider::before {
+    transform: translateX(20px);
+    background-color: var(--primaryColor);
 }

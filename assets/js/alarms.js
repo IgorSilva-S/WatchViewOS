@@ -48,3 +48,34 @@ document.getElementById("addAlarm").addEventListener("click", () => {
     `;
   document.getElementById("primBtn").innerText = "Adicionar";
 });
+
+let alarmSoundInterval;
+
+setInterval(() => {
+    alarms.forEach(alarm => {
+        let alarmTime = alarm.hour
+        let alarmDays = alarm.days
+        let dtlc
+        try {
+            dtlc = day.toLowerCase()
+        } catch {
+            console.log('Horário não iniciado')
+            return
+        }
+
+
+        if (alarmTime == time && !playingAlarm && alarmDays[dtlc]) {
+            playingAlarm = true
+            alarmSoundInterval = setInterval(() => {
+                if (time != alarmTime) {
+                    playingAlarm = false
+                    alarmBeta.pause()
+                    alarmBeta.currentTime = 0
+                    clearInterval(alarmSoundInterval)
+                    alarmSoundInterval = null
+                }
+            }, 200);
+            alarmBeta.play()
+        }
+    });
+}, 1000);

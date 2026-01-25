@@ -31,7 +31,6 @@ function bootData() {
 
 function alarmManager(act) {
 
-    /* ================= ADD ================= */
     if (act.toLowerCase() === 'add') {
 
         let name = document.getElementById('alarmName').value;
@@ -46,7 +45,7 @@ function alarmManager(act) {
             qua: document.getElementById('aQua').checked,
             qui: document.getElementById('aQui').checked,
             sex: document.getElementById('aSex').checked,
-            sab: document.getElementById('aSab').checked
+            sáb: document.getElementById('aSab').checked
         };
 
         let alarm = {
@@ -63,7 +62,6 @@ function alarmManager(act) {
         closePopup();
     }
 
-    /* ================= LOAD ================= */
     if (act.toLowerCase() === 'load') {
 
         let alarmContent = document.getElementById('alarmContent');
@@ -107,7 +105,7 @@ function alarmManager(act) {
             alarmBox.appendChild(alarmExtra)
 
 
-            /* ===== Atualizar dias ===== */
+           
             alarmBox.querySelectorAll('.alarmDays span').forEach(span => {
                 span.addEventListener('click', () => {
                     let day = span.dataset.day;
@@ -124,8 +122,6 @@ function alarmManager(act) {
                 });
             });
 
-
-            /* ===== Botão deletar ===== */
             let delBtn = document.createElement('button');
             delBtn.className = 'todoDelBtn';
             delBtn.innerHTML = '&#xe74d;';
@@ -156,7 +152,6 @@ function alarmManager(act) {
     }
 
 
-    /* ================= FORMAT ================= */
     if (act.toLowerCase() === 'format') {
         alarms = [];
         localStorage.removeItem('alarms');

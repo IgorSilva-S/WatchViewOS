@@ -78,6 +78,20 @@
         <audio src="assets/sounds/WiiU/HomeUp.mp3" id="openHome"></audio>
         <audio src="assets/sounds/WiiU/HomeClose.mp3" id="closeHome"></audio>
     </div>
+    <div class="alarmAlert" >
+        <div class="timeAndName">
+            <p class="timeTxt">
+                12:00
+            </p>
+            <p class="nameTxt">
+                Nome Alarme
+            </p>
+        </div>
+        <div class="alarmButtonContent">
+            <button class="primBtn">Parar Alarme</button>
+            <button class="secBtn">Modo soneca</button>
+        </div>
+    </div>
     <section class="app" id="alarm">
         <div class="appHeader">
             <span>Alarmes</span>
@@ -133,6 +147,7 @@
             <button class="configBtn" id="cusBtn">Personalização</button>
             <button class="configBtn" id="sysBtn">Sistema</button>
             <button class="configBtn" id="dataBtn">Dados</button>
+            <button class="configBtn" id="mahmBtn">Mini Apps e Menu Home</button>
         </div>
 
         <!--Data e Hora-->
@@ -229,20 +244,6 @@
                 <input type="checkbox" name="" id="watchColor">
             </div>
             <div class="configInfo">
-                <label for="homeColor">Usar cor de destaque no Menu Home</label>
-                <input type="checkbox" name="" id="homeColor">
-            </div>
-            <div class="configInfo">
-                Estilo do Menu Home
-                <select name="" id="homeStyle">
-                    <option value="fglass">Frosted Glass</option>
-                    <option value="lglass">Liquid Glass</option>
-                    <option value="aero">Aero</option>
-                    <option value="transparent">Transparente</option>
-                    <option value="opaque">Opaco</option>
-                </select>
-            </div>
-            <div class="configInfo">
                 <label for="homeColor">Reduzir efeitos</label>
                 <button class="secBtn" id="linkLE">Sistema</button>
             </div>
@@ -324,8 +325,7 @@
             </div>
             <div class="configInfo">
                 <div class="col">
-                    Remover dados dos mini apps
-                    <span class="subText">Escolha todos ou específicos para apagar</span>
+                    Apagar dados específicos
                 </div>
             </div>
             <div class="configInfo">
@@ -341,6 +341,108 @@
 
             <span class="subCol">Seus dados são salvos somente nesse navegador, e os devs não tem acesso algum sobre
                 eles</span>
+        </div>
+        <div class="appContent sSubPage" id="mahmInfo">
+            <h1>Mini Apps</h1>
+            <br>
+            <h2>Geral</h2>
+            <br>
+            <div class="configInfo">
+                <div class="col">
+                    Modo Não Pertube
+                    <span class="subText">O modo não pertube evitará avisos, notificações e informações sobre os Mini
+                        Apps no sistema</span>
+                </div>
+            </div>
+            <br>
+            <h2>Alarmes</h2>
+            <br>
+            <div class="configInfo">
+                Toque do Alarme
+            </div>
+            <div class="configInfo">
+                <div class="col">
+                    Tocar alarme sem dia definido
+                    <span class="subText">Quando não há um dia da semana definido, mas o alarme está ligado, o alarme
+                        sempre tocará</span>
+                </div>
+            </div>
+            <div class="configInfo">
+                Remover ícone do Alarme do Menu Home
+            </div>
+            <div class="configInfo">
+                Apagar dados do Alarme
+            </div>
+            <div class="configInfo">
+                Versão do app do Alarme
+                <span>1.0 (Pacote WVOS 1.0)</span>
+            </div>
+            <br>
+            <h2>Afazeres</h2>
+            <br>
+            <div class="configInfo">
+                Apagar afazeres assim que finalizados
+            </div>
+            <div class="configInfo">
+                Remover ícone do Afazeres do Menu Home
+            </div>
+            <div class="configInfo">
+                Apagar dados do Afazeres
+            </div>
+            <div class="configInfo">
+                Versão do app de Afazeres
+                <span>1.0 (Pacote WVOS 1.0)</span>
+            </div>
+            <br>
+            <h2>Eventos</h2>
+            <br>
+            <div class="configInfo">
+                Apagar eventos assim que o dia do mesmo terminar
+            </div>
+            <div class="configInfo">
+                Remover pílula de evento do Menu Home
+            </div>
+            <div class="configInfo">
+                Remover barra do relógio principal
+            </div>
+            <div class="configInfo">
+                Remover ícone do Eventos do Menu Home
+            </div>
+            <div class="configInfo">
+                Apagar dados do Eventos
+            </div>
+            <div class="configInfo">
+                Versão do app de Eventos
+                <span>1.0 (Pacote WVOS 1.0)</span>
+            </div>
+            <h1>Menu Home</h1>
+            <br>
+            <div class="configInfo">
+                <label for="watchDivider">Dividir relógio principal na abertura do Menu Home</label>
+                <input type="checkbox" name="" id="watchDivider" checked>
+            </div>
+            <div class="configInfo">
+                <label for="homeColor">Usar cor de destaque no Menu Home</label>
+                <input type="checkbox" name="" id="homeColor">
+            </div>
+            <div class="configInfo noPhoneShow">
+                <label for="fullHomeMenu">Usar Menu Home em tela cheia</label>
+                <input type="checkbox" name="" id="fullHomeMenu">
+            </div>
+            <div class="configInfo">
+                Estilo do Menu Home
+                <select name="" id="homeStyle">
+                    <option value="fglass">Frosted Glass</option>
+                    <option value="lglass">Liquid Glass</option>
+                    <option value="aero">Aero</option>
+                    <option value="transparent">Transparente</option>
+                    <option value="opaque">Opaco</option>
+                </select>
+            </div>
+            <div class="configInfo">
+                Versão do Menu Home
+                <span>1.0 (Pacote WVOS 1.0)</span>
+            </div>
         </div>
     </section>
     <div class="dnc" id="dnc"></div>

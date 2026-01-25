@@ -6,6 +6,7 @@ const timeInfo = document.getElementById('timeInfo')
 const cusInfo = document.getElementById('cusInfo')
 const sysInfo = document.getElementById('sysInfo')
 const dataInfo = document.getElementById('dataInfo')
+const mahmInfo = document.getElementById('mahmInfo')
 
 document.getElementById('timeBtn').addEventListener('click', () => {
     sHome.style.opacity = '0'
@@ -51,17 +52,30 @@ document.getElementById('dataBtn').addEventListener('click', () => {
     }, 400);
 })
 
+document.getElementById('mahmBtn').addEventListener('click', () => {
+    sHome.style.opacity = '0'
+    setTimeout(() => {
+        mahmInfo.style.display = 'block'
+        sHome.style.display = 'none'
+        backBtn.style.display = 'flex'
+        sHeader.classList.add('backHeader')
+        sName.innerHTML = 'Mini Apps e Menu Home'
+    }, 400);
+})
+
 
 backBtn.addEventListener('click', () => {
     timeInfo.style.opacity = '0'
     sysInfo.style.opacity = '0'
     cusInfo.style.opacity = '0'
     dataInfo.style.opacity = '0'
+    mahmInfo.style.opacity = '0'
     setTimeout(() => {
         timeInfo.removeAttribute('style')
         sysInfo.removeAttribute('style')
         cusInfo.removeAttribute('style')
         dataInfo.removeAttribute('style')
+        mahmInfo.removeAttribute('style')
         sHome.removeAttribute('style')
         backBtn.removeAttribute('style')
         sHeader.classList.remove('backHeader')
@@ -254,6 +268,24 @@ document.getElementById('openCredits').addEventListener('click', () => {
 })
 
 // Mini Apps
+document.getElementById('homeColor').addEventListener('change', () => {
+    let check = document.getElementById('homeColor').checked
+    if (check) {
+        homeMenu.classList.add('homeMenuAccent')
+    } else {
+        homeMenu.classList.remove('homeMenuAccent')
+    }
+})
+
+document.getElementById('fullHomeMenu').addEventListener('change', () => {
+    let check = document.getElementById('fullHomeMenu').checked
+    if (check) {
+        homeMenu.setAttribute('type', 'fullscreen')
+    } else {
+        homeMenu.removeAttribute('type')
+    }
+})
+
 document.getElementById('homeStyle').addEventListener('change', () => {
     let val = document.getElementById('homeStyle').value
 

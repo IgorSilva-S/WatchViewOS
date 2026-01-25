@@ -14,6 +14,8 @@ const dtDate = document.getElementById('dtDate')
 
 let webUpdate, webData, date, localStart, apiDate, lastResync
 
+let time, day;
+
 async function getWebDate() {
     try {
         webUpdate = await fetch(apiLink)
@@ -43,6 +45,8 @@ async function getWebDate() {
             } else {
                 dfTime.innerText = `${addZero(wDate.getHours())}:${addZero(wDate.getMinutes())}`
             }
+            time = `${addZero(wDate.getHours())}:${addZero(wDate.getMinutes())}`
+            day = weekDay[wDate.getDay()]
             dfDate.innerHTML = `${weekDay[wDate.getDay()]}, ${addZero(wDate.getDate())}/${addZero(wDate.getMonth() + 1)}/${wDate.getFullYear()}`
             if (showYD) {
                 document.getElementById('yearDay').innerText = `Dia nº ${webData.day_of_year}`

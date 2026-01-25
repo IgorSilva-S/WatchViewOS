@@ -163,3 +163,8 @@ setInterval(() => {
   soundManager("unload");
   soundManager("load");
 }, 1);
+
+/*Alarms sounds*/
+
+const alarmBeta = new Audio('./assets/sounds/alarms/alarmBeta.wav')
+alarmBeta.loop = true
