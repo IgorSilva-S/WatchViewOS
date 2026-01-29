@@ -40,5 +40,7 @@ bootData()
 todoManager('load')
 alarmManager('load')
 
-// Settings
+// Settings boot
+applyNewSound(settings.sounds)
+document.getElementById('soundChanger').value = settings.sounds
 document.getElementById('BCLabel').style.backgroundColor = document.getElementById('bColor').value

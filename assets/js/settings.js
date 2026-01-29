@@ -84,7 +84,35 @@ backBtn.addEventListener('click', () => {
 })
 
 // Date and time
+document.getElementById('clockSec').addEventListener('change', (e) => {
+    if (e.target.checked) {
+        settings.showSec = true
+    } else {
+        settings.showSec = false
+    }
 
+    localStorage.setItem('settings', JSON.stringify(settings))
+})
+
+document.getElementById('clockYearDay').addEventListener('change', (e) => {
+    if (e.target.checked) {
+        settings.showYD = true
+    } else {
+        settings.showYD = false
+    }
+
+    localStorage.setItem('settings', JSON.stringify(settings))
+})
+
+document.getElementById('clockYearWeek').addEventListener('change', (e) => {
+    if (e.target.checked) {
+        settings.showYW = true
+    } else {
+        settings.showYW = false
+    }
+
+    localStorage.setItem('settings', JSON.stringify(settings))
+})
 
 // Personalization
 document.getElementById('cgWall').addEventListener('change', () => {
@@ -101,7 +129,7 @@ document.getElementById('cgWall').addEventListener('change', () => {
     `
         document.getElementById('tyWall').innerText = `Imagem`;
 
-        personalization.img = imageUrl
+        personalization.image = imageUrl
         localStorage.setItem('personalization', JSON.stringify(personalization))
 
     };
@@ -115,7 +143,7 @@ document.getElementById('rWall').addEventListener('click', () => {
     document.getElementById('wallImg').innerHTML = ""
     document.getElementById('tyWall').innerText = `Cores`;
     document.getElementById('cgWall').value = '';
-    personalization.img = "nothing"
+    personalization.image = null
     localStorage.setItem('personalization', JSON.stringify(personalization))
 })
 
@@ -132,8 +160,8 @@ document.getElementById('wpOpacity').addEventListener('change', () => {
     localStorage.setItem('personalization', JSON.stringify(personalization))
 })
 
-document.getElementById('aColor').addEventListener('change', () => {
-    personalization.primaryColor = document.getElementById('aColor').value
+document.getElementById('aColor').addEventListener('change', (e) => {
+    personalization.accentColor = e.target.value
     localStorage.setItem('personalization', JSON.stringify(personalization))
     document.getElementById('RAColor').innerHTML = `
         :root {
@@ -145,9 +173,8 @@ document.getElementById('aColor').addEventListener('change', () => {
 
 
 document.getElementById('cLabel').addEventListener('dblclick', () => {
-    personalization.primaryColor = '#292ccc'
+    personalization.accentColor = '#292ccc'
     localStorage.setItem('personalization', JSON.stringify(personalization))
-    document.getElementById('aColor').value = personalization.primaryColor
     document.getElementById('RAColor').innerHTML = ""
 })
 
@@ -159,10 +186,10 @@ document.getElementById('txtColor').addEventListener('change', () => {
                --primaryColor: #191919;
             }
         `
-        personalization.swapAccent = true
+        personalization.invertColor = true
     } else {
         document.getElementById('RAText').innerHTML = ""
-        personalization.swapAccent = false
+        personalization.invertColor = false
     }
 
     localStorage.setItem('personalization', JSON.stringify(personalization))
@@ -179,7 +206,7 @@ document.getElementById('bColor').addEventListener('change', () => {
         }
     `
 
-    personalization.wallColor = color
+    personalization.backColor = color
     localStorage.setItem('personalization', JSON.stringify(personalization))
 })
 
@@ -268,30 +295,54 @@ document.getElementById('openCredits').addEventListener('click', () => {
 })
 
 // Mini Apps
+document.getElementById('watchDivider').addEventListener('change', () => {
+    let check = document.getElementById('watchDivider').checked
+    if (check) {
+        homeMenuData.divideClock = true
+    } else {
+        homeMenuData.divideClock = false
+    }
+
+    localStorage.setItem('homeMenu', JSON.stringify(homeMenuData))
+})
+
 document.getElementById('homeColor').addEventListener('change', () => {
     let check = document.getElementById('homeColor').checked
     if (check) {
         homeMenu.classList.add('homeMenuAccent')
+        homeMenuData.useAccent = true
     } else {
         homeMenu.classList.remove('homeMenuAccent')
+        homeMenuData.useAccent = false
     }
+
+    localStorage.setItem('homeMenu', JSON.stringify(homeMenuData))
 })
 
 document.getElementById('fullHomeMenu').addEventListener('change', () => {
     let check = document.getElementById('fullHomeMenu').checked
     if (check) {
         homeMenu.setAttribute('type', 'fullscreen')
+        homeMenuData.fullscreen = true
     } else {
         homeMenu.removeAttribute('type')
+        homeMenuData.fullscreen = false
     }
+
+    localStorage.setItem('homeMenu', JSON.stringify(homeMenuData))
 })
 
-document.getElementById('homeStyle').addEventListener('change', () => {
-    let val = document.getElementById('homeStyle').value
-
-    val == 'fglass' ? homeMenu.className = 'homeMenu' : val == 'lglass' ? homeMenu.className = 'homeMenuLG' : val == 'aero' ? homeMenu.className = 'homeMenuAero' : val == 'opaque' ? homeMenu.className = 'homeMenuOP' : val == 'transparent' ? homeMenu.className = 'homeMenuTP' : homeMenu.className = 'homeMenu'
+function HMEffectChanger(val) {
+    val == 'fglass' ? homeMenu.className = 'homeMenu' : val == 'lglass' ? homeMenu.className = 'homeMenuLG' : val == 'aero' ? homeMenu.className = 'homeMenuAero' : val == 'opaque' ? homeMenu.className = 'homeMenuOP' : val == 'transparent' ? homeMenu.className = 'homeMenuTP' : homeMenu.className = 'homeMenu';
 
     if (document.getElementById('homeColor').checked) {
         homeMenu.classList.add('homeMenuAccent')
     }
+}
+
+document.getElementById('homeStyle').addEventListener('change', () => {
+    let val = document.getElementById('homeStyle').value
+    HMEffectChanger(val)
+    homeMenuData.effectType = val
+    localStorage.setItem('homeMenu', JSON.stringify(homeMenuData))
 })

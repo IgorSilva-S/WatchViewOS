@@ -1,4 +1,4 @@
-let events, todos, alarms, personalization, settings, datas, fBoot;
+let events, todos, alarms, personalization, settings, datas, homeMenuData, fBoot;
 
 function bootData() {
     console.log(`Booting... \nGetting Data...`);
@@ -9,7 +9,8 @@ function bootData() {
     alarms = JSON.parse(localStorage.getItem('alarms')) || [];
     personalization = JSON.parse(localStorage.getItem('personalization')) || {};
     settings = JSON.parse(localStorage.getItem('settings')) || {};
-    datas = JSON.parse(localStorage.getItem('datas')) || [];
+    datas = JSON.parse(localStorage.getItem('datas')) || {};
+    homeMenuData = JSON.parse(localStorage.getItem('homeMenu')) || {};
     fBoot = localStorage.getItem('initialBoot')
 
     // Salva os dados no localStorage se estiverem vazios
@@ -19,6 +20,7 @@ function bootData() {
     localStorage.setItem('personalization', JSON.stringify(personalization));
     localStorage.setItem('settings', JSON.stringify(settings));
     localStorage.setItem('datas', JSON.stringify(datas));
+    localStorage.setItem('homeMenu', JSON.stringify(homeMenuData));
     if (fBoot === null) {
         let d = new Date
         localStorage.setItem('initialBoot', d)

@@ -58,7 +58,12 @@ function steamSounds() {
     document.getElementById("loadingAudio").src = "assets/sounds/SDeck/Loading.wav";
 }
 
-document.getElementById('soundChanger').addEventListener('change', () => {
-    let opt = document.getElementById('soundChanger').value
+function applyNewSound(opt) {
     opt == 'wiiu' ? wiiUSounds() : opt == 'switch' ? switchSounds() : opt == 'eshop' ? eShopSounds() : opt == '3DS' ? DS3Sounds() : opt == 'steamDeck' ? steamSounds() : wiiUSounds()
+}
+
+document.getElementById('soundChanger').addEventListener('change', (e) => {
+    applyNewSound(e.target.value)
+    settings.sounds = e.target.value
+    localStorage.setItem('settings', JSON.stringify(settings))
 })

@@ -78,7 +78,7 @@
         <audio src="assets/sounds/WiiU/HomeUp.mp3" id="openHome"></audio>
         <audio src="assets/sounds/WiiU/HomeClose.mp3" id="closeHome"></audio>
     </div>
-    <div class="alarmAlert" >
+    <div class="alarmAlert">
         <div class="timeAndName">
             <p class="timeTxt">
                 12:00
@@ -192,7 +192,10 @@
                 <button class="secBtn" id="extraResponse">Ver</button>
             </div>
             <div class="configInfo">
-                Resposta bruta da API
+                <div class="col">
+                    Resposta bruta da API
+                    <span class="subText">Avançado, abra se você tiver conhecimento JSON</span>
+                </div>
                 <button class="secBtn" id="bruteResp">Iniciar</button>
             </div>
         </div>
@@ -331,6 +334,7 @@
             <div class="configInfo">
                 <div class="col">
                     Visualizar dados
+                    <span class="subText">Avançado, abra se você tiver conhecimento JSON</span>
                 </div>
             </div>
             <div class="configInfo">
@@ -417,7 +421,7 @@
             </div>
             <h1>Menu Home</h1>
             <br>
-            <div class="configInfo">
+            <div class="configInfo noPhoneShow">
                 <label for="watchDivider">Dividir relógio principal na abertura do Menu Home</label>
                 <input type="checkbox" name="" id="watchDivider" checked>
             </div>
@@ -488,7 +492,6 @@
     </svg>
 
     <script src="assets/js/dataCenter.js"></script>
-    <script src="assets/js/boot.js"></script>
     <script src="assets/js/popup.js"></script>
     <script src="assets/js/homeMenu.js"></script>
     <script src="assets/js/timecount.js"></script>
@@ -499,6 +502,7 @@
     <script src="assets/js/sounds.js"></script>
     <script src="assets/js/changeSounds.js"></script>
     <script src="assets/js/connection.js"></script>
+    <script src="assets/js/boot.js"></script>
 
 </body>
 
