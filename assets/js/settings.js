@@ -94,26 +94,6 @@ document.getElementById('clockSec').addEventListener('change', (e) => {
     localStorage.setItem('settings', JSON.stringify(settings))
 })
 
-document.getElementById('clockYearDay').addEventListener('change', (e) => {
-    if (e.target.checked) {
-        settings.showYD = true
-    } else {
-        settings.showYD = false
-    }
-
-    localStorage.setItem('settings', JSON.stringify(settings))
-})
-
-document.getElementById('clockYearWeek').addEventListener('change', (e) => {
-    if (e.target.checked) {
-        settings.showYW = true
-    } else {
-        settings.showYW = false
-    }
-
-    localStorage.setItem('settings', JSON.stringify(settings))
-})
-
 // Personalization
 document.getElementById('cgWall').addEventListener('change', () => {
     const fileInput = document.getElementById('cgWall');
@@ -147,7 +127,7 @@ document.getElementById('rWall').addEventListener('click', () => {
     localStorage.setItem('personalization', JSON.stringify(personalization))
 })
 
-document.getElementById('wpOpacity').addEventListener('change', () => {
+document.getElementById('wpOpacity').addEventListener('input', () => {
     let val = document.getElementById('wpOpacity').value / 100
     let color = document.getElementById('bColor').value
     document.getElementById('wallColor').innerHTML = `
@@ -290,6 +270,41 @@ document.getElementById('openCredits').addEventListener('click', () => {
         Horário: WorldTimeAPI<br>
         Ícones: Microsoft<br>
         Estilo do programa: IgorSilva-S<br>
+    `
+    openPopup()
+})
+
+// Data
+document.getElementById('deleteAllData').addEventListener('click', () => {
+    document.getElementById('popContent').innerHTML = `
+        <h1>Apagar todos os dados</h1>
+        <br><br>
+        Você tem certeza absoluta disso? Assim que os dados forem apagados, o WatchViewOS irá reiniciar e não terá como recuperar os dados, a não ser caso você tenha uma cópia dos dados.<br>
+        Para extrair uma cópia, use a função "Transferir dados", presente nesta mesma página.
+    `
+    openPopup()
+    document.getElementById('primBtn').removeAttribute('style')
+    document.getElementById('primBtn').classList.add('warning')
+    document.getElementById('primBtn').innerText = 'Apagar tudo mesmo'
+    funcBtn = 'deleteAll'
+
+})
+
+document.getElementById('viewData').addEventListener('click', () => {
+        document.getElementById('popContent').innerHTML = `
+        <h1>Visualização de dados</h1>
+        <br><br>
+        Events: ${JSON.stringify(events)};<br>
+        Todos: ${JSON.stringify(todos)};<br>
+        Alarms: ${JSON.stringify(alarms)};<br>
+        Personalization: ${JSON.stringify(personalization)};<br>
+        Settings: ${JSON.stringify(settings)};<br>
+        Datas: ${JSON.stringify(datas)};<br>
+        Home Menu Data: ${JSON.stringify(homeMenuData)};<br>
+        First Boot: ${JSON.stringify(fBoot)};<br>
+        --<br>
+        Se encontram no localStorage pelos nomes:<br>
+        events, todos, alarms, personalization, settings, datas, homeMenu e initialBoot
     `
     openPopup()
 })

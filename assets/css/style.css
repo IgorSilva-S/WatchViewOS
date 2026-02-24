@@ -608,6 +608,10 @@ h6 {
     text-decoration: none;
 }
 
+.primBtn.warning {
+    background-color: rgb(175, 0, 0);
+}
+
 .secBtn {
     background-color: #191919;
     color: aliceblue;
@@ -625,6 +629,11 @@ h6 {
 .primBtn:hover,
 .secBtn:hover {
     box-shadow: 0 0 12px 5px var(--primary);
+}
+
+.warning:hover {
+    box-shadow: 0 0 12px 5px rgb(255, 42, 42);
+    background-color: rgb(175, 0, 0);
 }
 
 .popUp {

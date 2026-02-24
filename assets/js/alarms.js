@@ -1,10 +1,15 @@
 let playingAlarm = false
+let playAlarm = true
+let curTime = time
+let waitAlarmName, waitAlarmHour
+
+let snoozeTimeout
 
 document.getElementById("addAlarm").addEventListener("click", () => {
-  document.getElementById("primBtn").removeAttribute("style");
-  openPopup();
-  funcBtn = "alarmAdd";
-  document.getElementById("popContent").innerHTML = `
+    document.getElementById("primBtn").removeAttribute("style");
+    openPopup();
+    funcBtn = "alarmAdd";
+    document.getElementById("popContent").innerHTML = `
         <h1>Alarme - Adicionar</h1>
 
         <label for="alarmName">Nome do Alarme</label>
@@ -46,7 +51,7 @@ document.getElementById("addAlarm").addEventListener("click", () => {
         </div>
         <span>Lembre-se de adicionar nome e hora, são campos obrigatórios</span>
     `;
-  document.getElementById("primBtn").innerText = "Adicionar";
+    document.getElementById("primBtn").innerText = "Adicionar";
 });
 
 let alarmSoundInterval;
@@ -55,6 +60,8 @@ setInterval(() => {
     alarms.forEach(alarm => {
         let alarmTime = alarm.hour
         let alarmDays = alarm.days
+        let alarmName = alarm.name
+        let alarmPlayable = alarm.enabled
         let dtlc
         try {
             dtlc = day.toLowerCase()
@@ -64,11 +71,24 @@ setInterval(() => {
         }
 
 
-        if (alarmTime == time && !playingAlarm && alarmDays[dtlc]) {
+        if (alarmTime == time && !playingAlarm && alarmDays[dtlc] && playAlarm && alarmPlayable) {
             playingAlarm = true
+            waitAlarmHour = alarmTime
+            waitAlarmName = alarmName
+            clearTimeout(snoozeTimeout)
+            document.getElementById('alarmAlert').style.bottom = '0'
+            document.getElementById('alarmTimeTxt').innerText = alarmTime
+            document.getElementById('alarmNameTxt').innerText = alarmName
+            if (actualApp == 'watch') {
+                document.getElementById('watch').style.height = '40vh'
+            }
             alarmSoundInterval = setInterval(() => {
                 if (time != alarmTime) {
                     playingAlarm = false
+                    document.getElementById('alarmAlert').removeAttribute('style')
+                    if (actualApp == 'watch') {
+                        document.getElementById('watch').removeAttribute('style')
+                    }
                     alarmBeta.pause()
                     alarmBeta.currentTime = 0
                     clearInterval(alarmSoundInterval)
@@ -77,5 +97,54 @@ setInterval(() => {
             }, 200);
             alarmBeta.play()
         }
+
+        if (curTime != time) {
+            curTime = time
+            playAlarm = true
+        }
     });
 }, 1000);
+
+document.getElementById('stopAlarm').addEventListener('click', () => {
+    playingAlarm = false
+    playAlarm = false
+    document.getElementById('alarmAlert').removeAttribute('style')
+    if (actualApp == 'watch') {
+        document.getElementById('watch').removeAttribute('style')
+    }
+    alarmBeta.pause()
+    alarmBeta.currentTime = 0
+    clearInterval(alarmSoundInterval)
+    alarmSoundInterval = null
+})
+
+document.getElementById('snoozeAlarm').addEventListener('click', () => {
+    playingAlarm = false
+    playAlarm = false
+    document.getElementById('alarmAlert').removeAttribute('style')
+    alarmBeta.pause()
+    alarmBeta.currentTime = 0
+    clearInterval(alarmSoundInterval)
+    alarmSoundInterval = null
+    snoozeTimeout = setTimeout(() => {
+        playingAlarm = true
+        if (actualApp == 'watch') {
+            document.getElementById('watch').style.height = '40vh'
+        }
+        document.getElementById('alarmAlert').style.bottom = '0'
+        document.getElementById('alarmTimeTxt').innerText = waitAlarmHour
+        document.getElementById('alarmNameTxt').innerText = waitAlarmName
+        alarmSoundInterval = setInterval(() => {
+            playingAlarm = false
+            document.getElementById('alarmAlert').removeAttribute('style')
+            if (actualApp == 'watch') {
+                document.getElementById('watch').removeAttribute('style')
+            }
+            alarmBeta.pause()
+            alarmBeta.currentTime = 0
+            clearInterval(alarmSoundInterval)
+            alarmSoundInterval = null
+        }, 60000);
+        alarmBeta.play()
+    }, 300000);
+})

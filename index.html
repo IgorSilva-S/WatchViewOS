@@ -78,18 +78,18 @@
         <audio src="assets/sounds/WiiU/HomeUp.mp3" id="openHome"></audio>
         <audio src="assets/sounds/WiiU/HomeClose.mp3" id="closeHome"></audio>
     </div>
-    <div class="alarmAlert">
+    <div class="alarmAlert" id="alarmAlert">
         <div class="timeAndName">
-            <p class="timeTxt">
+            <p class="timeTxt" id="alarmTimeTxt">
                 12:00
             </p>
-            <p class="nameTxt">
+            <p class="nameTxt" id="alarmNameTxt">
                 Nome Alarme
             </p>
         </div>
         <div class="alarmButtonContent">
-            <button class="primBtn">Parar Alarme</button>
-            <button class="secBtn">Modo soneca</button>
+            <button class="primBtn" id="stopAlarm">Parar Alarme</button>
+            <button class="secBtn" id="snoozeAlarm">Modo soneca</button>
         </div>
     </div>
     <section class="app" id="alarm">
@@ -176,20 +176,12 @@
                 <input type="checkbox" name="" id="clockSec">
             </div>
             <div class="configInfo">
-                <div>
-                    <label for="clockYearDay">Mostrar dia do ano no relógio principal</label>
-                </div>
-                <input type="checkbox" name="" id="clockYearDay">
+                <label for="autoIP">Pegar horário baseado na sua timezone</label>
+                <input type="checkbox" name="" id="autoIP" checked>
             </div>
             <div class="configInfo">
-                <div>
-                    <label for="clockYearWeek">Mostrar semana do ano no relógio principal</label>
-                </div>
-                <input type="checkbox" name="" id="clockYearWeek">
-            </div>
-            <div class="configInfo">
-                Ver detalhes extras sobre a data e hora
-                <button class="secBtn" id="extraResponse">Ver</button>
+                <label for="manualTZ">Calcular Timezone de:</label>
+                <input type="number" id="manualTZ" min="-12" max="12">
             </div>
             <div class="configInfo">
                 <div class="col">
@@ -325,6 +317,7 @@
                     Apagar dados
                     <span class="subText">Isso irá reiniciar o app e começar do zero</span>
                 </div>
+                <button class="secBtn warning" id="deleteAllData">Apagar</button>
             </div>
             <div class="configInfo">
                 <div class="col">
@@ -336,6 +329,7 @@
                     Visualizar dados
                     <span class="subText">Avançado, abra se você tiver conhecimento JSON</span>
                 </div>
+                <button class="secBtn" id="viewData">Visualizar</button>
             </div>
             <div class="configInfo">
                 <div class="col">
@@ -492,7 +486,6 @@
     </svg>
 
     <script src="assets/js/dataCenter.js"></script>
-    <script src="assets/js/popup.js"></script>
     <script src="assets/js/homeMenu.js"></script>
     <script src="assets/js/timecount.js"></script>
     <script src="assets/js/alarms.js"></script>
@@ -503,7 +496,7 @@
     <script src="assets/js/changeSounds.js"></script>
     <script src="assets/js/connection.js"></script>
     <script src="assets/js/boot.js"></script>
-
+    <script src="assets/js/popup.js"></script>
 </body>
 
 </html>

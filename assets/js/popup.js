@@ -12,14 +12,7 @@ function openPopup() {
 }
 
 document.getElementById('closePop').addEventListener('click', () => {
-    document.getElementById('popUp').style.opacity = '0'
-    document.getElementById('popUp').style.scale = '.9'
-    setTimeout(() => {
-        document.getElementById('popUp').removeAttribute('style')
-        document.getElementById('dnc').removeAttribute('style')
-        document.getElementById('primBtn').style.display = 'none'
-        popOpen = false
-    }, 200);
+    closePopup()
 })
 
 document.getElementById('primBtn').addEventListener('click', () => {
@@ -32,6 +25,22 @@ document.getElementById('primBtn').addEventListener('click', () => {
     }
     if (funcBtn == 'alarmAdd') {
         alarmManager('add')
+    } if (funcBtn == 'alarmEdit') {
+        alarmManager('edit')
+    } if (funcBtn == 'deleteAll') {
+        document.getElementById('popContent').innerHTML = `
+        <h1>Apagando todos os dados</h1>
+        <br><br>
+        Espere um instante. Assim que terminar, o site será reiniciado
+    `
+    document.getElementById('closePop').style.display = 'none'
+    document.getElementById('primBtn').style.display = 'none'
+    document.getElementById('dnc').style.transitionDuration = '.2s'
+    document.getElementById('dnc').style.backgroundColor = '#000'
+    localStorage.clear()
+    setTimeout(() => {
+        location.reload()
+    }, 2000);
     }
 })
 
@@ -46,6 +55,7 @@ function closePopup() {
         document.getElementById('popUp').removeAttribute('style')
         document.getElementById('dnc').removeAttribute('style')
         document.getElementById('primBtn').style.display = 'none'
+        document.getElementById('primBtn').classList.remove('warning')
         popOpen = false
         funcBtn = null
     }, 200);

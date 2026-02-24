@@ -31,6 +31,8 @@ function bootData() {
     settingsAlign()
 }
 
+let editingAlarm = -1
+
 function alarmManager(act) {
 
     if (act.toLowerCase() === 'add') {
@@ -84,17 +86,6 @@ function alarmManager(act) {
             let alarmExtra = document.createElement('div')
             alarmExtra.classList.add('alarmExtra')
             alarmExtra.innerHTML = `
-              <div>
-                <div class="alarmDays">
-                    <span data-day="dom" class="${alarm.days.dom ? 'active' : ''}">D</span>
-                    <span data-day="seg" class="${alarm.days.seg ? 'active' : ''}">S</span>
-                    <span data-day="ter" class="${alarm.days.ter ? 'active' : ''}">T</span>
-                    <span data-day="qua" class="${alarm.days.qua ? 'active' : ''}">Q</span>
-                    <span data-day="qui" class="${alarm.days.qui ? 'active' : ''}">Q</span>
-                    <span data-day="sex" class="${alarm.days.sex ? 'active' : ''}">S</span>
-                    <span data-day="sab" class="${alarm.days.sab ? 'active' : ''}">S</span>
-                </div>
-             </div>
 
             <div>
                 <label class="switch">
@@ -106,23 +97,71 @@ function alarmManager(act) {
 
             alarmBox.appendChild(alarmExtra)
 
+            let editBtn = document.createElement('button')
+            editBtn.className = 'todoDelBtn';
+            editBtn.innerHTML = '&#xE70F;'
+            editBtn.addEventListener('click', () => {
+                editingAlarm = alarms.findIndex(a =>
+                    a.name === alarm.name && a.hour === alarm.hour
+                );
+                openPopup();
+                funcBtn = "alarmEdit";
+                document.getElementById("popContent").innerHTML = `
+                    <h1>Alarme - Editar</h1>
 
-           
-            alarmBox.querySelectorAll('.alarmDays span').forEach(span => {
-                span.addEventListener('click', () => {
-                    let day = span.dataset.day;
-                    span.classList.toggle('active');
+                    <label for="alarmName">Nome do Alarme</label>
+                    <input type="text" placeholder="Insira o nome aqui" id="alarmName">
+                     <br>
+                    <label for="alarmHour">Hora do alarme</label>
+                    <input type="time" id="alarmHour" name="alarmHour">
+                    <br>
+                    Dia da semana
+                    <div class="lLine">
+                     <div class="cCol">
+                        <input type="checkbox" name="" id="aDom">
+                        <label for="aDom">Dom</label>
+                    </div>
+                    <div class="cCol">
+                        <input type="checkbox" name="" id="aSeg">
+                        <label for="aSeg">Seg</label>
+                    </div>
+                    <div class="cCol">
+                        <input type="checkbox" name="" id="aTer">
+                        <label for="aTer">Ter</label>
+                    </div>
+                    <div class="cCol">
+                        <input type="checkbox" name="" id="aQua">
+                        <label for="aQua">Qua</label>
+                    </div>
+                    <div class="cCol">
+                        <input type="checkbox" name="" id="aQui">
+                        <label for="aQui">Qui</label>
+                    </div>
+                    <div class="cCol">
+                        <input type="checkbox" name="" id="aSex">
+                        <label for="aSex">Sex</label>
+                    </div>
+                    <div class="cCol">
+                        <input type="checkbox" name="" id="aSab">
+                        <label for="aSab">Sáb</label>
+                    </div>
+                </div>
+    `;
+                document.getElementById("primBtn").innerText = "Editar";
 
-                    let index = alarms.findIndex(a =>
-                        a.name === alarm.name && a.hour === alarm.hour
-                    );
+                document.getElementById('alarmName').value = alarm.name
+                document.getElementById('alarmHour').value = alarm.hour
+                document.getElementById('aDom').checked = alarm.days.dom
+                document.getElementById('aSeg').checked = alarm.days.seg
+                document.getElementById('aTer').checked = alarm.days.ter
+                document.getElementById('aQua').checked = alarm.days.qua
+                document.getElementById('aQui').checked = alarm.days.qui
+                document.getElementById('aSex').checked = alarm.days.sex
+                document.getElementById('aSab').checked = alarm.days.sáb
+                console.log(editingAlarm)
+                document.getElementById('primBtn').removeAttribute('style')
 
-                    if (index !== -1) {
-                        alarms[index].days[day] = span.classList.contains('active');
-                        localStorage.setItem('alarms', JSON.stringify(alarms));
-                    }
-                });
-            });
+            })
 
             let delBtn = document.createElement('button');
             delBtn.className = 'todoDelBtn';
@@ -134,6 +173,8 @@ function alarmManager(act) {
                 );
                 localStorage.setItem('alarms', JSON.stringify(alarms));
             });
+
+
 
             let switchInput = alarmBox.querySelector('.switch input');
 
@@ -148,15 +189,43 @@ function alarmManager(act) {
                 }
             });
 
+            alarmExtra.appendChild(editBtn)
             alarmExtra.appendChild(delBtn);
             alarmContent.prepend(alarmBox);
         });
     }
 
+    if (act.toLowerCase() === 'edit') {
+        if (editingAlarm !== -1) {
+            alarms[editingAlarm].name = document.getElementById('alarmName').value
+            if (document.getElementById('alarmName').value.trim() == '') {
+                return;
+            }
+            alarms[editingAlarm].hour = document.getElementById('alarmHour').value
+            if (document.getElementById('alarmHour').value.trim() == '') {
+                return;
+            }
+            alarms[editingAlarm].days = {
+                dom: document.getElementById('aDom').checked,
+                seg: document.getElementById('aSeg').checked,
+                ter: document.getElementById('aTer').checked,
+                qua: document.getElementById('aQua').checked,
+                qui: document.getElementById('aQui').checked,
+                sex: document.getElementById('aSex').checked,
+                sáb: document.getElementById('aSab').checked
+            }
+
+            localStorage.setItem('alarms', JSON.stringify(alarms));
+
+            alarmManager('load')
+            editingAlarm = -1
+            closePopup()
+        }
+    }
 
     if (act.toLowerCase() === 'format') {
         alarms = [];
-        localStorage.removeItem('alarms');
+        localStorage.setItem('alarms', []);
         document.getElementById('alarmContent').innerHTML = '';
     }
 }
@@ -243,7 +312,9 @@ function todoManager(act) {
         });
 
     } else if (act.toLowerCase() == 'format') {
-        localStorage.removeItem('todos')
+        todos = [];
+        localStorage.setItem('todos', '[]');
+        document.getElementById('todoContent').innerHTML = '';
     } else {
         console.log('Todo Manager: Não há essa função para o Todo Manager')
     }
@@ -335,7 +406,9 @@ function eventManager(act, date) {
             document.getElementById('eventsContent').insertAdjacentElement('afterbegin', todoBox)
         })
     } else if (act.toLowerCase() == 'format') {
-        localStorage.removeItem('events')
+        events = []
+        localStorage.setItem('events', '[]')
+        document.getElementById('eventsContent').innerHTML = ''
     } else {
         console.log('Event Manager: Não há essa função para o Event Manager')
     }

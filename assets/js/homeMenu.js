@@ -11,7 +11,7 @@ document.addEventListener('contextmenu', (e) => {
     let phoneUp = window.matchMedia("(max-width: 500px)").matches ? true : false
     let fullHomeMenu = document.getElementById('fullHomeMenu').checked
     eventManager('check')
-    if (!homeMenuOpened && !phoneUp && !popOpen && connected) {
+    if (!homeMenuOpened && !phoneUp && !popOpen && connected && !playingAlarm) {
         homeMenu.style.bottom = '0'
         hmClose.style.bottom = '0'
         if (actualApp == 'watch') {
@@ -53,7 +53,7 @@ document.addEventListener('contextmenu', (e) => {
         homeMenuOpened = true
         document.getElementById('eventbar').removeAttribute('style')
         lSound()
-    } else if (!phoneUp && !popOpen && connected) {
+    } else if (!phoneUp && !popOpen && connected && !playingAlarm) {
         homeMenu.removeAttribute('style')
         hmClose.removeAttribute('style')
         if (canPlaySFX) {
