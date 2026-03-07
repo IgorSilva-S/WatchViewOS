@@ -89,6 +89,7 @@ Array.from(document.getElementById('abc').children).forEach(element => {
     element.addEventListener('click', () => {
         homeMenu.removeAttribute('style')
         hmClose.removeAttribute('style')
+        backBtn.click()
         if (actualApp == 'watch') {
             document.getElementById('watch').removeAttribute('style')
         }
