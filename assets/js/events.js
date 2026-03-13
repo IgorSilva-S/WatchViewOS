@@ -17,5 +17,4 @@ document.getElementById('createEvent').addEventListener('click', () => {
     document.getElementById('primBtn').innerText = 'Adicionar'
 })
 
-eventManager('load')
 eventManager('check')

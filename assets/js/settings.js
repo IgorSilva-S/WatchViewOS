@@ -353,6 +353,8 @@ function HMEffectChanger(val) {
     if (document.getElementById('homeColor').checked) {
         homeMenu.classList.add('homeMenuAccent')
     }
+
+    document.getElementById('homeStyle').value = val
 }
 
 document.getElementById('homeStyle').addEventListener('change', () => {

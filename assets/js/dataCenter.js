@@ -27,8 +27,6 @@ function bootData() {
         fBoot = localStorage.getItem('initialBoot')
     }
 
-    insertDay(fBoot)
-    settingsAlign()
 }
 
 let editingAlarm = -1
@@ -420,19 +418,4 @@ function insertDay(date) {
         return ('0' + n).slice(-2)
     }
     document.getElementById('fdUse').innerText = `${AZ(d.getDate())}/${AZ(d.getMonth() + 1)}/${d.getFullYear()}`
-}
-
-function settingsAlign() {
-    if (settings.lite == true) {
-        document.getElementById('liteModel').checked = true
-        document.getElementById('mainCss').href = 'assets/css/lite.css'
-    }
-
-    if (settings.noSound == true) {
-        document.getElementById("sysSounds").checked = false
-    }
-
-    if (settings.noFS == true) {
-        document.getElementById("dblclkFS").checked = false
-    }
 }
