@@ -166,8 +166,6 @@ watchBtn.addEventListener('click', () => {
     } else if (fullHomeMenu || isMobile) {
         clearTimeout(appsTO)
         watchApp.removeAttribute('style')
-    } else {
-        hmClose()
     }
 })
 

@@ -36,6 +36,9 @@ body {
     font-family: "Quicksand", sans-serif;
     accent-color: var(--primary);
     user-select: none;
+    overflow: hidden;
+    max-width: 100dvw;
+    max-height: 100dvh;
 }
 
 pre {
