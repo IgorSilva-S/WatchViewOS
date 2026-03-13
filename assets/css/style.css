@@ -414,7 +414,7 @@ h6 {
     background-color: var(--primary);
 }
 
-.eventPill {
+.notificationPill {
     width: 30%;
     background-color: #29292999;
     padding: 10px 30px;

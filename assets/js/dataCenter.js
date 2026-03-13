@@ -365,7 +365,7 @@ function eventManager(act, date) {
             }
             let d = new Date()
             let fDate = `${d.getFullYear()}-${AZ(d.getMonth() + 1)}-${AZ(d.getDate())}`
-            if (fDate == e.date) {
+            if (fDate == e.date && !DND) {
                 document.getElementById('eventName').innerText = e.name
                 document.getElementById('eventbar').style.display = 'flex'
                 document.getElementById('ePillName').innerText = e.name

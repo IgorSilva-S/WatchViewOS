@@ -266,8 +266,7 @@ document.getElementById('openCredits').addEventListener('click', () => {
     document.getElementById('popContent').innerHTML = `
         <h1>Créditos</h1>
         <br><br>
-        Sons: Nintendo / The Sounds Resource<br>
-        Horário: WorldTimeAPI<br>
+        Horário: TimeAPI.io<br>
         Ícones: Microsoft<br>
         Estilo do programa: IgorSilva-S<br>
     `
@@ -291,17 +290,17 @@ document.getElementById('deleteAllData').addEventListener('click', () => {
 })
 
 document.getElementById('viewData').addEventListener('click', () => {
-        document.getElementById('popContent').innerHTML = `
+    document.getElementById('popContent').innerHTML = `
         <h1>Visualização de dados</h1>
         <br><br>
-        Events: ${JSON.stringify(events)};<br>
-        Todos: ${JSON.stringify(todos)};<br>
-        Alarms: ${JSON.stringify(alarms)};<br>
-        Personalization: ${JSON.stringify(personalization)};<br>
-        Settings: ${JSON.stringify(settings)};<br>
-        Datas: ${JSON.stringify(datas)};<br>
-        Home Menu Data: ${JSON.stringify(homeMenuData)};<br>
-        First Boot: ${JSON.stringify(fBoot)};<br>
+        Events: <pre>${JSON.stringify(events, null, 2)}</pre><br>
+        Todos: <pre>${JSON.stringify(todos, null, 2)}</pre><br>
+        Alarms: <pre>${JSON.stringify(alarms, null, 2)}</pre><br>
+        Personalization: <pre>${JSON.stringify(personalization, null, 2)}</pre><br>
+        Settings: <pre>${JSON.stringify(settings, null, 2)}</pre><br>
+        Datas: <pre>${JSON.stringify(datas, null, 2)}</pre><br>
+        Home Menu Data: <pre>${JSON.stringify(homeMenuData, null, 2)}</pre><br>
+        First Boot: <pre>${JSON.stringify(fBoot, null, 2)}</pre><br>
         --<br>
         Se encontram no localStorage pelos nomes:<br>
         events, todos, alarms, personalization, settings, datas, homeMenu e initialBoot
@@ -310,6 +309,21 @@ document.getElementById('viewData').addEventListener('click', () => {
 })
 
 // Mini Apps
+document.getElementById('DND').addEventListener('change', (e) => {
+    datas.dnd = e.target.checked
+    localStorage.setItem('datas', JSON.stringify(datas))
+
+    DND = e.target.checked
+
+    eventManager('check')
+
+    if (e.target.checked) {
+        document.getElementById('dndPill').style.display = 'flex'
+    } else {
+        document.getElementById('dndPill').removeAttribute('style')
+    }
+})
+
 document.getElementById('watchDivider').addEventListener('change', () => {
     let check = document.getElementById('watchDivider').checked
     if (check) {
@@ -353,8 +367,6 @@ function HMEffectChanger(val) {
     if (document.getElementById('homeColor').checked) {
         homeMenu.classList.add('homeMenuAccent')
     }
-
-    document.getElementById('homeStyle').value = val
 }
 
 document.getElementById('homeStyle').addEventListener('change', () => {

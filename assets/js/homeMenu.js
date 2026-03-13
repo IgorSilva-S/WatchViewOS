@@ -2,6 +2,7 @@ let homeMenuOpened = false
 const homeMenu = document.getElementById('HM')
 const hmClose = document.getElementById('hmClose')
 const wallpaper = document.getElementById('wallpaper')
+let appsTO, fullHomeMenu
 
 document.addEventListener('contextmenu', (e) => {
     e.preventDefault()
@@ -9,7 +10,7 @@ document.addEventListener('contextmenu', (e) => {
     let isLowEffects = document.getElementById('liteModel').checked
     let isMobile = window.matchMedia("(max-height: 500px)").matches ? true : false
     let phoneUp = window.matchMedia("(max-width: 500px)").matches ? true : false
-    let fullHomeMenu = document.getElementById('fullHomeMenu').checked
+    fullHomeMenu = document.getElementById('fullHomeMenu').checked
     eventManager('check')
     if (!homeMenuOpened && !phoneUp && !popOpen && connected && !playingAlarm) {
         homeMenu.style.bottom = '0'
@@ -31,17 +32,17 @@ document.addEventListener('contextmenu', (e) => {
             document.getElementById('openHome').currentTime = 0
             document.getElementById('openHome').play()
         }
-        if (actualApp == 'watch') {
+        if (actualApp == 'watch' && !fullHomeMenu) {
             wallpaper.style.filter = 'brightness(50%)'
         }
 
-        if (fullHomeMenu) {
+        if (fullHomeMenu || isMobile) {
             watchApp.style.opacity = '0'
             alarmApp.style.opacity = '0'
             todoApp.style.opacity = '0'
             eventsApp.style.opacity = '0'
             settingsApp.style.opacity = '0'
-            setTimeout(() => {
+            appsTO = setTimeout(() => {
                 watchApp.style.display = 'none'
                 alarmApp.removeAttribute('style')
                 todoApp.removeAttribute('style')
@@ -67,7 +68,13 @@ document.addEventListener('contextmenu', (e) => {
             document.getElementById('watch').removeAttribute('style')
         }
         wallpaper.removeAttribute('style')
-        if (fullHomeMenu) {
+        if (fullHomeMenu || isMobile) {
+            clearTimeout(appsTO)
+            watchApp.style.opacity = '1'
+            alarmApp.style.opacity = '1'
+            todoApp.style.opacity = '1'
+            eventsApp.style.opacity = '1'
+            settingsApp.style.opacity = '1'
             if (actualApp == 'watch') {
                 watchApp.removeAttribute('style')
             } else if (actualApp == 'alarm') {
@@ -87,10 +94,11 @@ document.addEventListener('contextmenu', (e) => {
 
 Array.from(document.getElementById('abc').children).forEach(element => {
     element.addEventListener('click', () => {
+        fullHomeMenu = document.getElementById('fullHomeMenu').checked
         homeMenu.removeAttribute('style')
         hmClose.removeAttribute('style')
         backBtn.click()
-        if (actualApp == 'watch') {
+        if (actualApp == 'watch' && !fullHomeMenu && !isMobile) {
             document.getElementById('watch').removeAttribute('style')
         }
         wallpaper.removeAttribute('style')
@@ -155,6 +163,11 @@ watchBtn.addEventListener('click', () => {
             settingsApp.removeAttribute('style')
             lSound()
         }, 700);
+    } else if (fullHomeMenu || isMobile) {
+        clearTimeout(appsTO)
+        watchApp.removeAttribute('style')
+    } else {
+        hmClose()
     }
 })
 
@@ -179,6 +192,24 @@ alarmBtn.addEventListener('click', () => {
             alarmApp.style.display = 'block'
             lSound()
         }, 700);
+    } else if (fullHomeMenu || isMobile) {
+        clearTimeout(appsTO)
+        watchApp.style.opacity = '1'
+        alarmApp.style.opacity = '1'
+        todoApp.style.opacity = '1'
+        eventsApp.style.opacity = '1'
+        settingsApp.style.opacity = '1'
+        if (actualApp == 'watch') {
+            watchApp.removeAttribute('style')
+        } else if (actualApp == 'alarm') {
+            alarmApp.style.display = 'block'
+        } else if (actualApp == 'todo') {
+            todoApp.style.display = 'block'
+        } else if (actualApp == 'events') {
+            eventsApp.style.display = 'block'
+        } else if (actualApp == 'settings') {
+            settingsApp.style.display = 'block'
+        }
     }
 })
 
@@ -203,6 +234,24 @@ todoBtn.addEventListener('click', () => {
             todoApp.style.display = 'block'
             lSound()
         }, 700);
+    } else if (fullHomeMenu || isMobile) {
+        clearTimeout(appsTO)
+        watchApp.style.opacity = '1'
+        alarmApp.style.opacity = '1'
+        todoApp.style.opacity = '1'
+        eventsApp.style.opacity = '1'
+        settingsApp.style.opacity = '1'
+        if (actualApp == 'watch') {
+            watchApp.removeAttribute('style')
+        } else if (actualApp == 'alarm') {
+            alarmApp.style.display = 'block'
+        } else if (actualApp == 'todo') {
+            todoApp.style.display = 'block'
+        } else if (actualApp == 'events') {
+            eventsApp.style.display = 'block'
+        } else if (actualApp == 'settings') {
+            settingsApp.style.display = 'block'
+        }
     }
 })
 
@@ -227,6 +276,24 @@ eventsBtn.addEventListener('click', () => {
             eventsApp.style.display = 'block'
             lSound()
         }, 700);
+    } else if (fullHomeMenu || isMobile) {
+        clearTimeout(appsTO)
+        watchApp.style.opacity = '1'
+        alarmApp.style.opacity = '1'
+        todoApp.style.opacity = '1'
+        eventsApp.style.opacity = '1'
+        settingsApp.style.opacity = '1'
+        if (actualApp == 'watch') {
+            watchApp.removeAttribute('style')
+        } else if (actualApp == 'alarm') {
+            alarmApp.style.display = 'block'
+        } else if (actualApp == 'todo') {
+            todoApp.style.display = 'block'
+        } else if (actualApp == 'events') {
+            eventsApp.style.display = 'block'
+        } else if (actualApp == 'settings') {
+            settingsApp.style.display = 'block'
+        }
     }
 })
 
@@ -251,6 +318,24 @@ settingsBtn.addEventListener('click', () => {
             settingsApp.style.display = 'block'
             lSound()
         }, 700);
+    } else if (fullHomeMenu || isMobile) {
+        clearTimeout(appsTO)
+        watchApp.style.opacity = '1'
+        alarmApp.style.opacity = '1'
+        todoApp.style.opacity = '1'
+        eventsApp.style.opacity = '1'
+        settingsApp.style.opacity = '1'
+        if (actualApp == 'watch') {
+            watchApp.removeAttribute('style')
+        } else if (actualApp == 'alarm') {
+            alarmApp.style.display = 'block'
+        } else if (actualApp == 'todo') {
+            todoApp.style.display = 'block'
+        } else if (actualApp == 'events') {
+            eventsApp.style.display = 'block'
+        } else if (actualApp == 'settings') {
+            settingsApp.style.display = 'block'
+        }
     }
 })
 

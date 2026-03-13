@@ -41,6 +41,13 @@ eventManager('load')
 todoManager('load')
 alarmManager('load')
 
+//DND State
+let DND = datas.dnd
+if (DND) {
+    document.getElementById('DND').checked = true
+    document.getElementById('dndPill').style.display = 'flex'
+}
+
 // Settings boot
 applyNewSound(settings.sounds)
 document.getElementById('soundChanger').value = settings.sounds
@@ -99,6 +106,7 @@ function bootPersona(data) {
     }
 
     if (data.accentColor != undefined) {
+        document.getElementById('aColor').value = data.accentColor
         document.getElementById('RAColor').innerHTML = `
         :root {
             --primary: ${data.accentColor};
@@ -133,17 +141,15 @@ function homeMenuBOOT(data) {
     if (data.useAccent == true) {
         homeMenu.classList.add('homeMenuAccent')
         document.getElementById('homeColor').checked = true
-    } else {
-        homeMenu.classList.remove('homeMenuAccent')
-        document.getElementById('homeColor').checked = false
     }
 
     if (data.fullscreen == true) {
         homeMenu.setAttribute('type', 'fullscreen')
         document.getElementById('fullHomeMenu').checked = true
-    } else {
-        homeMenu.removeAttribute('type')
-        document.getElementById('fullHomeMenu').checked = false
+    }
+
+    if (data.divideClock == false) {
+        document.getElementById('watchDivider').checked = false
     }
     HMEffectChanger(data.effectType)
 }

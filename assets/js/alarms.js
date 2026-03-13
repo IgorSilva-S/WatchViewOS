@@ -71,7 +71,7 @@ setInterval(() => {
         }
 
 
-        if (alarmTime == time && !playingAlarm && alarmDays[dtlc] && playAlarm && alarmPlayable) {
+        if (alarmTime == time && !playingAlarm && alarmDays[dtlc] && playAlarm && alarmPlayable && !DND) {
             playingAlarm = true
             waitAlarmHour = alarmTime
             waitAlarmName = alarmName
