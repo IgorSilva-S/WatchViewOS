@@ -78,6 +78,7 @@ function bootPersona(data) {
 
     if (data.backColor != undefined) {
         document.getElementById('BCLabel').style.backgroundColor = data.backColor
+        document.getElementById('bColor').value = data.backColor
         document.getElementById('wallColor').innerHTML = `
         :root {
             --wallpaperColor: ${data.backColor};
@@ -94,9 +95,38 @@ function bootPersona(data) {
         }
     `
 
-    document.getElementById('wpOpacity').value = data.opacity * 100
+        document.getElementById('wpOpacity').value = data.opacity * 100
+    }
+
+    if (data.accentColor != undefined) {
+        document.getElementById('RAColor').innerHTML = `
+        :root {
+            --primary: ${data.accentColor};
+            --transPrimary: ${data.accentColor}77;
+        }
+    `
+    }
+
+    if (data.invertColor == true) {
+        document.getElementById('RAText').innerHTML = `
+            :root {
+               --primaryColor: #191919;
+            }
+        `
+        document.getElementById('txtColor').checked = true
+    }
+
+    if (data.swapWatch == true) {
+        document.getElementById('wallTxt').innerHTML = `
+            :root {
+               --watchColor: #191919;
+            }
+        `
+        document.getElementById('watchColor').checked = true
     }
 }
+
+bootPersona(personalization)
 
 // Home Menu BOOT
 function homeMenuBOOT(data) {
