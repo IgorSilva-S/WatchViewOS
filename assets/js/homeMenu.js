@@ -1,3 +1,6 @@
+const homeMenuVersion = '1.0'
+document.getElementById('homeVersion').innerHTML = homeMenuVersion
+
 let homeMenuOpened = false
 const homeMenu = document.getElementById('HM')
 const hmClose = document.getElementById('hmClose')
@@ -97,7 +100,7 @@ Array.from(document.getElementById('abc').children).forEach(element => {
         fullHomeMenu = document.getElementById('fullHomeMenu').checked
         homeMenu.removeAttribute('style')
         hmClose.removeAttribute('style')
-        backBtn.click()
+        restartSettings()
         if (actualApp == 'watch' && !fullHomeMenu && !isMobile) {
             document.getElementById('watch').removeAttribute('style')
         }
@@ -336,4 +339,3 @@ settingsBtn.addEventListener('click', () => {
         }
     }
 })
-

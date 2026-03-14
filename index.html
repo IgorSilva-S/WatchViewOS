@@ -14,12 +14,15 @@
 </head>
 
 <body>
+    <!--AUC (Automatic User Customization) area-->
     <style id="wallColor"></style>
     <style id="wallTxt"></style>
     <style id="RAColor"></style>
     <style id="RAText"></style>
     <style id="wallImg"></style>
     <div class="wallpaper" id="wallpaper"></div>
+
+    <!--Watch App-->
     <section class="defaultWatch" id="watch">
         <h1 id="time">
             <div class="loadingContainer">
@@ -45,59 +48,9 @@
                 <h1 class="eventName" id="eventName">Nome Evento</h1>
             </div>
         </div>
-
-
     </section>
-    <div id="hmClose"></div>
-    <div class="homeMenu" id="HM">
-        <h1>Menu Home</h1>
-        <div class="notificationPill" id="eventPill">
-            <f-icon>&#xe787;</f-icon>
-            <span id="ePillName">EVENTO</span>
-        </div>
-        <div class="notificationPill" id="dndPill">
-            <f-icon>&#xE708;</f-icon>
-            <span>Não Pertube</span>
-        </div>
-        <div class="abContainer" id="abc">
-            <button id="watchBtn">
-                <f-icon>&#xF182;</f-icon>
-                <span>Relógio</span>
-            </button>
-            <button id="alarmBtn">
-                <f-icon>&#xe916;</f-icon>
-                <span>Alarmes</span>
-            </button>
-            <button id="todoBtn">
-                <f-icon>&#xe73a;</f-icon>
-                <span>Afazeres</span>
-            </button>
-            <button id="eventsBtn">
-                <f-icon>&#xe787;</f-icon>
-                <span>Eventos</span>
-            </button>
-            <button id="settingsBtn">
-                <f-icon>&#xe713;</f-icon>
-                <span>Config.</span>
-            </button>
-        </div>
-        <audio src="assets/sounds/WiiU/HomeUp.mp3" id="openHome"></audio>
-        <audio src="assets/sounds/WiiU/HomeClose.mp3" id="closeHome"></audio>
-    </div>
-    <div class="alarmAlert" id="alarmAlert">
-        <div class="timeAndName">
-            <p class="timeTxt" id="alarmTimeTxt">
-                12:00
-            </p>
-            <p class="nameTxt" id="alarmNameTxt">
-                Nome Alarme
-            </p>
-        </div>
-        <div class="alarmButtonContent">
-            <button class="primBtn" id="stopAlarm">Parar Alarme</button>
-            <button class="secBtn" id="snoozeAlarm">Modo soneca</button>
-        </div>
-    </div>
+
+    <!--Alarm App-->
     <section class="app" id="alarm">
         <div class="appHeader">
             <span>Alarmes</span>
@@ -112,6 +65,8 @@
             </div>
         </div>
     </section>
+
+    <!--Todo App-->
     <section class="app" id="todo">
         <div class="appHeader">
             <span>Afazeres</span>
@@ -126,6 +81,8 @@
             </div>
         </div>
     </section>
+
+    <!--Events App-->
     <section class="app" id="events">
         <div class="appHeader">
             <span>Eventos</span>
@@ -140,6 +97,8 @@
             </div>
         </div>
     </section>
+
+    <!--Settings App-->
     <section class="app" id="settings">
         <div class="appHeader" id="stgHeader">
             <button id="backSettings"><f-icon>&#xE72B;</f-icon></button>
@@ -148,6 +107,7 @@
                 <div class="loading"></div>
             </span>
         </div>
+        <!--Menu-->
         <div class="appContent setBtns" id="sHome">
             <button class="configBtn" id="timeBtn">Data e Hora</button>
             <button class="configBtn" id="cusBtn">Personalização</button>
@@ -156,7 +116,7 @@
             <button class="configBtn" id="mahmBtn">Mini Apps e Menu Home</button>
         </div>
 
-        <!--Data e Hora-->
+        <!--Date and Time-->
         <div class="appContent sSubPage" id="timeInfo">
             <div class="introMsg">
                 <div>
@@ -198,7 +158,7 @@
             </div>
         </div>
 
-        <!--Personalização-->
+        <!--Personalization-->
         <div class="appContent sSubPage" id="cusInfo">
             <div class="introMsg">
                 <div class="screen" id="screenPrev"></div>
@@ -250,12 +210,12 @@
             </div>
         </div>
 
-        <!--Sistema-->
+        <!--System-->
         <div class="appContent sSubPage" id="sysInfo">
             <div class="introMsg">
                 <div>
                     <h1>WatchViewOS</h1>
-                    <h2>Ver 1.0</h2>
+                    <h2 id="sysVer"></h2>
                 </div>
                 <div class="logoImage colored"></div>
             </div>
@@ -310,7 +270,7 @@
             </button>
         </div>
 
-        <!--Dados-->
+        <!--Data-->
         <div class="appContent sSubPage" id="dataInfo">
             <div class="introMsg">
                 <div class="col">
@@ -330,6 +290,7 @@
                     Apagar dados específicos
                     <span class="subText">Selecione dados específicos do WatchViewOS para apagar.</span>
                 </div>
+                <button class="secBtn" id="deleteSpecific">Apagar</button>
             </div>
             <div class="configInfo">
                 <div class="col">
@@ -343,17 +304,22 @@
                     Transferir dados
                     <span class="subText">Baixe os seus dados e os transfira para um outro navegador</span>
                 </div>
+                <button class="secBtn" id="exportBtn">Exportar</button>
             </div>
             <div class="configInfo">
                 <div class="col">
                     Importar dados
                     <span class="subText">Usando um arquivo de dados, restaure os seus dados anteriores</span>
                 </div>
+                <label for="importationData" class="secBtn">Importar</label>
+                <input type="file" name="" id="importationData" style="display: none;" accept=".data">
             </div>
 
             <span class="subCol">Seus dados são salvos somente nesse navegador, e os devs não tem acesso algum sobre
                 eles</span>
         </div>
+
+        <!--Mini apps and Home Menu-->
         <div class="appContent sSubPage" id="mahmInfo">
             <h1>Mini Apps</h1>
             <br>
@@ -368,14 +334,21 @@
                 <input type="checkbox" name="" id="DND">
             </div>
             <br>
+
+            <!--Alarms Settings-->
             <h2>Alarmes</h2>
             <br>
             <div class="configInfo">
                 Toque do Alarme
-                <select name="" id="">
-                    <option value="">BETA</option>
-                    <option value="">Sem som</option>
-                </select>
+                <div class="centerLineObj">
+                    <select name="" id="">
+                        <option value="">BETA</option>
+                        <option value="">Sem som</option>
+                    </select>
+                    <f-icon id="playAlarm">
+                        &#xE768;
+                    </f-icon>
+                </div>
             </div>
             <div class="configInfo">
                 <div class="col">
@@ -390,13 +363,16 @@
             </div>
             <div class="configInfo">
                 Versão do app do Alarme
-                <span>1.0 (Pacote WVOS 1.0)</span>
+                <span id="alarmVersion"></span>
             </div>
             <br>
+
+            <!--Todo Settings-->
             <h2>Afazeres</h2>
             <br>
             <div class="configInfo">
-                Apagar afazeres assim que finalizados
+                <label for="delFinishedTodo">Apagar afazeres assim que finalizados</label>
+                <input type="checkbox" name="" id="delFinishedTodo">
             </div>
             <div class="configInfo">
                 <label for="removeTodo">Remover ícone do Afazeres do Menu Home</label>
@@ -404,19 +380,23 @@
             </div>
             <div class="configInfo">
                 Versão do app de Afazeres
-                <span>1.0 (Pacote WVOS 1.0)</span>
+                <span id="todoVersion"></span>
             </div>
             <br>
+
+            <!--Events Settings-->
             <h2>Eventos</h2>
             <br>
             <div class="configInfo">
                 Apagar eventos assim que o dia do mesmo terminar
             </div>
             <div class="configInfo">
-                Remover pílula de evento do Menu Home
+                <label for="hideEventPill">Remover pílula de evento do Menu Home</label>
+                <input type="checkbox" name="" id="hideEventPill">
             </div>
             <div class="configInfo">
-                Remover barra do relógio principal
+                <label for="removeEventBar">Remover barra do relógio principal</label>
+                <input type="checkbox" name="" id="removeEventBar">
             </div>
             <div class="configInfo">
                 <label for="removeEvents">Remover ícone do Eventos do Menu Home</label>
@@ -424,10 +404,16 @@
             </div>
             <div class="configInfo">
                 Versão do app de Eventos
-                <span>1.0 (Pacote WVOS 1.0)</span>
+                <span id="eventsVersion"></span>
             </div>
+
+            <!--Home Menu Settings-->
             <h1>Menu Home</h1>
             <br>
+            <div class="configInfo">
+                <label for="removeTitle">Remover título "Menu Home" da gaveta</label>
+                <input type="checkbox" name="" id="removeTitle">
+            </div>
             <div class="configInfo noPhoneShow">
                 <label for="watchDivider">Dividir relógio principal na abertura do Menu Home</label>
                 <input type="checkbox" name="" id="watchDivider" checked>
@@ -452,20 +438,84 @@
             </div>
             <div class="configInfo">
                 Versão do Menu Home
-                <span>1.0 (Pacote WVOS 1.0)</span>
+                <span id="homeVersion"></span>
             </div>
         </div>
     </section>
+
+    <!--Alarm Notification Drawer-->
+    <div class="alarmAlert" id="alarmAlert">
+        <div class="timeAndName">
+            <p class="timeTxt" id="alarmTimeTxt">
+                12:00
+            </p>
+            <p class="nameTxt" id="alarmNameTxt">
+                Nome Alarme
+            </p>
+        </div>
+        <div class="alarmButtonContent">
+            <button class="primBtn" id="stopAlarm">Parar Alarme</button>
+            <button class="secBtn" id="snoozeAlarm">Modo soneca</button>
+        </div>
+    </div>
+
+
+    <!--Home Menu Close-->
+    <div id="hmClose"></div>
+
+    <!--Home Menu Drawer-->
+    <div class="homeMenu" id="HM">
+        <h1 id="homeTitle">Menu Home</h1>
+        <div class="notificationPill" id="eventPill">
+            <f-icon>&#xe787;</f-icon>
+            <span id="ePillName">EVENTO</span>
+        </div>
+        <div class="notificationPill" id="dndPill">
+            <f-icon>&#xE708;</f-icon>
+            <span>Não Pertube</span>
+        </div>
+        <div class="abContainer" id="abc">
+            <button id="watchBtn">
+                <f-icon>&#xF182;</f-icon>
+                <span>Relógio</span>
+            </button>
+            <button id="alarmBtn">
+                <f-icon>&#xe916;</f-icon>
+                <span>Alarmes</span>
+            </button>
+            <button id="todoBtn">
+                <f-icon>&#xe73a;</f-icon>
+                <span>Afazeres</span>
+            </button>
+            <button id="eventsBtn">
+                <f-icon>&#xe787;</f-icon>
+                <span>Eventos</span>
+            </button>
+            <button id="settingsBtn">
+                <f-icon>&#xe713;</f-icon>
+                <span>Config.</span>
+            </button>
+        </div>
+        <audio src="assets/sounds/WiiU/HomeUp.mp3" id="openHome"></audio>
+        <audio src="assets/sounds/WiiU/HomeClose.mp3" id="closeHome"></audio>
+    </div>
+
+    <!--Do not Click (no clicks between animations)-->
     <div class="dnc" id="dnc"></div>
+
+    <!--Lost internet connection alert-->
     <section class="noNet" id="noNet">
         <f-icon>&#xf384;</f-icon>
         <h1>Verifique a conexão com à internet de sua máquina!</h1>
     </section>
+
+    <!--No vertical phones-->
     <section class="phoneTurn">
         <f-icon>&#xe7ad;</f-icon>
         <h1>Gire o telefone para usar o WatchViewOS</h1>
     </section>
 
+    <!--System Popup-->
     <div class="popUp" id="popUp">
         <div class="PUC" id="popContent">
 
@@ -485,7 +535,7 @@
     <audio src="assets/sounds/WiiU/Back.wav" id="backsound"></audio>
     <audio src="assets/sounds/WiiU/Loading.wav" id="loadingAudio" loop></audio>
 
-    <!--Liquid Glass Effect-->
+    <!--Liquid Glass Effect (DO NOT TOUCH)-->
     <svg style="display:none;">
         <filter id="displacementFilter">
             <feImage
@@ -498,18 +548,19 @@
         </filter>
     </svg>
 
-    <script src="assets/js/dataCenter.js"></script>
-    <script src="assets/js/homeMenu.js"></script>
-    <script src="assets/js/timecount.js"></script>
-    <script src="assets/js/alarms.js"></script>
-    <script src="assets/js/todo.js"></script>
-    <script src="assets/js/events.js"></script>
-    <script src="assets/js/settings.js"></script>
-    <script src="assets/js/sounds.js"></script>
-    <script src="assets/js/changeSounds.js"></script>
-    <script src="assets/js/connection.js"></script>
-    <script src="assets/js/boot.js"></script>
-    <script src="assets/js/popup.js"></script>
+    <!--System Script Area (DO NOT CHANGE ORDER)-->
+    <script src="assets/js/dataCenter.js"></script> <!--Get all data + use they-->
+    <script src="assets/js/homeMenu.js"></script> <!--How Home Menu Works-->
+    <script src="assets/js/timecount.js"></script> <!--Hour and date system-->
+    <script src="assets/js/alarms.js"></script> <!--Alarms logic-->
+    <script src="assets/js/todo.js"></script> <!--Todo logic-->
+    <script src="assets/js/events.js"></script> <!--Events logic-->
+    <script src="assets/js/settings.js"></script> <!--Settings logic-->
+    <script src="assets/js/sounds.js"></script> <!--Tells the system how to use sounds-->
+    <script src="assets/js/changeSounds.js"></script> <!--Rewrite all sounds-->
+    <script src="assets/js/connection.js"></script> <!--Checks if user is connected to internet-->
+    <script src="assets/js/boot.js"></script> <!--Use all data and reorganize they, to start the system-->
+    <script src="assets/js/popup.js"></script> <!--System Popup logic-->
 </body>
 
 </html>

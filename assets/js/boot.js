@@ -1,3 +1,6 @@
+const systemVersion = '1.0'
+document.getElementById('sysVer').innerHTML = `Ver ${systemVersion}`
+
 const noSleep = new NoSleep();
 
 noSleep.enable()
@@ -138,6 +141,11 @@ bootPersona(personalization)
 
 // Home Menu BOOT
 function homeMenuBOOT(data) {
+    if (data.removeTitle == true) {
+        document.getElementById('homeTitle').innerText = '‎'
+        document.getElementById('removeTitle').checked = true
+    }
+
     if (data.useAccent == true) {
         homeMenu.classList.add('homeMenuAccent')
         document.getElementById('homeColor').checked = true
@@ -152,6 +160,7 @@ function homeMenuBOOT(data) {
         document.getElementById('watchDivider').checked = false
     }
     HMEffectChanger(data.effectType)
+    document.getElementById('homeStyle').value = data.effectType
 }
 
 homeMenuBOOT(homeMenuData)

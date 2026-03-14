@@ -22,6 +22,12 @@
     gap: 15px;
 }
 
+.centerLineObj {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
 .subText {
     font-size: 16px;
 }

@@ -19,28 +19,60 @@ document.getElementById('primBtn').addEventListener('click', () => {
     if (funcBtn == 'todoAdd') {
         todoManager('add')
         closePopup()
-    }
-    if (funcBtn == 'eventAdd') {
+    } else if (funcBtn == 'eventAdd') {
         eventManager('add')
-    }
-    if (funcBtn == 'alarmAdd') {
+    } else if (funcBtn == 'alarmAdd') {
         alarmManager('add')
-    } if (funcBtn == 'alarmEdit') {
+    } else if (funcBtn == 'alarmEdit') {
         alarmManager('edit')
-    } if (funcBtn == 'deleteAll') {
+    } else if (funcBtn == 'deleteAll') {
         document.getElementById('popContent').innerHTML = `
         <h1>Apagando todos os dados</h1>
         <br><br>
         Espere um instante. Assim que terminar, o site será reiniciado
     `
-    document.getElementById('closePop').style.display = 'none'
-    document.getElementById('primBtn').style.display = 'none'
-    document.getElementById('dnc').style.transitionDuration = '.2s'
-    document.getElementById('dnc').style.backgroundColor = '#000'
-    localStorage.clear()
-    setTimeout(() => {
+        document.getElementById('closePop').style.display = 'none'
+        document.getElementById('primBtn').style.display = 'none'
+        document.getElementById('dnc').style.transitionDuration = '.2s'
+        document.getElementById('dnc').style.backgroundColor = '#000'
+        localStorage.clear()
+        setTimeout(() => {
+            location.reload()
+        }, 2000);
+    } else if (funcBtn == 'deleteSpecific') {
+        let checkers = document.querySelectorAll('#popContent input[type="checkbox"]')
+        let delObj = {
+            'events': checkers[0].checked,
+            'todos': checkers[1].checked,
+            'alarms': checkers[2].checked,
+            'personalization': checkers[3].checked,
+            'settings': checkers[4].checked,
+            'datas': checkers[5].checked,
+            'homeMenu': checkers[6].checked
+        }
+
+        Object.entries(delObj).forEach(([key, value]) => {
+            if (value == true) {
+                localStorage.removeItem(key)
+            }
+        });
+        document.getElementById('popContent').innerHTML = `
+        <h1>Apagando dados selecionados</h1>
+        <br><br>
+        Espere um instante. Assim que terminar, você poderá reiniciar o sistema pelo botão
+    `
+        document.getElementById('closePop').style.display = 'none'
+        document.getElementById('primBtn').style.display = 'none'
+        document.getElementById('dnc').style.transitionDuration = '.2s'
+        document.getElementById('dnc').style.backgroundColor = '#000'
+        setTimeout(() => {
+            document.getElementById('primBtn').removeAttribute('style')
+            document.getElementById('primBtn').classList.remove('warning')
+            document.getElementById('primBtn').innerText = 'Reiniciar'
+            funcBtn = 'reset'
+        }, 2000);
+    } else if (funcBtn == 'reset') {
         location.reload()
-    }, 2000);
     }
 })
 

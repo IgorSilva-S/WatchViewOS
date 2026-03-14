@@ -83,6 +83,25 @@ backBtn.addEventListener('click', () => {
     }, 400);
 })
 
+function restartSettings() {
+    timeInfo.style.opacity = '0'
+    sysInfo.style.opacity = '0'
+    cusInfo.style.opacity = '0'
+    dataInfo.style.opacity = '0'
+    mahmInfo.style.opacity = '0'
+    setTimeout(() => {
+        timeInfo.removeAttribute('style')
+        sysInfo.removeAttribute('style')
+        cusInfo.removeAttribute('style')
+        dataInfo.removeAttribute('style')
+        mahmInfo.removeAttribute('style')
+        sHome.removeAttribute('style')
+        backBtn.removeAttribute('style')
+        sHeader.classList.remove('backHeader')
+        sName.innerHTML = 'Configurações'
+    }, 400);
+}
+
 // Date and time
 document.getElementById('clockSec').addEventListener('change', (e) => {
     if (e.target.checked) {
@@ -154,6 +173,8 @@ document.getElementById('aColor').addEventListener('change', (e) => {
 
 document.getElementById('cLabel').addEventListener('dblclick', () => {
     personalization.accentColor = '#292ccc'
+    document.getElementById('aColor').value = '#292ccc'
+    document.body.click();
     localStorage.setItem('personalization', JSON.stringify(personalization))
     document.getElementById('RAColor').innerHTML = ""
 })
@@ -289,6 +310,70 @@ document.getElementById('deleteAllData').addEventListener('click', () => {
 
 })
 
+document.getElementById('deleteSpecific').addEventListener('click', () => {
+    document.getElementById('popContent').innerHTML = `
+        <h1>Apagar dados especificos</h1>
+        <br><br>
+        Selecione os dados que deseja apagar
+        <span class="subText">Selecione no mínimo um, caso tenha errado, feche o popup</span>
+        <div class="centerLineObj">
+            <input type="checkbox" name="" id="delEvents">
+            <div class="col">
+                <label for="delEvents">Eventos</label>
+                <span class="subText">Todos os eventos salvos no sistema</span>
+            </div>
+        </div>
+        <div class="centerLineObj">
+            <input type="checkbox" name="" id="delTodos">
+            <div class="col">
+                <label for="delTodos">Afazeres</label>
+                <span class="subText">Todos os afazeres salvos no sistema</span>
+            </div>
+        </div>
+        <div class="centerLineObj">
+            <input type="checkbox" name="" id="delAlarms">
+            <div class="col">
+                <label for="delAlarms">Alarmes</label>
+                <span class="subText">Todos os alarmes salvos no sistema</span>
+            </div>
+        </div>
+        <div class="centerLineObj">
+            <input type="checkbox" name="" id="delPersona">
+            <div class="col">
+                <label for="delPersona">Personalização</label>
+                <span class="subText">Apagar dados de customização do sistema</span>
+            </div>
+        </div>
+        <div class="centerLineObj">
+            <input type="checkbox" name="" id="delSettings">
+            <div class="col">
+                <label for="delSettings">Configurações</label>
+                <span class="subText">Apaga as configurações do sistema</span>
+            </div>
+        </div>
+        <div class="centerLineObj">
+            <input type="checkbox" name="" id="delDatas">
+            <div class="col">
+                <label for="delDatas">Dados dos mini apps</label>
+                <span class="subText">Apaga todas as configurações de todos os mini apps (sem apagar o conteúdo)</span>
+            </div>
+        </div>
+        <div class="centerLineObj">
+            <input type="checkbox" name="" id="delHomeMenu">
+            <div class="col">
+                <label for="delHomeMenu">Menu Home</label>
+                <span class="subText">Deleta as configurações do Menu Home</span>
+            </div>
+        </div>
+        <br>
+    `
+    openPopup()
+    document.getElementById('primBtn').removeAttribute('style')
+    document.getElementById('primBtn').classList.add('warning')
+    document.getElementById('primBtn').innerText = 'Apagar dados'
+    funcBtn = 'deleteSpecific'
+})
+
 document.getElementById('viewData').addEventListener('click', () => {
     document.getElementById('popContent').innerHTML = `
         <h1>Visualização de dados</h1>
@@ -322,6 +407,64 @@ document.getElementById('DND').addEventListener('change', (e) => {
     } else {
         document.getElementById('dndPill').removeAttribute('style')
     }
+})
+
+document.getElementById('removeAlarms').addEventListener('change', e => {
+    if (e.target.checked) {
+        alarmBtn.style.display = 'none'
+    } else {
+        alarmBtn.removeAttribute('style')
+    }
+    datas.notShowAlarm = e.target.checked
+    localStorage.setItem('datas', JSON.stringify(datas))
+})
+
+document.getElementById('delFinishedTodo').addEventListener('change', e => {
+    datas.delFinishedTodo = e.target.checked
+    localStorage.setItem('datas', JSON.stringify(datas))
+})
+
+document.getElementById('removeTodo').addEventListener('change', e => {
+    if (e.target.checked) {
+        todoBtn.style.display = 'none'
+    } else {
+        todoBtn.removeAttribute('style')
+    }
+    datas.notShowTodo = e.target.checked
+    localStorage.setItem('datas', JSON.stringify(datas))
+})
+
+document.getElementById('hideEventPill').addEventListener('change', e => {
+    datas.hideEventPill = e.target.checked
+    localStorage.setItem('datas', JSON.stringify(datas))
+    eventManager('check')
+})
+
+document.getElementById('removeEventBar').addEventListener('change', e => {
+    datas.removeEventBar = e.target.checked
+    localStorage.setItem('datas', JSON.stringify(datas))
+    eventManager('check')
+})
+
+document.getElementById('removeEvents').addEventListener('change', e => {
+    if (e.target.checked) {
+        eventsBtn.style.display = 'none'
+    } else {
+        eventsBtn.removeAttribute('style')
+    }
+    datas.notShowEvents = e.target.checked
+    localStorage.setItem('datas', JSON.stringify(datas))
+})
+
+document.getElementById('removeTitle').addEventListener('change', e => {
+    if (e.target.checked) {
+        document.getElementById('homeTitle').innerText = '‎'
+    } else {
+        document.getElementById('homeTitle').innerText = 'Menu Home'
+    }
+
+    homeMenuData.removeTitle = e.target.checked
+    localStorage.setItem('homeMenu', JSON.stringify(homeMenuData))
 })
 
 document.getElementById('watchDivider').addEventListener('change', () => {

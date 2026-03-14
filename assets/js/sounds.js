@@ -166,5 +166,6 @@ setInterval(() => {
 
 /*Alarms sounds*/
 
-const alarmBeta = new Audio('./assets/sounds/alarms/alarmBeta.wav')
-alarmBeta.loop = true
+let alarmSound = new Audio('./assets/sounds/alarms/alarmBeta.wav')
+let sampleAlarm = new Audio('./assets/sounds/alarms/alarmBeta.wav')
+alarmSound.loop = true

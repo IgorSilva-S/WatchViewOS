@@ -25,6 +25,7 @@
     background-color: var(--primary);
 }
 
+
 ::-webkit-scrollbar {
     appearance: none;
     width: 10px;
@@ -87,7 +88,7 @@ input[type="checkbox"] {
     width: 30px;
     height: 30px;
     border-radius: 4px;
-    background-color: #292929;
+    background-color: #393939;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -360,7 +361,7 @@ h6 {
     padding: 30px;
     z-index: 998;
     filter: drop-shadow(-8px -10px 46px #0000005f);
-    backdrop-filter: brightness(1.1) blur(1px) url(#displacementFilter);
+    backdrop-filter: brightness(1.1) blur(2px) url(#displacementFilter);
 }
 
 .homeMenuTP {
