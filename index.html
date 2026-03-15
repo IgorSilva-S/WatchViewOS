@@ -228,21 +228,11 @@
                 </label>
                 <input type="checkbox" name="" id="dblclkFS" checked>
             </div>
-            <div class="configInfo" style="display: none;">
+            <div class="configInfo">
                 <div>
                     <label for="sysSounds">Tocar sons ao interagir com o sistema</label>
                 </div>
-                <input type="checkbox" name="" id="sysSounds">
-            </div>
-            <div class="configInfo" style="display: none;">
-                Sons do sistema
-                <select name="" id="soundChanger">
-                    <option value="wiiu">Wii U</option>
-                    <option value="switch">Switch</option>
-                    <option value="eshop">eShop</option>
-                    <option value="3DS">3DS</option>
-                    <option value="steamDeck">Steam Deck</option>
-                </select>
+                <input type="checkbox" name="" id="sysSounds" checked>
             </div>
             <div class="configInfo">
                 <div>
@@ -496,8 +486,8 @@
                 <span>Config.</span>
             </button>
         </div>
-        <audio src="assets/sounds/WiiU/HomeUp.mp3" id="openHome"></audio>
-        <audio src="assets/sounds/WiiU/HomeClose.mp3" id="closeHome"></audio>
+        <audio src="assets/sounds/Style1/HomeUp.wav" id="openHome"></audio>
+        <audio src="assets/sounds/Style1/HomeClose.wav" id="closeHome"></audio>
     </div>
 
     <!--Do not Click (no clicks between animations)-->
@@ -527,13 +517,13 @@
     </div>
 
     <!-- SFX -->
-    <audio src="assets/sounds/WiiU/HoverBtn.wav" id="hover"></audio>
-    <audio src="assets/sounds/WiiU/OpenApp.wav" id="openApp"></audio>
-    <audio src="assets/sounds/WiiU/ClickBtn.wav" id="clickbtn"></audio>
-    <audio src="assets/sounds/WiiU/LinkOpen.wav" id="clicklink"></audio>
-    <audio src="assets/sounds/WiiU/ClickCB.wav" id="clickcb"></audio>
-    <audio src="assets/sounds/WiiU/Back.wav" id="backsound"></audio>
-    <audio src="assets/sounds/WiiU/Loading.wav" id="loadingAudio" loop></audio>
+    <audio src="assets/sounds/Style1/HoverBtn.wav" id="hover"></audio>
+    <audio src="assets/sounds/Style1/OpenApp.wav" id="openApp"></audio>
+    <audio src="assets/sounds/Style1/ClickBtn.wav" id="clickbtn"></audio>
+    <audio src="assets/sounds/Style1/LinkOpen.wav" id="clicklink"></audio>
+    <audio src="assets/sounds/Style1/ClickCB.wav" id="clickcb"></audio>
+    <audio src="assets/sounds/Style1/Back.wav" id="backsound"></audio>
+    <audio src="assets/sounds/Style1/Loading.wav" id="loadingAudio" loop></audio>
 
     <!--Liquid Glass Effect (DO NOT TOUCH)-->
     <svg style="display:none;">
@@ -557,7 +547,6 @@
     <script src="assets/js/events.js"></script> <!--Events logic-->
     <script src="assets/js/settings.js"></script> <!--Settings logic-->
     <script src="assets/js/sounds.js"></script> <!--Tells the system how to use sounds-->
-    <script src="assets/js/changeSounds.js"></script> <!--Rewrite all sounds-->
     <script src="assets/js/connection.js"></script> <!--Checks if user is connected to internet-->
     <script src="assets/js/boot.js"></script> <!--Use all data and reorganize they, to start the system-->
     <script src="assets/js/popup.js"></script> <!--System Popup logic-->

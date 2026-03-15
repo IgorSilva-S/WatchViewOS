@@ -19,8 +19,6 @@ document.getElementById('createEvent').addEventListener('click', () => {
     document.getElementById('primBtn').innerText = 'Adicionar'
 })
 
-eventManager('check')
-
 function eventManager(act, date) {
     if (act.toLowerCase() == 'add') {
         let todoBox = document.createElement('div')
@@ -122,6 +120,10 @@ function eventManager(act, date) {
         console.log('Event Manager: Não há essa função para o Event Manager')
     }
 }
+
+setTimeout(() => {
+    eventManager('check')
+}, 10);
 
 function insertDay(date) {
     let d = new Date(date)

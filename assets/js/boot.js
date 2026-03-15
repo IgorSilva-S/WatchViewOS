@@ -52,11 +52,13 @@ if (DND) {
 }
 
 // Settings boot
-applyNewSound(settings.sounds)
-document.getElementById('soundChanger').value = settings.sounds
 document.getElementById('BCLabel').style.backgroundColor = document.getElementById('bColor').value
 
 function settingsAlign() {
+    if (settings.showSec) {
+        document.getElementById('clockSec').checked = true
+    }
+
     if (settings.lite == true) {
         document.getElementById('liteModel').checked = true
         document.getElementById('mainCss').href = 'assets/css/lite.css'

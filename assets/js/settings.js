@@ -290,6 +290,11 @@ document.getElementById('openCredits').addEventListener('click', () => {
         Horário: TimeAPI.io<br>
         Ícones: Microsoft<br>
         Estilo do programa: IgorSilva-S<br>
+        <br>
+        SFX:<br>
+        Pavs Music;<br>
+        Mixkit;<br>
+        Pixabay
     `
     openPopup()
 })
