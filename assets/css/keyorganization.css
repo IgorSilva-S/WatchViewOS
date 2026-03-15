@@ -66,3 +66,12 @@
 .logoImage.colored {
     background-image: url(../img/logo/Colored.png);
 }
+
+.disabled {
+    opacity: .5;
+}
+
+input:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+}

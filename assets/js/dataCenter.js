@@ -1,4 +1,4 @@
-let events, todos, alarms, personalization, settings, datas, homeMenuData, fBoot;
+let events, todos, alarms, personalization, settings, datas, homeMenuData, fBoot, clearSetup;
 
 function bootData() {
     console.log(`Booting... \nGetting Data...`);
@@ -11,7 +11,8 @@ function bootData() {
     settings = JSON.parse(localStorage.getItem('settings')) || {};
     datas = JSON.parse(localStorage.getItem('datas')) || {};
     homeMenuData = JSON.parse(localStorage.getItem('homeMenu')) || {};
-    fBoot = localStorage.getItem('initialBoot')
+    fBoot = localStorage.getItem('initialBoot');
+    clearSetup = localStorage.getItem('clearSetup') || false
 
     // Salva os dados no localStorage se estiverem vazios
     localStorage.setItem('events', JSON.stringify(events));
@@ -38,7 +39,8 @@ function dataExport() {
         settings,
         datas,
         homeMenuData,
-        fBoot
+        fBoot,
+        clearSetup
     ]
 
     const dataString = JSON.stringify(data)
@@ -70,7 +72,8 @@ document.getElementById('importationData').addEventListener('change', f => {
                 localStorage.setItem('settings', JSON.stringify(data[4]))
                 localStorage.setItem('datas', JSON.stringify(data[5]))
                 localStorage.setItem('homeMenu', JSON.stringify(data[6]))
-                localStorage.setItem('initialBoot', JSON.stringify(data[7]))
+                localStorage.setItem('initialBoot', data[7])
+                localStorage.setItem('clearSetup', data[8])
 
                 location.reload()
             } catch (err) {

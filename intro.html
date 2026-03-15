@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watch View - Setup</title>
+    <link rel="shortcut icon" href="assets/img/logo/Colored.png" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/intro.css">
+    <link rel="stylesheet" href="assets/css/keyorganization.css">
+</head>
+
+<body>
+    <style id="wallColor"></style>
+    <style id="wallTxt"></style>
+    <style id="RAColor"></style>
+    <style id="RAText"></style>
+    <style id="wallImg"></style>
+    <div class="wallpaper" id="wallpaper"></div>
+
+    <div class="popUp">
+        <div class="PUC" id="intro"  style="display: flex;">
+            <div class="centerLineObj">
+                <img src="assets/img/logo/Colored.png" alt="" class="logo">
+                <div class="col">
+                    <h1>WatchViewOS - Setup</h1>
+                    <h3>Ver 1.0</h3>
+                </div>
+            </div>
+            <br>
+            Bem-vindo ao Setup do WatchViewOS! Vamos iniciar o seu sistema corretamente
+            <br>
+            <div class="centerLineObj">
+                <input type="checkbox" name="" id="useSound" checked>
+                <label for="useSound">Usar música de Setup</label>
+            </div>
+        </div>
+        <div class="PUC" id="dataImport">
+            <h1>Importação de data</h1>
+            <br>
+            Você tem algum arquivo .data do WatchViewOS?
+            <br><br>
+            Se você importar um arquivo do WatchViewOS, o setup automaticamente o arranjará e irá reiniciar já no sistema
+            <br><br>
+            <input type="file" name="" id="dataImportInp" accept=".data" style="display: none;">
+            <label for="dataImportInp" class="secBtn" fakeBtn="true">Importar dados</label>
+            <br><br>
+            Caso não o tenha, aperte continuar para o setup te ajudar a arrumar o sistema
+        </div>
+        <div class="PUF">
+            <button class="secBtn" id="lastPage" style="display: none;">Voltar</button>
+            <button class="primBtn" id="nextPage">Iniciar setup</button>
+        </div>
+    </div>
+
+    <div class="creditBar" id="creditBar">
+        <h2>Música de introdução por Thaddeus Silva (Composição e Arranjo)</h2>
+    </div>
+
+    <audio src="assets/sounds/introduction.mp3" loop id="introMusic"></audio>
+    <audio src="assets/sounds/Style1/HoverBtn.wav" id="hover"></audio>
+    <audio src="assets/sounds/Style1/ClickBtn.wav" id="clickbtn"></audio>
+    <audio src="assets/sounds/Style1/Back.wav" id="backsound"></audio>
+    <script src="assets/js/intro/sounds.js"></script>
+    <script src="assets/js/intro/popnav.js"></script>
+    <script src="assets/js/intro/dataImport.js"></script>
+</body>
+
+</html>

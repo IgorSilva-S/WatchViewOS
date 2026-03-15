@@ -145,9 +145,9 @@
                 <label for="autoIP">Pegar horário baseado na sua timezone</label>
                 <input type="checkbox" name="" id="autoIP" checked>
             </div>
-            <div class="configInfo">
+            <div class="configInfo disabled" id="manualInfo">
                 <label for="manualTZ">Calcular Timezone de:</label>
-                <input type="number" id="manualTZ" min="-12" max="12">
+                <input type="number" id="manualTZ" min="-12" max="12" value="-3" disabled>
             </div>
             <div class="configInfo">
                 <div class="col">
@@ -331,10 +331,7 @@
             <div class="configInfo">
                 Toque do Alarme
                 <div class="centerLineObj">
-                    <select name="" id="">
-                        <option value="">BETA</option>
-                        <option value="">Sem som</option>
-                    </select>
+
                     <f-icon id="playAlarm">
                         &#xE768;
                     </f-icon>
@@ -342,10 +339,11 @@
             </div>
             <div class="configInfo">
                 <div class="col">
-                    Tocar alarme sem dia definido
+                    <label for="playNoDayAlarm">Tocar alarme sem dia definido</label>
                     <span class="subText">Quando não há um dia da semana definido, mas o alarme está ligado, o alarme
                         sempre tocará</span>
                 </div>
+                <input type="checkbox" name="" id="playNoDayAlarm">
             </div>
             <div class="configInfo">
                 <label for="removeAlarms">Remover ícone do Alarme do Menu Home</label>
@@ -361,7 +359,10 @@
             <h2>Afazeres</h2>
             <br>
             <div class="configInfo">
-                <label for="delFinishedTodo">Apagar afazeres assim que finalizados</label>
+                <div class="col">
+                    <label for="delFinishedTodo">Apagar afazeres assim que finalizados</label>
+                    <span class="subText">Após o afazer ser apagado, não há como recuperar ele</span>
+                </div>
                 <input type="checkbox" name="" id="delFinishedTodo">
             </div>
             <div class="configInfo">
@@ -378,7 +379,11 @@
             <h2>Eventos</h2>
             <br>
             <div class="configInfo">
-                Apagar eventos assim que o dia do mesmo terminar
+                <div class="col">
+                    <label for="delFinishedEvent">Apagar eventos assim que o dia do mesmo terminar</label>
+                    <span class="subText">Após o evento ser apagado, não há como recuperar ele</span>
+                </div>
+                <input type="checkbox" name="" id="delFinishedEvent">
             </div>
             <div class="configInfo">
                 <label for="hideEventPill">Remover pílula de evento do Menu Home</label>

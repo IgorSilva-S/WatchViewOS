@@ -74,31 +74,60 @@ setInterval(() => {
         }
 
 
-        if (alarmTime == time && !playingAlarm && alarmDays[dtlc] && playAlarm && alarmPlayable && !DND) {
-            playingAlarm = true
-            waitAlarmHour = alarmTime
-            waitAlarmName = alarmName
-            clearTimeout(snoozeTimeout)
-            document.getElementById('alarmAlert').style.bottom = '0'
-            document.getElementById('alarmTimeTxt').innerText = alarmTime
-            document.getElementById('alarmNameTxt').innerText = alarmName
-            if (actualApp == 'watch') {
-                document.getElementById('watch').style.height = '40vh'
-            }
-            alarmSoundInterval = setInterval(() => {
-                if (time != alarmTime) {
-                    playingAlarm = false
-                    document.getElementById('alarmAlert').removeAttribute('style')
-                    if (actualApp == 'watch') {
-                        document.getElementById('watch').removeAttribute('style')
-                    }
-                    alarmSound.pause()
-                    alarmSound.currentTime = 0
-                    clearInterval(alarmSoundInterval)
-                    alarmSoundInterval = null
+        if (alarmTime == time && !playingAlarm && playAlarm && alarmPlayable && !DND) {
+            let noneDay = !Object.values(alarmDays).some(d => d)
+            let alarmChecker = document.getElementById('playNoDayAlarm').checked
+            if (noneDay && alarmChecker) {
+                playingAlarm = true
+                waitAlarmHour = alarmTime
+                waitAlarmName = alarmName
+                clearTimeout(snoozeTimeout)
+                document.getElementById('alarmAlert').style.bottom = '0'
+                document.getElementById('alarmTimeTxt').innerText = alarmTime
+                document.getElementById('alarmNameTxt').innerText = alarmName
+                if (actualApp == 'watch') {
+                    document.getElementById('watch').style.height = '40vh'
                 }
-            }, 200);
-            alarmSound.play()
+                alarmSoundInterval = setInterval(() => {
+                    if (time != alarmTime) {
+                        playingAlarm = false
+                        document.getElementById('alarmAlert').removeAttribute('style')
+                        if (actualApp == 'watch') {
+                            document.getElementById('watch').removeAttribute('style')
+                        }
+                        alarmSound.pause()
+                        alarmSound.currentTime = 0
+                        clearInterval(alarmSoundInterval)
+                        alarmSoundInterval = null
+                    }
+                }, 200);
+                alarmSound.play()
+            } else if (alarmDays[dtlc]) {
+                playingAlarm = true
+                waitAlarmHour = alarmTime
+                waitAlarmName = alarmName
+                clearTimeout(snoozeTimeout)
+                document.getElementById('alarmAlert').style.bottom = '0'
+                document.getElementById('alarmTimeTxt').innerText = alarmTime
+                document.getElementById('alarmNameTxt').innerText = alarmName
+                if (actualApp == 'watch') {
+                    document.getElementById('watch').style.height = '40vh'
+                }
+                alarmSoundInterval = setInterval(() => {
+                    if (time != alarmTime) {
+                        playingAlarm = false
+                        document.getElementById('alarmAlert').removeAttribute('style')
+                        if (actualApp == 'watch') {
+                            document.getElementById('watch').removeAttribute('style')
+                        }
+                        alarmSound.pause()
+                        alarmSound.currentTime = 0
+                        clearInterval(alarmSoundInterval)
+                        alarmSoundInterval = null
+                    }
+                }, 200);
+                alarmSound.play()
+            }
         }
 
         if (curTime != time) {

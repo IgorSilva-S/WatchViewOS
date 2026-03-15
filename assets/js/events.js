@@ -2,6 +2,7 @@ const eventsVersion = '1.0'
 document.getElementById('eventsVersion').innerHTML = eventsVersion
 
 document.getElementById('createEvent').addEventListener('click', () => {
+    let d = new Date().toISOString().split("T")[0]
     document.getElementById('primBtn').removeAttribute('style')
     openPopup()
     funcBtn = 'eventAdd'
@@ -12,7 +13,7 @@ document.getElementById('createEvent').addEventListener('click', () => {
         <input type="text" placeholder="Insira o nome aqui" id="eventInfo">
         <br>
         <label for="eventDate">Data do Evento</label>
-        <input type="date" id="eventDate" name="eventdate">
+        <input type="date" id="eventDate" name="eventdate" min="${d}">
         <br>
         <span>Lembre-se de adicionar nome e data, são campos obrigatórios</span>
     `
@@ -64,7 +65,21 @@ function eventManager(act, date) {
             let AZ = (n) => {
                 return ('0' + n).slice(-2)
             }
+            let eventDay = new Date(`${e.date}T00:00:00`)
             let d = new Date()
+            eventDay.setHours(0, 0, 0, 0);
+            d.setHours(0,0,0,0)
+            if (eventDay < d) {
+                let canRemove = document.getElementById('delFinishedEvent').checked
+                console.log(canRemove)
+                if (canRemove) {
+                    events = events.filter(t => t.name !== e.name);
+                    localStorage.setItem('events', JSON.stringify(events));
+                    events = JSON.parse(localStorage.getItem('events'))
+                    eventManager('load')
+                    return
+                }
+            }
             let fDate = `${d.getFullYear()}-${AZ(d.getMonth() + 1)}-${AZ(d.getDate())}`
             if (fDate == e.date && !DND) {
                 document.getElementById('eventName').innerText = e.name
@@ -82,6 +97,7 @@ function eventManager(act, date) {
             }
         })
     } else if (act.toLowerCase() == 'load') {
+        document.getElementById('eventsContent').innerHTML = ''
         events.forEach((e) => {
             let todoBox = document.createElement('div')
             let dateValue = e.date

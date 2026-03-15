@@ -44,19 +44,24 @@ eventManager('load')
 todoManager('load')
 alarmManager('load')
 
-//DND State
-let DND = datas.dnd
-if (DND) {
-    document.getElementById('DND').checked = true
-    document.getElementById('dndPill').style.display = 'flex'
-}
-
 // Settings boot
 document.getElementById('BCLabel').style.backgroundColor = document.getElementById('bColor').value
 
 function settingsAlign() {
     if (settings.showSec) {
         document.getElementById('clockSec').checked = true
+    }
+
+    if (settings.autoSync == false) {
+        document.getElementById('manualInfo').classList.remove('disabled')
+        document.getElementById('manualTZ').disabled = false
+        document.getElementById('autoIP').checked = false
+        document.getElementById('manualTZ').value = settings.syncVal
+        apiLink = `https://www.timeapi.io/api/time/current/zone?timeZone=${timeZone[settings.syncVal]}`
+        getWebDate()
+    } else {
+        getWebDate()
+        document.getElementById('manualTZ').value = settings.syncVal
     }
 
     if (settings.lite == true) {
@@ -141,6 +146,53 @@ function bootPersona(data) {
 
 bootPersona(personalization)
 
+//DND State
+let DND = datas.dnd
+if (DND) {
+    document.getElementById('DND').checked = true
+    document.getElementById('dndPill').style.display = 'flex'
+}
+
+// Apps Settings BOOT
+function appsBoot(data) {
+    if (data.playNoDayAlarm) {
+        document.getElementById('playNoDayAlarm').checked = true
+    }
+
+    if (data.notShowAlarm) {
+        alarmBtn.style.display = 'none'
+        document.getElementById('removeAlarms').checked = true
+    }
+
+    if (data.delFinishedTodo) {
+        document.getElementById('delFinishedTodo').checked = true
+    }
+
+    if (data.notShowTodo) {
+        todoBtn.style.display = 'none'
+        document.getElementById('removeTodo').checked = true
+    }
+
+    if (data.delFinishedEvent) {
+        document.getElementById('delFinishedEvent').checked = true
+    }
+
+    if (data.hideEventPill) {
+        document.getElementById('hideEventPill').checked = true
+        eventManager('check')
+    }
+
+    if (data.removeEventBar) {
+        document.getElementById('removeEventBar').checked = true
+        eventManager('check')
+    }
+
+    if (data.notShowEvents) {
+        eventsBtn.style.display = 'none'
+        document.getElementById('removeEvents').checked = true
+    }
+}
+
 // Home Menu BOOT
 function homeMenuBOOT(data) {
     if (data.removeTitle == true) {
@@ -165,4 +217,9 @@ function homeMenuBOOT(data) {
     document.getElementById('homeStyle').value = data.effectType
 }
 
+appsBoot(datas)
 homeMenuBOOT(homeMenuData)
+
+if (clearSetup != 'true') {
+    location.href = 'intro.html'
+}

@@ -113,6 +113,32 @@ document.getElementById('clockSec').addEventListener('change', (e) => {
     localStorage.setItem('settings', JSON.stringify(settings))
 })
 
+document.getElementById('autoIP').addEventListener('change', (e) => {
+    if (e.target.checked) {
+        settings.autoSync = true
+        settings.syncVal = document.getElementById('manualTZ').value
+        apiLink = `https://www.timeapi.io/api/time/current/zone?timeZone=${timezone}`
+        document.getElementById('manualInfo').classList.add('disabled')
+        document.getElementById('manualTZ').disabled = true
+    } else {
+        settings.autoSync = false
+        settings.syncVal = document.getElementById('manualTZ').value
+        apiLink = `https://www.timeapi.io/api/time/current/zone?timeZone=${timeZone[document.getElementById('manualTZ').value]}`
+        document.getElementById('manualInfo').classList.remove('disabled')
+        document.getElementById('manualTZ').disabled = false
+    }
+
+    document.getElementById('syncNow').click()
+    localStorage.setItem('settings', JSON.stringify(settings))
+})
+
+document.getElementById('manualTZ').addEventListener('input', (e) => {
+    settings.syncVal = document.getElementById('manualTZ').value
+    apiLink = `https://www.timeapi.io/api/time/current/zone?timeZone=${timeZone[e.target.value]}`
+    document.getElementById('syncNow').click()
+    localStorage.setItem('settings', JSON.stringify(settings))
+})
+
 // Personalization
 document.getElementById('cgWall').addEventListener('change', () => {
     const fileInput = document.getElementById('cgWall');
@@ -414,6 +440,11 @@ document.getElementById('DND').addEventListener('change', (e) => {
     }
 })
 
+document.getElementById('playNoDayAlarm').addEventListener('change', e => {
+    datas.playNoDayAlarm = e.target.checked
+    localStorage.setItem('datas', JSON.stringify(datas))
+})
+
 document.getElementById('removeAlarms').addEventListener('change', e => {
     if (e.target.checked) {
         alarmBtn.style.display = 'none'
@@ -436,6 +467,11 @@ document.getElementById('removeTodo').addEventListener('change', e => {
         todoBtn.removeAttribute('style')
     }
     datas.notShowTodo = e.target.checked
+    localStorage.setItem('datas', JSON.stringify(datas))
+})
+
+document.getElementById('delFinishedEvent').addEventListener('change', e => {
+    datas.delFinishedEvent = e.target.checked
     localStorage.setItem('datas', JSON.stringify(datas))
 })
 
