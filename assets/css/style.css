@@ -104,12 +104,11 @@ input[type="checkbox"]::after {
     width: 20px;
     height: 20px;
     font-family: "Segoe Fluent Icons";
-    content: '';
+    content: '';
+    color: #f0f8ff;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: var(--primaryColor);
-    opacity: 0;
     transition-duration: .15s;
     font-size: 14px;
 }
@@ -119,7 +118,9 @@ input[type="checkbox"]:active:after {
 }
 
 input[type="checkbox"]:checked:after {
+    content: '';
     opacity: 1;
+    color: var(--primaryColor);
 }
 
 .colorLabel {

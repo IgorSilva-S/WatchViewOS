@@ -85,61 +85,35 @@ settingsAlign()
 // Personalization Boot
 function bootPersona(data) {
     if (data.image != null) {
-        document.getElementById('wallImg').innerHTML = `
-        :root {
-            --wallpaperImg: url(${data.image});
-        }
-    `
+        document.documentElement.style.setProperty('--wallpaperImg', `url(${data.image})`)
         document.getElementById('tyWall').innerText = `Imagem`;
     }
 
     if (data.backColor != undefined) {
         document.getElementById('BCLabel').style.backgroundColor = data.backColor
         document.getElementById('bColor').value = data.backColor
-        document.getElementById('wallColor').innerHTML = `
-        :root {
-            --wallpaperColor: ${data.backColor};
-            --wallpaperOpacity: ${data.opacity}
-        }
-    `
+        document.documentElement.style.setProperty('--wallpaperColor', data.backColor)
     }
 
     if (data.opacity != undefined) {
-        document.getElementById('wallColor').innerHTML = `
-        :root {
-            --wallpaperColor: ${data.backColor};
-            --wallpaperOpacity: ${data.opacity}
-        }
-    `
+        document.documentElement.style.setProperty('--wallpaperOpacity', data.opacity)
 
         document.getElementById('wpOpacity').value = data.opacity * 100
     }
 
     if (data.accentColor != undefined) {
         document.getElementById('aColor').value = data.accentColor
-        document.getElementById('RAColor').innerHTML = `
-        :root {
-            --primary: ${data.accentColor};
-            --transPrimary: ${data.accentColor}77;
-        }
-    `
+        document.documentElement.style.setProperty('--primary', data.accentColor)
+        document.documentElement.style.setProperty('--transPrimary', `${data.accentColor}77`)
     }
 
     if (data.invertColor == true) {
-        document.getElementById('RAText').innerHTML = `
-            :root {
-               --primaryColor: #191919;
-            }
-        `
+        document.documentElement.style.setProperty('--primaryColor', '#191919')
         document.getElementById('txtColor').checked = true
     }
 
     if (data.swapWatch == true) {
-        document.getElementById('wallTxt').innerHTML = `
-            :root {
-               --watchColor: #191919;
-            }
-        `
+        document.documentElement.style.setProperty('--watchColor', '#191919')
         document.getElementById('watchColor').checked = true
     }
 }

@@ -147,11 +147,7 @@ document.getElementById('cgWall').addEventListener('change', () => {
 
     reader.onload = () => {
         const imageUrl = reader.result;
-        document.getElementById('wallImg').innerHTML = `
-        :root {
-            --wallpaperImg: url(${imageUrl});
-        }
-    `
+        document.documentElement.style.setProperty('--wallpaperImg', `url(${imageUrl})`)
         document.getElementById('tyWall').innerText = `Imagem`;
 
         personalization.image = imageUrl
@@ -174,13 +170,7 @@ document.getElementById('rWall').addEventListener('click', () => {
 
 document.getElementById('wpOpacity').addEventListener('input', () => {
     let val = document.getElementById('wpOpacity').value / 100
-    let color = document.getElementById('bColor').value
-    document.getElementById('wallColor').innerHTML = `
-        :root {
-            --wallpaperColor: ${color};
-            --wallpaperOpacity: ${val}
-        }
-    `
+    document.documentElement.style.setProperty('--wallpaperOpacity', val)
     personalization.opacity = val
     localStorage.setItem('personalization', JSON.stringify(personalization))
 })
@@ -188,34 +178,27 @@ document.getElementById('wpOpacity').addEventListener('input', () => {
 document.getElementById('aColor').addEventListener('change', (e) => {
     personalization.accentColor = e.target.value
     localStorage.setItem('personalization', JSON.stringify(personalization))
-    document.getElementById('RAColor').innerHTML = `
-        :root {
-            --primary: ${document.getElementById('aColor').value};
-            --transPrimary: ${document.getElementById('aColor').value}77;
-        }
-    `
+    document.documentElement.style.setProperty('--primary', e.target.value)
+    document.documentElement.style.setProperty('--transPrimary', `${e.target.value}77`)
 })
 
 
 document.getElementById('cLabel').addEventListener('dblclick', () => {
     personalization.accentColor = '#292ccc'
     document.getElementById('aColor').value = '#292ccc'
+    document.documentElement.style.removeProperty('--primary')
+    document.documentElement.style.removeProperty('--transPrimary')
     document.body.click();
     localStorage.setItem('personalization', JSON.stringify(personalization))
     document.getElementById('RAColor').innerHTML = ""
 })
 
-document.getElementById('txtColor').addEventListener('change', () => {
-    let checked = document.getElementById('txtColor').checked
-    if (checked) {
-        document.getElementById('RAText').innerHTML = `
-            :root {
-               --primaryColor: #191919;
-            }
-        `
+document.getElementById('txtColor').addEventListener('change', e => {
+    if (e.target.checked) {
+        document.documentElement.style.setProperty('--primaryColor', '#191919')
         personalization.invertColor = true
     } else {
-        document.getElementById('RAText').innerHTML = ""
+        document.documentElement.style.removeProperty('--primaryColor')
         personalization.invertColor = false
     }
 
@@ -224,31 +207,19 @@ document.getElementById('txtColor').addEventListener('change', () => {
 
 document.getElementById('bColor').addEventListener('change', () => {
     let color = document.getElementById('bColor').value
-    let val = document.getElementById('wpOpacity').value / 100
     document.getElementById('BCLabel').style.backgroundColor = color
-    document.getElementById('wallColor').innerHTML = `
-        :root {
-            --wallpaperColor: ${color};
-            --wallpaperOpacity: ${val}
-        }
-    `
+    document.documentElement.style.setProperty('--wallpaperColor', color)
 
     personalization.backColor = color
     localStorage.setItem('personalization', JSON.stringify(personalization))
 })
 
-document.getElementById('watchColor').addEventListener('change', () => {
-    let checked = document.getElementById('watchColor').checked
-    if (checked) {
-        document.getElementById('wallTxt').innerHTML = `
-            :root {
-               --watchColor: #191919;
-            }
-        `
-
+document.getElementById('watchColor').addEventListener('change', e => {
+    if (e.target.checked) {
+        document.documentElement.style.setProperty('--watchColor', '#191919')
         personalization.swapWatch = true
     } else {
-        document.getElementById('wallTxt').innerHTML = ""
+        document.documentElement.style.removeProperty('--watchColor')
         personalization.swapWatch = false
     }
 

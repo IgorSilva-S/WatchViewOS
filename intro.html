@@ -11,15 +11,10 @@
 </head>
 
 <body>
-    <style id="wallColor"></style>
-    <style id="wallTxt"></style>
-    <style id="RAColor"></style>
-    <style id="RAText"></style>
-    <style id="wallImg"></style>
-    <div class="wallpaper" id="wallpaper"></div>
+    <div class="wallpaper"></div>
 
-    <div class="popUp">
-        <div class="PUC" id="intro"  style="display: flex;">
+    <div class="popUp" id="popup">
+        <div class="PUC" style="display: flex;">
             <div class="centerLineObj">
                 <img src="assets/img/logo/Colored.png" alt="" class="logo">
                 <div class="col">
@@ -30,22 +25,186 @@
             <br>
             Bem-vindo ao Setup do WatchViewOS! Vamos iniciar o seu sistema corretamente
             <br>
-            <div class="centerLineObj">
+            <div class="subSetting">
+                <div class="col">
+                    <label for="useSound" class="col">
+                        Usar música de Setup
+                        <span class="subText">Música de introdução por Thaddeus Silva (Composição e Arranjo)</span>
+                    </label>
+
+                </div>
                 <input type="checkbox" name="" id="useSound" checked>
-                <label for="useSound">Usar música de Setup</label>
+            </div>
+            <div class="subSetting">
+                <label for="sysSounds">Tocar sons ao interagir com o sistema</label>
+                <input type="checkbox" name="" id="sysSounds" checked>
             </div>
         </div>
-        <div class="PUC" id="dataImport">
-            <h1>Importação de data</h1>
+        <div class="PUC">
+            <h1>Importação de dados</h1>
             <br>
             Você tem algum arquivo .data do WatchViewOS?
             <br><br>
-            Se você importar um arquivo do WatchViewOS, o setup automaticamente o arranjará e irá reiniciar já no sistema
+            Se você importar um arquivo do WatchViewOS, o setup automaticamente o arranjará e irá reiniciar já no
+            sistema
             <br><br>
             <input type="file" name="" id="dataImportInp" accept=".data" style="display: none;">
             <label for="dataImportInp" class="secBtn" fakeBtn="true">Importar dados</label>
-            <br><br>
+            <br>
             Caso não o tenha, aperte continuar para o setup te ajudar a arrumar o sistema
+        </div>
+        <div class="PUC">
+            <h1>Configurações de Data e Hora</h1>
+            <br>
+            O Sistema é sincronizado pela API TimeAPI, uma API moderna de sincronização de tempo baseada em todas as GMT
+            possíveis
+            <br><br>
+            <div class="subSetting">
+                <label for="ipSync">Sincronizar horário do sistema com a sua timezone</label>
+                <input type="checkbox" name="" id="ipSync" checked>
+            </div>
+            <div class="subSetting">
+                <label for="gmtChoose">Calcular Timezone de:</label>
+                <input type="number" name="" id="gmtChoose" min="-12" max="12" value="-3">
+            </div>
+        </div>
+        <div class="PUC">
+            <h1>Personalização</h1>
+            <br>
+            Customize o sistema da forma que você quiser! Coloque imagens ou edite a cor de fundo do sistema e a cor
+            principal.
+            <br><br>
+            <div class="subSetting">
+                <div>
+                    <label for="liteModel" class="col">
+                        Reduzir efeitos
+                        <span class="subText">Essa função não é utilizada no setup</span>
+                    </label>
+                </div>
+                <input type="checkbox" name="" id="liteModel">
+            </div>
+            <div class="subSetting">
+                Papel de parede
+                <div class="centerLineObj">
+                    <label for="wallChoose" class="secBtn" fakeBtn="true">Escolher</label>
+                    <input type="file" name="" id="wallChoose" style="display: none;" accept="image/*">
+                    <button class="secBtn" id="removeImage">Remover</button>
+                </div>
+            </div>
+            <div class="subSetting">
+                <label for="wallOpacity">Opacidade papel de parede</label>
+                <input type="number" name="" id="wallOpacity" min="0" max="100" value="100">
+            </div>
+            <div class="subSetting">
+                Cor de destaque
+                <label for="aColor" class="colorLabel" id="cLabel"></label>
+                <input type="color" name="" id="aColor" style="width: 0; height: 0;" value="#292ccc">
+            </div>
+            <div class="subSetting">
+                <label for="txtColor">
+                    <div class="col">
+                        Inverter cor de texto destaque
+                        <span class="subText">Isso inverte somente as cores dos botões com fundo colorido com a cor de
+                            destaque</span>
+                    </div>
+                </label>
+                <input type="checkbox" name="" id="txtColor">
+            </div>
+            <div class="subSetting">
+                Cor de fundo
+                <label for="bColor" class="colorLabel" id="BCLabel" style="background-color: #000;"></label>
+                <input type="color" name="" id="bColor" style="width: 0; height: 0;">
+            </div>
+            <div class="subSetting">
+                <label for="watchColor" class="col">
+                    Inverter cor do relógio
+                    <span class="subText">Use essa função quando o seu papel de parede for muito claro (o relógio é branco)</span>
+                </label>
+                <input type="checkbox" name="" id="watchColor">
+            </div>
+
+            <div class="subSetting colorCheck">
+                Se você consegue ler esse texto, você consegue ver o relógio do sistema
+            </div>
+        </div>
+        <div class="PUC">
+            <h1>Uso do sistema</h1>
+            <br>
+            O WatchViewOS tem algumas funções e usos para auxiliar no seu uso ao sistema:
+            <br>
+            <h3>Alarmes</h3>
+            Programe alarmes para tocar em momentos específicos do dia e te alertar sobre alguma informação importante.
+            <br><br>
+            <h3>Afazeres</h3>
+            Tenha uma lista de afazeres própria no WatchViewOS, coloque eles e cheque se estão feitos ou não.
+            <br><br>
+            <h3>Eventos</h3>
+            Veja facilmente seus eventos de um dia específico, anotando eles e o sistema apresentará ele pra você quando for o dia correto.
+        </div>
+        <div class="PUC">
+            <h1>Sobre o Menu Home</h1>
+            <br>
+            O Menu Home é uma gaveta por onde você pode navegar pelos aplicativos do sistema e receber algumas informações sobre os aplicativos e funcionalidades ativadas do sistema, como o Modo Não Pertube.
+            <br><br>
+            No total, o WatchViewOS conta com 5 aplicativos: Relógio, Alarmes, Afazeres, Eventos e Configurações.
+            <br><br>
+            Para abrir o Menu Home, aperte e segure na tela (em dispositivos com Touch) ou pressione o botão secundário do seu mouse.
+            <br><br>
+            <h3 class="specialText">Para prosseguir, tente abrir o Menu Home.</h3>
+        </div>
+        <div class="PUC">
+            <h1>Sobre o Menu Home</h1>
+            <br>
+            Você conseguiu abrir o Menu Home. Sempre que for abrir ou fechar ele, execute a mesma ação.
+            <br><br>
+            Caso os sons do sistema estejam habilitados, esse sempre será o som que ouvirá ao abrir o Menu Home.
+            <br><br>
+            De primeira, o Menu Home será assim:
+            <img src="assets/img/setup/home.png" alt="" class="screenshot">
+            Você pode customizar o Menu Home da sua vontade na página seguinte
+        </div>
+        <div class="PUC">
+            <h1>Customização do Menu Home</h1>
+            <br>
+            Altere o Menu Home de acordo com a sua vontade.
+            <br>
+            <div class="subSetting">
+                <label for="removeTitle">Remover título "Menu Home" da gaveta</label>
+                <input type="checkbox" name="" id="removeTitle">
+            </div>
+            <div class="subSetting noPhoneShow">
+                <label for="watchDivider">Dividir relógio principal na abertura do Menu Home</label>
+                <input type="checkbox" name="" id="watchDivider" checked>
+            </div>
+            <div class="subSetting">
+                <label for="homeColor">Usar cor de destaque no Menu Home</label>
+                <input type="checkbox" name="" id="homeColor">
+            </div>
+            <div class="subSetting noPhoneShow">
+                <label for="fullHomeMenu">Usar Menu Home em tela cheia</label>
+                <input type="checkbox" name="" id="fullHomeMenu">
+            </div>
+            <div class="subSetting removeLite">
+                Estilo do Menu Home
+                <select name="" id="homeStyle">
+                    <option value="fglass">Frosted Glass</option>
+                    <option value="lglass">Liquid Glass</option>
+                    <option value="aero">Aero</option>
+                    <option value="transparent">Transparente</option>
+                    <option value="opaque">Opaco</option>
+                </select>
+            </div>
+        </div>
+        <div class="PUC">
+            <h1>Finalização do Setup</h1>
+            <br>
+            O Setup fecha aqui, ao apertar em continuar, o sistema será reiniciado e você entrará no WatchViewOS.
+            <br><br>
+            Todas as configurações aqui feitas serão salvas e podem ser alteradas no sistema principal em suas áreas específicas das configurações
+            <br><br>
+            Agradeçemos por experimentar e utilizar o WatchViewOS!
+            <br><br>
+            O WatchViewOS é completamente gratuito e licenciado pela licença Apache 2.0
         </div>
         <div class="PUF">
             <button class="secBtn" id="lastPage" style="display: none;">Voltar</button>
@@ -53,17 +212,17 @@
         </div>
     </div>
 
-    <div class="creditBar" id="creditBar">
-        <h2>Música de introdução por Thaddeus Silva (Composição e Arranjo)</h2>
-    </div>
 
     <audio src="assets/sounds/introduction.mp3" loop id="introMusic"></audio>
     <audio src="assets/sounds/Style1/HoverBtn.wav" id="hover"></audio>
     <audio src="assets/sounds/Style1/ClickBtn.wav" id="clickbtn"></audio>
     <audio src="assets/sounds/Style1/Back.wav" id="backsound"></audio>
+    <audio src="assets/sounds/Style1/ClickCB.wav" id="clickcb"></audio>
+    <audio src="assets/sounds/Style1/HomeUp.wav" id="openHome"></audio>
     <script src="assets/js/intro/sounds.js"></script>
     <script src="assets/js/intro/popnav.js"></script>
     <script src="assets/js/intro/dataImport.js"></script>
+    <script src="assets/js/intro/setupData.js"></script>
 </body>
 
 </html>

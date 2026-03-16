@@ -67,7 +67,6 @@ input[type="number"] {
     border: 1px solid #494949;
     border-bottom: 2px solid #494949;
     box-sizing: border-box;
-    transition-duration: .2s;
 }
 
 input[type="text"]::placeholder,
@@ -102,12 +101,11 @@ input[type="checkbox"]::after {
     width: 20px;
     height: 20px;
     font-family: "Segoe Fluent Icons";
-    content: '';
+    content: '';
+    color: #f0f8ff;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: var(--primaryColor);
-    opacity: 0;
     font-size: 14px;
 }
 
@@ -116,7 +114,9 @@ input[type="checkbox"]:active:after {
 }
 
 input[type="checkbox"]:checked:after {
+    content: '';
     opacity: 1;
+    color: var(--primaryColor);
 }
 
 .colorLabel {
@@ -560,7 +560,6 @@ h6 {
     border: 1px solid #494949;
     border-bottom: 2px solid #494949;
     box-sizing: border-box;
-    transition-duration: .2s;
     width: 100%;
 }
 
@@ -922,7 +921,6 @@ h6 {
     color: #666;
     cursor: pointer;
     user-select: none;
-    transition-duration: .1s;
 }
 
 .alarmDays span.active {

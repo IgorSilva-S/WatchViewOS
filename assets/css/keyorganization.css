@@ -28,6 +28,13 @@
     align-items: center;
 }
 
+.separeObj {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .subText {
     font-size: 16px;
 }
