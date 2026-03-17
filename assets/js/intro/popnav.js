@@ -1,8 +1,9 @@
 let actualPage = 0
 let openedHome = false
+let cleared = localStorage.getItem('clearSetup')
 
 function alignBtn() {
-    if (actualPage <= 0) {
+    if (actualPage <= 0 && cleared != 'true') {
         document.getElementById('lastPage').style.display = 'none'
     } else {
         document.getElementById('lastPage').removeAttribute('style')
@@ -10,12 +11,17 @@ function alignBtn() {
 
     if (actualPage != 0 && (actualPage < 8 || actualPage > 8)) {
         document.getElementById('nextPage').innerText = 'Continuar'
+        document.getElementById('lastPage').innerText = 'Voltar'
     } else if (actualPage == 8) {
         document.getElementById('nextPage').innerText = 'Ir para o sistema'
+        document.getElementById('lastPage').innerText = 'Voltar'
     } else {
         document.getElementById('nextPage').innerText = 'Iniciar Setup'
+        document.getElementById('lastPage').innerText = 'Voltar para o Sistema'
     }
 }
+
+alignBtn()
 
 function pageCorrection() {
     let pages = [...document.getElementsByClassName('PUC')]
@@ -79,6 +85,19 @@ document.getElementById('nextPage').addEventListener('click', () => {
 })
 
 document.getElementById('lastPage').addEventListener('click', () => {
+    if (actualPage == 0 && cleared == 'true') {
+        document.getElementById('popup').style.opacity = 0
+        setTimeout(() => {
+            location.href = 'index.html'
+        }, 300);
+        if (canPlaySFX) {
+            let backSong = document.getElementById('backsound')
+            backSong.pause()
+            backSong.currentTime = 0
+            backSong.play()
+        }
+        return;
+    }
     actualPage--
     if (actualPage == 5 && !openedHome) {
         document.getElementById('nextPage').disabled = true

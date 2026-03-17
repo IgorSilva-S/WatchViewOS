@@ -13,12 +13,13 @@ clearSetup = localStorage.getItem('clearSetup') || false
 /* Creating System Data*/
 document.getElementById('sysSounds').addEventListener('change', e => {
     canPlaySFX = e.target.checked
-    settings.noSound = e.target.checked
+    settings.noSound = !e.target.checked
 })
 
 /* Date and time settings*/
 document.getElementById('ipSync').addEventListener('change', e => {
     settings.autoSync = e.target.checked
+    settings.syncVal = document.getElementById('gmtChoose').value
 })
 
 document.getElementById('gmtChoose').addEventListener('input', e => {
