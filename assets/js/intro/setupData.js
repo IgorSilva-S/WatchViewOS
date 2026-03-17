@@ -123,3 +123,18 @@ document.getElementById('fullHomeMenu').addEventListener('change', e => {
 document.getElementById('homeStyle').addEventListener('change', e => {
     homeMenuData.effectType = e.target.value
 })
+
+function homeText() {
+        let isMobile = window.matchMedia("(max-height: 500px)").matches ? true : false
+
+    if (isMobile) {
+        document.getElementById('howToOpenHM').innerText = '*Aperte e segure a tela.'
+    } else {
+        document.getElementById('howToOpenHM').innerText = '*Pressione o botão secundário do mouse.'
+    }
+}
+
+homeText()
+
+// Organize Setup texts
+window.addEventListener('resize', homeText)

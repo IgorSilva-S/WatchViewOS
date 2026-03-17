@@ -58,6 +58,7 @@ document.getElementById('nextPage').addEventListener('click', () => {
                 }, 200);
             }
         }, 1);
+        return
     }
     actualPage++
     if (actualPage == 5 && !openedHome) {
