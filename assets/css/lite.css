@@ -850,9 +850,16 @@ h6 {
         font-size: 50px;
     }
 
+    .popUp {
+        width: 100dvw;
+        height: 100dvh;
+        left: 0;
+        top: 0;
+        border-radius: 0;
+    }
+
     .popUp .PUC {
         height: 75%;
-        font-size: 15px;
     }
 
     .popUp .PUF {
@@ -881,14 +888,25 @@ h6 {
     @keyframes colorBloom {
         0% {
             background-color: black;
+            color: #f0f8ff;
+        }
+
+        35% {
+            color: var(--primaryColor);
         }
 
         50% {
             background-color: var(--primary);
+            color: var(--primaryColor);
+        }
+
+        65% {
+            color: var(--primaryColor);
         }
 
         100% {
             background-color: black;
+            color: #f0f8ff;
         }
 
     }
