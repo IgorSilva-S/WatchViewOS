@@ -73,7 +73,6 @@ body {
     border-radius: 30px;
     overflow: hidden;
     display: block;
-    scale: .9;
     animation: openAnim .2s ease-out;
     transition-duration: .2s;
 }
@@ -333,6 +332,7 @@ input[type="checkbox"]:checked:after {
         height: 100dvh;
         left: 0;
         top: 0;
+        border-radius: 0;
     }
 
     .popUp .PUC {

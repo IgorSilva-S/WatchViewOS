@@ -944,7 +944,8 @@ h6 {
         width: 3px;
     }
 
-    .noPhoneShow {
+    .noPhoneShow,
+    .screen {
         display: none;
     }
 
@@ -1007,6 +1008,10 @@ h6 {
 
     .popUp .PUF {
         height: 25%;
+    }
+
+    .sSubPage .introMsg .configInfo.persona {
+        width: 100%;
     }
 }
 
