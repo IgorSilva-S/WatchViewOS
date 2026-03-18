@@ -129,8 +129,10 @@ function homeText() {
 
     if (isMobile) {
         document.getElementById('howToOpenHM').innerText = '*Aperte e segure a tela.'
+        document.getElementById('homeImage').src = 'assets/img/setup/homePhone.png'
     } else {
         document.getElementById('howToOpenHM').innerText = '*Pressione o botão secundário do mouse.'
+        document.getElementById('homeImage').src = 'assets/img/setup/home.png'
     }
 }
 
