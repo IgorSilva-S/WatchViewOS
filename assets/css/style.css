@@ -970,7 +970,8 @@ h6 {
     .homeMenuAero,
     .homeMenuLG,
     .homeMenuOP,
-    .homeMenuTP {
+    .homeMenuTP,
+    .alarmAlert {
         bottom: -100%;
         height: 100%;
         border-radius: 0;

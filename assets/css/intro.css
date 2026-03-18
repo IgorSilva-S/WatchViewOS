@@ -100,7 +100,7 @@ body {
 
 .PUC .screenshot {
     width: 100%;
-    aspect-ratio: 16 / 9;
+    height: auto;
     border-radius: 8px;
 }
 
