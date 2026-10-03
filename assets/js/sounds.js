@@ -10,7 +10,7 @@ const loadingSound = document.getElementById("loadingAudio");
 const backSound = document.getElementById("backsound");
 const openAppSound = document.getElementById("openApp");
 
-// ========== HANDLERS REUTILIZÁVEIS ==========
+
 function handleHover(e) {
   let canPlaySFX = document.getElementById("sysSounds").checked;
   if (canPlaySFX && !isMobile) {

@@ -212,7 +212,7 @@
                     <h1>WatchViewOS</h1>
                     <h2 id="sysVer"></h2>
                 </div>
-                <div class="logoImage colored"></div>
+                <div class="logoImage monochromatic" id="systemLogo"></div>
             </div>
             <div class="configInfo">
                 <label for="dblclkFS">
@@ -325,6 +325,27 @@
                 </div>
                 <input type="checkbox" name="" id="DND">
             </div>
+            <div class="configInfo">
+                Material do fundo dos aplicativos
+                <select name="" id="aplicationsMaterial">
+                    <option value="fglass">Frosted Glass</option>
+                    <option value="lglass">Liquid Glass</option>
+                    <option value="aero">Aero</option>
+                    <option value="transparent">Transparente</option>
+                    <option value="opaque">Opaco</option>
+                </select>
+            </div>
+            <div class="configInfo">
+                <label for="appDim">Escurecer papel de parede</label>
+                <input type="checkbox" name="" id="appDim" checked>
+            </div>
+            <div class="configInfo">
+                <div class="col">
+                    <label for="swapHeaderColor">Inverter cor dos textos dos aplicativos</label>
+                    <span class="subText">Bom para usar quando não se escurece o papel de parede e os textos ficam ilegíveis.</span>
+                </div>
+                <input type="checkbox" name="" id="swapHeaderColor">
+            </div>
             <br>
 
             <!--Alarms Settings-->
@@ -424,7 +445,7 @@
                 <input type="checkbox" name="" id="fullHomeMenu">
             </div>
             <div class="configInfo removeLite">
-                Estilo do Menu Home
+                Material do Menu Home
                 <select name="" id="homeStyle">
                     <option value="fglass">Frosted Glass</option>
                     <option value="lglass">Liquid Glass</option>

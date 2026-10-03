@@ -127,6 +127,22 @@ if (DND) {
     document.getElementById('dndPill').style.display = 'flex'
 }
 
+// Extra Dim app
+if (datas.extraDim == false) {
+    Array.from(document.querySelectorAll('.app')).forEach((a) => {
+        a.classList.add('noDim')
+    })
+    document.getElementById('appDim').checked = false
+}
+
+// Invert app text
+if (datas.invertText == true) {
+        document.querySelectorAll('.app').forEach((h) => {
+            h.classList.add('swapColor')
+        })
+    document.getElementById('swapHeaderColor').checked = true
+}
+
 // Apps Settings BOOT
 function appsBoot(data) {
     if (data.playNoDayAlarm) {

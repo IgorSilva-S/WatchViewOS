@@ -74,6 +74,14 @@
     background-image: url(../img/logo/Colored.png);
 }
 
+.logoImage.monochromatic {
+    background-image: none;
+    mask-image: url(../img/logo/Mono.png);
+    mask-size: contain;
+    mask-position: center;
+    background-color: var(--primary);
+}
+
 .disabled {
     opacity: .5;
 }

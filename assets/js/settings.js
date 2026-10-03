@@ -228,6 +228,19 @@ document.getElementById('watchColor').addEventListener('change', e => {
 
 // System basics
 
+let changedLogo = false
+document.getElementById('systemLogo').addEventListener('dblclick', () => {
+    if (!changedLogo) {
+        changedLogo = true
+        document.getElementById('systemLogo').classList.remove('monochromatic')
+        document.getElementById('systemLogo').classList.add('colored')
+    } else {
+        changedLogo = false
+        document.getElementById('systemLogo').classList.add('monochromatic')
+        document.getElementById('systemLogo').classList.remove('colored')
+    }
+})
+
 document.getElementById('dblclkFS').addEventListener('change', () => {
     let checker = document.getElementById('dblclkFS').checked
     if (checker) {
@@ -408,6 +421,34 @@ document.getElementById('DND').addEventListener('change', (e) => {
         document.getElementById('dndPill').style.display = 'flex'
     } else {
         document.getElementById('dndPill').removeAttribute('style')
+    }
+})
+
+document.getElementById('appDim').addEventListener('input', function () {
+    datas.extraDim = this.checked
+    localStorage.setItem('datas', JSON.stringify(datas))
+    if (!this.checked) {
+        Array.from(document.querySelectorAll('.app')).forEach((a) => {
+            a.classList.add('noDim')
+        })
+    } else {
+        Array.from(document.querySelectorAll('.app')).forEach((a) => {
+            a.classList.remove('noDim')
+        })
+    }
+})
+
+document.getElementById('swapHeaderColor').addEventListener('input', function () {
+    datas.invertText = this.checked
+    localStorage.setItem('datas', JSON.stringify(datas))
+    if (this.checked) {
+        document.querySelectorAll('.app').forEach((h) => {
+            h.classList.add('swapColor')
+        })
+    } else {
+        document.querySelectorAll('.app').forEach((h) => {
+            h.classList.remove('swapColor')
+        })
     }
 })
 

@@ -524,6 +524,10 @@ h6 {
     padding-top: 80px;
 }
 
+.app.noDim {
+    background-color: #0000;
+}
+
 .appHeader {
     width: 100%;
     height: 80px;
@@ -536,6 +540,11 @@ h6 {
     box-sizing: border-box;
     padding: 0 30px;
     font-size: 30px;
+}
+
+
+.app.swapColor {
+    color: #000;
 }
 
 .appHeader.backHeader {
@@ -892,8 +901,16 @@ h6 {
     transition-duration: .1s;
 }
 
+.app.swapColor #backSettings {
+    color: #000;
+}
+
 #backSettings:hover {
     filter: drop-shadow(1px 1px 5px white);
+}
+
+.app.swapColor #backSettings:hover {
+    filter: drop-shadow(1px 1px 5px #191919);
 }
 
 .configInfo {
