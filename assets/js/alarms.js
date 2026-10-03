@@ -154,6 +154,9 @@ document.getElementById('snoozeAlarm').addEventListener('click', () => {
     playingAlarm = false
     playAlarm = false
     document.getElementById('alarmAlert').removeAttribute('style')
+    if (actualApp == 'watch') {
+        document.getElementById('watch').removeAttribute('style')
+    }
     alarmSound.pause()
     alarmSound.currentTime = 0
     clearInterval(alarmSoundInterval)

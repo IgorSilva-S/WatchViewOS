@@ -161,8 +161,8 @@ document.getElementById('cgWall').addEventListener('change', () => {
 });
 
 document.getElementById('rWall').addEventListener('click', () => {
-    document.getElementById('wallImg').innerHTML = ""
     document.getElementById('tyWall').innerText = `Cores`;
+    document.documentElement.style.setProperty('--wallpaperImg', `none`)
     document.getElementById('cgWall').value = '';
     personalization.image = null
     localStorage.setItem('personalization', JSON.stringify(personalization))

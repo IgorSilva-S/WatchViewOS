@@ -27,12 +27,23 @@ document.getElementById('primBtn').addEventListener('click', () => {
         alarmManager('edit')
     } else if (funcBtn == 'deleteAll') {
         document.getElementById('popContent').innerHTML = `
+        <h1>VOCÊ TEM CERTEZA?</h1>
+        <br><br>
+        Não há como recuperar os dados caso você continue o processo.
+    `
+        document.getElementById('closePop').style.display = 'flex'
+        document.getElementById('primBtn').style.display = 'flex'
+        document.getElementById('dnc').style.transitionDuration = '.2s'
+        document.getElementById('dnc').style.backgroundColor = '#000'
+        funcBtn = 'REALLYDELETE'
+    } else if (funcBtn == 'REALLYDELETE') {
+        document.getElementById('popContent').innerHTML = `
         <h1>Apagando todos os dados</h1>
         <br><br>
         Espere um instante. Assim que terminar, o site será reiniciado
     `
-        document.getElementById('closePop').style.display = 'none'
-        document.getElementById('primBtn').style.display = 'none'
+        document.getElementById('closePop').removeAttribute('style')
+        document.getElementById('primBtn').removeAttribute('style')
         document.getElementById('dnc').style.transitionDuration = '.2s'
         document.getElementById('dnc').style.backgroundColor = '#000'
         localStorage.clear()
@@ -50,27 +61,42 @@ document.getElementById('primBtn').addEventListener('click', () => {
             'datas': checkers[5].checked,
             'homeMenu': checkers[6].checked
         }
-
-        Object.entries(delObj).forEach(([key, value]) => {
-            if (value == true) {
-                localStorage.removeItem(key)
+        let canDelete = false;
+        checkers.forEach(c => {
+            if (c.checked) {
+                canDelete = true;
             }
-        });
-        document.getElementById('popContent').innerHTML = `
+        })
+
+        if (canDelete) {
+            Object.entries(delObj).forEach(([key, value]) => {
+                if (value == true) {
+                    localStorage.removeItem(key)
+                }
+            });
+            document.getElementById('popContent').innerHTML = `
         <h1>Apagando dados selecionados</h1>
         <br><br>
         Espere um instante. Assim que terminar, você poderá reiniciar o sistema pelo botão
     `
-        document.getElementById('closePop').style.display = 'none'
-        document.getElementById('primBtn').style.display = 'none'
-        document.getElementById('dnc').style.transitionDuration = '.2s'
-        document.getElementById('dnc').style.backgroundColor = '#000'
-        setTimeout(() => {
-            document.getElementById('primBtn').removeAttribute('style')
-            document.getElementById('primBtn').classList.remove('warning')
-            document.getElementById('primBtn').innerText = 'Reiniciar'
-            funcBtn = 'reset'
-        }, 2000);
+            document.getElementById('closePop').style.display = 'none'
+            document.getElementById('primBtn').style.display = 'none'
+            document.getElementById('dnc').style.transitionDuration = '.2s'
+            document.getElementById('dnc').style.backgroundColor = '#000'
+            setTimeout(() => {
+                document.getElementById('primBtn').removeAttribute('style')
+                document.getElementById('primBtn').classList.remove('warning')
+                document.getElementById('primBtn').innerText = 'Reiniciar'
+                funcBtn = 'reset'
+            }, 2000);
+        } else {
+            let alert = document.createElement('h1');
+            alert.innerText = 'Selecione pelo menos um dado';
+            document.getElementById('popContent').insertAdjacentElement('afterbegin', alert)
+            setTimeout(() => {
+                alert.remove()
+            }, 1500);
+        }
     } else if (funcBtn == 'reset') {
         location.reload()
     }
