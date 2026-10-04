@@ -19,6 +19,7 @@
 
     <!--Watch App-->
     <section class="defaultWatch" id="watch">
+        <div class="appHeader"></div>
         <h1 id="time">
             <div class="loadingContainer">
                 <div class="loadingDot"></div>
@@ -199,6 +200,16 @@
                 </label>
                 <input type="checkbox" name="" id="watchColor">
             </div>
+            <div class="configInfo removeLite">
+                <label for="watchAppMaterial">
+                    <div class="col">
+                        Usar material dos aplicativos no relógio
+                        <span class="subText">Para modificar o comportamento do material dos aplicativos, vá em "Mini
+                            Apps e Menu Home"</span>
+                    </div>
+                </label>
+                <input type="checkbox" name="" id="watchAppMaterial">
+            </div>
             <div class="configInfo">
                 <label for="homeColor">Reduzir efeitos</label>
                 <button class="secBtn" id="linkLE">Sistema</button>
@@ -318,6 +329,10 @@
             <h2>Geral</h2>
             <br>
             <div class="configInfo">
+                <label for="clockInApps">Mostrar horário nos aplicativos</label>
+                <input type="checkbox" name="" id="clockInApps" checked>
+            </div>
+            <div class="configInfo">
                 <div class="col">
                     <label for="DND">Modo Não Pertube</label>
                     <span class="subText">O modo não pertube evitará avisos, notificações e informações sobre os Mini
@@ -342,7 +357,8 @@
             <div class="configInfo">
                 <div class="col">
                     <label for="swapHeaderColor">Inverter cor dos textos dos aplicativos</label>
-                    <span class="subText">Bom para usar quando não se escurece o papel de parede e os textos ficam ilegíveis.</span>
+                    <span class="subText">Bom para usar quando não se escurece o papel de parede e os textos ficam
+                        ilegíveis.</span>
                 </div>
                 <input type="checkbox" name="" id="swapHeaderColor">
             </div>
@@ -461,6 +477,34 @@
         </div>
     </section>
 
+    <section class="app" id="openLateralApp">
+        <div class="appHeader">
+            <span>Abrir aplicativo Lateral</span>
+        </div>
+        <div class="appContent grid">
+            <button>
+                <f-icon>&#xF182;</f-icon>
+                <span>Relógio</span>
+            </button>
+            <button>
+                <f-icon>&#xe916;</f-icon>
+                <span>Alarmes</span>
+            </button>
+            <button>
+                <f-icon>&#xe73a;</f-icon>
+                <span>Afazeres</span>
+            </button>
+            <button>
+                <f-icon>&#xe787;</f-icon>
+                <span>Eventos</span>
+            </button>
+            <button>
+                <f-icon>&#xe713;</f-icon>
+                <span>Config.</span>
+            </button>
+        </div>
+    </section>
+
     <!--Alarm Notification Drawer-->
     <div class="alarmAlert" id="alarmAlert">
         <div class="timeAndName">
@@ -477,6 +521,23 @@
         </div>
     </div>
 
+    <div class="quickSettingsPanel" id="qsp">
+        <h1 class="noPhoneShow">Nome app</h1>
+        <div class="abContainer">
+            <button id="posiAppLeft">
+                <f-icon>&#xEA49;</f-icon>
+                <span>Esquerda</span>
+            </button>
+            <button id="closeApp">
+                <f-icon>&#xE711;</f-icon>
+                <span>Fechar</span>
+            </button>
+            <button id="posiAppRight">
+                <f-icon>&#xE89F;</f-icon>
+                <span>Direita</span>
+            </button>
+        </div>
+    </div>
 
     <!--Home Menu Close-->
     <div id="hmClose"></div>
@@ -552,6 +613,8 @@
     <audio src="assets/sounds/Style1/ClickCB.wav" id="clickcb"></audio>
     <audio src="assets/sounds/Style1/Back.wav" id="backsound"></audio>
     <audio src="assets/sounds/Style1/Loading.wav" id="loadingAudio" loop></audio>
+    <audio src="assets/sounds/Style1/OpenQuickSettings.wav" id="openQS"></audio>
+    <audio src="assets/sounds/Style1/CloseQuickSettings.wav" id="closeQS"></audio>
 
     <!--Liquid Glass Effect (DO NOT TOUCH)-->
     <svg style="display:none;">
@@ -574,6 +637,7 @@
     <script src="assets/js/todo.js"></script> <!--Todo logic-->
     <script src="assets/js/events.js"></script> <!--Events logic-->
     <script src="assets/js/settings.js"></script> <!--Settings logic-->
+    <script src="assets/js/appQuickSettings.js"></script> <!--Quick Settings for each app-->
     <script src="assets/js/sounds.js"></script> <!--Tells the system how to use sounds-->
     <script src="assets/js/connection.js"></script> <!--Checks if user is connected to internet-->
     <script src="assets/js/boot.js"></script> <!--Use all data and reorganize they, to start the system-->

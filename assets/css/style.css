@@ -188,14 +188,40 @@ h6 {
 }
 
 .defaultWatch {
-    width: 100dvw;
+    position: fixed;
+    width: 100%;
     height: 100dvh;
+    top: 0;
+    left: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     transition: .4s ease-out;
-    gap: 10px
+    gap: 10px;
+}
+
+.defaultWatch.divideInTwo_L {
+    width: 50%;
+    position: absolute;
+    top: 0;
+    height: 100dvh;
+    left: 0;
+}
+
+.defaultWatch.divideInTwo_R {
+    width: 50%;
+    position: absolute;
+    top: 0;
+    height: 100dvh;
+    right: 0;
+    left: auto;
+}
+
+
+.defaultWatch.app {
+    display: flex !important;
+    padding-top: 0;
 }
 
 .loadingContainer {
@@ -443,6 +469,31 @@ h6 {
     font-size: 50px;
 }
 
+.homeMenu.unifyWatch,
+.homeMenuAccent.unifyWatch,
+.homeMenuLG.unifyWatch,
+.homeMenuAero.unifyWatch,
+.homeMenuOP.unifyWatch,
+.homeMenuTP.unifyWatch {
+    border-radius: 0;
+}
+
+.homeMenu.unifyWatch::after,
+.homeMenuAccent.unifyWatch::after,
+.homeMenuLG.unifyWatch::after,
+.homeMenuAero.unifyWatch::after,
+.homeMenuOP.unifyWatch::after,
+.homeMenuTP.unifyWatc::after {
+    content: '';
+    width: 100%;
+    height: 4px;
+    position: absolute;
+    top: -2px;
+    left: 0;
+    background-color: var(--primary);
+}
+
+
 .abContainer {
     display: flex;
     width: 100%;
@@ -458,6 +509,10 @@ h6 {
     bottom: 20px;
     align-items: flex-end;
     margin-bottom: 120px;
+}
+
+.quickSettingsPanel .abContainer {
+    height: 100%;
 }
 
 [type="fullscreen"] .abContainer::after {
@@ -515,13 +570,36 @@ h6 {
 .app {
     background-color: #19191999;
     position: fixed;
-    width: 100dvw;
+    width: 100%;
     height: 100dvh;
     top: 0;
     left: 0;
     backdrop-filter: blur(15px);
     display: none;
     padding-top: 80px;
+}
+
+.app.noHeader {
+    padding-top: 0;
+}
+
+.app.divideInTwo_L {
+    width: 50%;
+    position: absolute;
+    top: 0;
+    height: 100dvh;
+    left: 0;
+    display: block;
+}
+
+.app.divideInTwo_R {
+    width: 50%;
+    position: absolute;
+    top: 0;
+    height: 100dvh;
+    right: 0;
+    left: auto;
+    display: block;
 }
 
 .app.noDim {
@@ -540,7 +618,7 @@ h6 {
     box-sizing: border-box;
     padding: 0 30px;
     font-size: 30px;
-    background-color: red;
+    touch-action: none;
 }
 
 
@@ -548,23 +626,34 @@ h6 {
     color: #000;
 }
 
-.app.appSettings {
+.app.appSettings,
+.defaultWatch.appSettings {
     scale: .4;
-    border-radius: 8px;
-    animation: appBalancing 6s linear infinite;
+    border-radius: 16px;
+    animation: appBalancing 2s linear infinite;
+    border: 5px solid var(--primary);
+    overflow: hidden;
 }
 
 @keyframes appBalancing {
     0% {
-        transform: translate(-2%, -70%);
-    } 25% {
-         transform: translate(-2%, -68%);
-    } 50% {
+        transform: translate(-1%, -70%);
+    }
+
+    25% {
+        transform: translate(-2%, -69%);
+    }
+
+    50% {
         transform: translate(2%, -70%);
-    } 75% {
-        transform: translate(2%, -68%);
-    } 100% {
-        transform: translate(-2%, -70%);
+    }
+
+    75% {
+        transform: translate(1%, -69%);
+    }
+
+    100% {
+        transform: translate(-1%, -70%);
     }
 }
 
@@ -628,6 +717,56 @@ h6 {
     animation: hubOpening .4s;
     transition-duration: .4s;
     overflow-y: auto;
+}
+
+.appContent.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: center;
+    justify-items: center;
+    gap: 30px;
+}
+
+.app.divideInTwo_L .appContent.grid,
+.app.divideInTwo_R .appContent.grid {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.appContent.grid button {
+    width: 75%;
+    aspect-ratio: 1;
+    background-color: #191919cc;
+    border-radius: 30px;
+    border: none;
+    color: white;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    font-size: 40px;
+    transition-duration: .25s;
+}
+
+.appContent.grid button:hover {
+    box-shadow: 0 0 12px 5px var(--primary);
+}
+
+.quickSettingsPanel {
+    position: fixed;
+    bottom: -40%;
+    left: 0;
+    border-radius: 24px 24px 0 0;
+    background-color: #19191999;
+    width: 100%;
+    height: 40%;
+    transition: .4s ease-out;
+    box-sizing: border-box;
+    padding: 30px;
+    backdrop-filter: blur(14px);
+}
+
+.quickSettingsPanel h1 {
+    font-size: 40px;
 }
 
 .primBtn {
@@ -1034,12 +1173,26 @@ h6 {
         aspect-ratio: 1;
     }
 
+    .quickSettingsPanel .abContainer button {
+        height: 100%;
+        border-radius: 15px;
+    }
+
     .abContainer button span {
         font-size: 20px;
     }
 
     .abContainer button f-icon {
         font-size: 50px;
+    }
+
+
+    .quickSettingsPanel .abContainer f-icon {
+        font-size: 30px;
+    }
+
+    .quickSettingsPanel .abContainer span {
+        font-size: 15px;
     }
 
     .popUp {

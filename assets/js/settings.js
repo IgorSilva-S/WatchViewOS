@@ -7,7 +7,6 @@ const cusInfo = document.getElementById('cusInfo')
 const sysInfo = document.getElementById('sysInfo')
 const dataInfo = document.getElementById('dataInfo')
 const mahmInfo = document.getElementById('mahmInfo')
-let appQuickSettings = false
 
 document.getElementById('timeBtn').addEventListener('click', () => {
     sHome.style.opacity = '0'
@@ -63,21 +62,6 @@ document.getElementById('mahmBtn').addEventListener('click', () => {
         sName.innerHTML = 'Mini Apps e Menu Home'
     }, 400);
 })
-
-document.querySelectorAll('.appHeader').forEach((h) => {
-    h.addEventListener('dblclick', () => {
-        settingsApp.classList.add('appSettings')
-        appQuickSettings = true
-    })
-})
-
-settingsApp.addEventListener('click', () => {
-    if (appQuickSettings) {
-        settingsApp.classList.remove('appSettings')
-        appQuickSettings = false
-    }
-})
-
 
 backBtn.addEventListener('click', (e) => {
     e.stopPropagation()
@@ -240,6 +224,17 @@ document.getElementById('watchColor').addEventListener('change', e => {
     }
 
     localStorage.setItem('personalization', JSON.stringify(personalization))
+})
+
+document.getElementById('watchAppMaterial').addEventListener('input', function () {
+    if (this.checked) {
+        watchApp.classList.add('app')
+        if (!document.getElementById('appDim').checked) {
+            watchApp.classList.add('noDim')
+        }
+    } else {
+        watchApp.classList.remove('app')
+    }
 })
 
 // System basics

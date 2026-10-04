@@ -11,13 +11,13 @@ document.addEventListener('contextmenu', (e) => {
     e.preventDefault()
     let canPlaySFX = document.getElementById('sysSounds').checked
     let isLowEffects = document.getElementById('liteModel').checked
+    let appsMaterial = document.getElementById('watchAppMaterial').checked
     let isMobile = window.matchMedia("(max-height: 500px)").matches ? true : false
     let phoneUp = window.matchMedia("(max-width: 500px)").matches ? true : false
     fullHomeMenu = document.getElementById('fullHomeMenu').checked
     eventManager('check')
     if (!homeMenuOpened && !phoneUp && !popOpen && connected && !playingAlarm) {
-        appQuickSettings = false
-        settingsApp.classList.remove('appSettings')
+        closeQuickSettings(true)
         homeMenu.style.bottom = '0'
         hmClose.style.bottom = '0'
         if (actualApp == 'watch') {
@@ -37,7 +37,7 @@ document.addEventListener('contextmenu', (e) => {
             document.getElementById('openHome').currentTime = 0
             document.getElementById('openHome').play()
         }
-        if (actualApp == 'watch' && !fullHomeMenu) {
+        if (actualApp == 'watch' && !fullHomeMenu && !appsMaterial) {
             wallpaper.style.filter = 'brightness(50%)'
         }
 
@@ -54,6 +54,12 @@ document.addEventListener('contextmenu', (e) => {
                 eventsApp.removeAttribute('style')
                 settingsApp.removeAttribute('style')
             }, 700);
+        }
+
+        if (actualApp == 'watch' && appsMaterial) {
+            homeMenu.classList.add('unifyWatch')
+        } else {
+            homeMenu.classList.remove('unifyWatch')
         }
 
         homeMenuOpened = true
@@ -106,6 +112,12 @@ Array.from(document.getElementById('abc').children).forEach(element => {
         if (actualApp == 'watch' && !fullHomeMenu && !isMobile) {
             document.getElementById('watch').removeAttribute('style')
         }
+        appInLeft = null
+        appInRight = null
+        document.querySelectorAll('.app').forEach(a => {
+            a.classList.remove('divideInTwo_L');
+            a.classList.remove('divideInTwo_R')
+        })
         wallpaper.removeAttribute('style')
         homeMenuOpened = false
     })
@@ -139,6 +151,15 @@ const alarmApp = document.getElementById('alarm')
 const todoApp = document.getElementById('todo')
 const eventsApp = document.getElementById('events')
 const settingsApp = document.getElementById('settings')
+const lateralApp = document.getElementById('openLateralApp')
+const appList = {
+    'watch': watchApp,
+    'alarm': alarmApp,
+    'todo': todoApp,
+    'events': eventsApp,
+    'settings': settingsApp,
+    'lateral': lateralApp
+}
 
 // Buttons
 const watchBtn = document.getElementById('watchBtn')
