@@ -7,6 +7,7 @@ const cusInfo = document.getElementById('cusInfo')
 const sysInfo = document.getElementById('sysInfo')
 const dataInfo = document.getElementById('dataInfo')
 const mahmInfo = document.getElementById('mahmInfo')
+let appQuickSettings = false
 
 document.getElementById('timeBtn').addEventListener('click', () => {
     sHome.style.opacity = '0'
@@ -63,8 +64,23 @@ document.getElementById('mahmBtn').addEventListener('click', () => {
     }, 400);
 })
 
+document.querySelectorAll('.appHeader').forEach((h) => {
+    h.addEventListener('dblclick', () => {
+        settingsApp.classList.add('appSettings')
+        appQuickSettings = true
+    })
+})
 
-backBtn.addEventListener('click', () => {
+settingsApp.addEventListener('click', () => {
+    if (appQuickSettings) {
+        settingsApp.classList.remove('appSettings')
+        appQuickSettings = false
+    }
+})
+
+
+backBtn.addEventListener('click', (e) => {
+    e.stopPropagation()
     timeInfo.style.opacity = '0'
     sysInfo.style.opacity = '0'
     cusInfo.style.opacity = '0'

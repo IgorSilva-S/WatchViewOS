@@ -540,6 +540,7 @@ h6 {
     box-sizing: border-box;
     padding: 0 30px;
     font-size: 30px;
+    background-color: red;
 }
 
 
@@ -547,8 +548,29 @@ h6 {
     color: #000;
 }
 
+.app.appSettings {
+    scale: .4;
+    border-radius: 8px;
+    animation: appBalancing 6s linear infinite;
+}
+
+@keyframes appBalancing {
+    0% {
+        transform: translate(-2%, -70%);
+    } 25% {
+         transform: translate(-2%, -68%);
+    } 50% {
+        transform: translate(2%, -70%);
+    } 75% {
+        transform: translate(2%, -68%);
+    } 100% {
+        transform: translate(-2%, -70%);
+    }
+}
+
 .appHeader.backHeader {
-    width: calc(100% - 40px)
+    width: 100%;
+    padding-left: 80px;
 }
 
 .loading {
@@ -895,7 +917,7 @@ h6 {
     background-color: transparent;
     padding: 5px;
     position: absolute;
-    left: -15px;
+    left: 20px;
     color: aliceblue;
     font-size: 20px;
     transition-duration: .1s;

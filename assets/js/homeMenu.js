@@ -16,6 +16,8 @@ document.addEventListener('contextmenu', (e) => {
     fullHomeMenu = document.getElementById('fullHomeMenu').checked
     eventManager('check')
     if (!homeMenuOpened && !phoneUp && !popOpen && connected && !playingAlarm) {
+        appQuickSettings = false
+        settingsApp.classList.remove('appSettings')
         homeMenu.style.bottom = '0'
         hmClose.style.bottom = '0'
         if (actualApp == 'watch') {
