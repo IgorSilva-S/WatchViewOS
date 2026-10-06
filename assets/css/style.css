@@ -222,6 +222,7 @@ h6 {
 .defaultWatch.app {
     display: flex !important;
     padding-top: 0;
+    animation: none;
 }
 
 .loadingContainer {
@@ -488,7 +489,7 @@ h6 {
     width: 100%;
     height: 4px;
     position: absolute;
-    top: -2px;
+    top: 0px;
     left: 0;
     background-color: var(--primary);
 }
@@ -579,6 +580,43 @@ h6 {
     padding-top: 80px;
 }
 
+.app.liquid {
+    backdrop-filter: brightness(1.1) blur(2px) url(#displacementFilter);
+}
+
+.app.aero {
+    backdrop-filter: blur(4px);
+}
+
+.app.aero::before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    background-image: url(../img/texture/aeroGlass.png);
+    background-position: center;
+    background-size: cover;
+    opacity: .2;
+}
+
+.app.transparent {
+    backdrop-filter: none;
+}
+
+.app.opaque {
+    background-color: #191919 !important;
+}
+
+.app.opaque .configInfo,
+.app.opaque button,
+.app.opaque .appContent .grid button,
+.app.opaque .appContent.grid button {
+    background-color: #292929;
+}
+
 .app.noHeader {
     padding-top: 0;
 }
@@ -600,6 +638,28 @@ h6 {
     right: 0;
     left: auto;
     display: block;
+}
+
+.app.divideInTwo_L::after,
+.app.divideInTwo_R::after,
+.defaultWatch.divideInTwo_L::after,
+.defaultWatch.divideInTwo_R::after {
+    content: '';
+    width: 4px;
+    height: 100dvh;
+    position: absolute;
+    background-color: var(--primary);
+    top: 0;
+}
+
+.app.divideInTwo_L::after,
+.defaultWatch.divideInTwo_L::after {
+    right: -2px;
+}
+
+.app.divideInTwo_R::after,
+.defaultWatch.divideInTwo_R::after {
+    left: -2px;
 }
 
 .app.noDim {
@@ -630,30 +690,35 @@ h6 {
 .defaultWatch.appSettings {
     scale: .4;
     border-radius: 16px;
-    animation: appBalancing 2s linear infinite;
+    animation: appBalancing 4s linear infinite;
     border: 5px solid var(--primary);
     overflow: hidden;
 }
 
+.app.appSettings::after {
+    width: 0;
+    height: 0;
+}
+
 @keyframes appBalancing {
     0% {
-        transform: translate(-1%, -70%);
+        transform: translate(-0.25%, -70%);
     }
 
     25% {
-        transform: translate(-2%, -69%);
+        transform: translate(-0.5%, -69.5%);
     }
 
     50% {
-        transform: translate(2%, -70%);
+        transform: translate(0.5%, -70%);
     }
 
     75% {
-        transform: translate(1%, -69%);
+        transform: translate(0.25%, -69.75%);
     }
 
     100% {
-        transform: translate(-1%, -70%);
+        transform: translate(-0.25%, -70%);
     }
 }
 
@@ -719,21 +784,43 @@ h6 {
     overflow-y: auto;
 }
 
+.appContent.subSetting {
+    display: none;
+}
+
 .appContent.grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     align-items: center;
     justify-items: center;
+    align-content: start;
     gap: 30px;
+}
+
+.appContent .grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    align-items: center;
+    justify-items: center;
+    align-content: start;
+    gap: 30px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 30px;
 }
 
 .app.divideInTwo_L .appContent.grid,
 .app.divideInTwo_R .appContent.grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+}
+.app.divideInTwo_L .appContent .grid,
+.app.divideInTwo_R .appContent .grid {
+    grid-template-columns: repeat(3, 1fr);
 }
 
-.appContent.grid button {
-    width: 75%;
+.appContent.grid button,
+.appContent .grid button {
+    width: 100%;
     aspect-ratio: 1;
     background-color: #191919cc;
     border-radius: 30px;
@@ -747,7 +834,13 @@ h6 {
     transition-duration: .25s;
 }
 
-.appContent.grid button:hover {
+.appContent.grid button f-icon,
+.appContent .grid button f-icon {
+    font-size: 80px;
+}
+
+.appContent.grid button:hover,
+.appContent .grid button:hover {
     box-shadow: 0 0 12px 5px var(--primary);
 }
 

@@ -3,6 +3,7 @@ let isPointerInHeader = false
 let isDragging = false
 let appInLeft = null
 let appInRight = null
+let openSecondAppIn = null
 let headerPointerY = 0;
 const quickSettingsPanel = document.getElementById('qsp')
 
@@ -10,10 +11,17 @@ document.addEventListener('click', () => {
     if (isDragging) {
         isDragging = false
     }
+
+    if (actualApp == null) {
+        watchApp.removeAttribute('style')
+        actualApp = 'watch'
+
+        // document.dispatchEvent(new Event('contextmenu'))
+    }
 })
 
 function openQuickSettings() {
-    const appName = quickSettingsPanel.querySelector(':scope > h1');
+    const appName = quickSettingsPanel.querySelector(':scope > div > h1');
     watchApp.classList.add('appSettings');
     alarmApp.classList.add('appSettings');
     todoApp.classList.add('appSettings');
@@ -43,6 +51,7 @@ function openQuickSettings() {
     quickSettingsPanel.style.bottom = '0'
     document.getElementById('openQS').currentTime = 0
     document.getElementById('openQS').play()
+    wallpaper.style.filter = 'brightness(50%)'
 }
 
 function closeQuickSettings(needSilence) {
@@ -58,6 +67,7 @@ function closeQuickSettings(needSilence) {
         document.getElementById('closeQS').currentTime = 0
         document.getElementById('closeQS').play()
     }
+    wallpaper.removeAttribute('style')
 }
 
 document.querySelectorAll('.appHeader').forEach((h) => {
@@ -120,6 +130,8 @@ document.getElementById('posiAppLeft').addEventListener('click', () => {
         lateralApp.classList.remove('divideInTwo_R')
         lateralApp.classList.remove('divideInTwo_L')
         appInLeft = null
+        appInRight = null
+        openSecondAppIn = null
     } else {
         appList[actualApp].classList.remove('divideInTwo_L')
         appList[actualApp].classList.remove('divideInTwo_R')
@@ -127,8 +139,10 @@ document.getElementById('posiAppLeft').addEventListener('click', () => {
         if (appInRight == null) {
             lateralApp.classList.add('divideInTwo_R');
             appInRight = 'lateral'
+            openSecondAppIn = 'right'
         } else {
             appInRight = appInLeft
+            openSecondAppIn = 'right'
             appList[appInRight].classList.remove('divideInTwo_L')
             appList[appInRight].classList.add('divideInTwo_R')
         }
@@ -162,6 +176,8 @@ document.getElementById('posiAppRight').addEventListener('click', () => {
         lateralApp.classList.remove('divideInTwo_R')
         lateralApp.classList.remove('divideInTwo_L')
         appInRight = null
+        appInLeft = null
+        openSecondAppIn = null
     } else {
         appList[actualApp].classList.remove('divideInTwo_L')
         appList[actualApp].classList.remove('divideInTwo_R')
@@ -169,8 +185,10 @@ document.getElementById('posiAppRight').addEventListener('click', () => {
         if (appInLeft == null) {
             lateralApp.classList.add('divideInTwo_L');
             appInLeft = 'lateral'
+            openSecondAppIn = 'left'
         } else {
             appInLeft = appInRight
+            openSecondAppIn = 'left'
             appList[appInLeft].classList.remove('divideInTwo_R')
             appList[appInLeft].classList.add('divideInTwo_L')
         }

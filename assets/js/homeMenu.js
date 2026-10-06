@@ -16,6 +16,8 @@ document.addEventListener('contextmenu', (e) => {
     let phoneUp = window.matchMedia("(max-width: 500px)").matches ? true : false
     fullHomeMenu = document.getElementById('fullHomeMenu').checked
     eventManager('check')
+
+    // Home Menu Open
     if (!homeMenuOpened && !phoneUp && !popOpen && connected && !playingAlarm) {
         closeQuickSettings(true)
         homeMenu.style.bottom = '0'
@@ -65,7 +67,9 @@ document.addEventListener('contextmenu', (e) => {
         homeMenuOpened = true
         document.getElementById('eventbar').removeAttribute('style')
         lSound()
-    } else if (!phoneUp && !popOpen && connected && !playingAlarm) {
+
+    //Home Menu Close
+    } else if (!phoneUp && !popOpen && connected && !playingAlarm && actualApp != null) {
         homeMenu.removeAttribute('style')
         hmClose.removeAttribute('style')
         if (canPlaySFX) {
@@ -99,6 +103,9 @@ document.addEventListener('contextmenu', (e) => {
             }
         }
         homeMenuOpened = false
+        if (!fullHomeMenu) {
+            homeMenu.removeAttribute('type', 'fullscreen')
+        }
         lSound()
     }
 })
@@ -114,11 +121,17 @@ Array.from(document.getElementById('abc').children).forEach(element => {
         }
         appInLeft = null
         appInRight = null
+        openSecondAppIn = null
+        watchApp.classList.remove('divideInTwo_L');
+        watchApp.classList.remove('divideInTwo_R')
         document.querySelectorAll('.app').forEach(a => {
             a.classList.remove('divideInTwo_L');
             a.classList.remove('divideInTwo_R')
         })
         wallpaper.removeAttribute('style')
+        if (!fullHomeMenu) {
+            homeMenu.removeAttribute('type', 'fullscreen')
+        }
         homeMenuOpened = false
     })
 });

@@ -363,8 +363,39 @@
                 <input type="checkbox" name="" id="swapHeaderColor">
             </div>
             <br>
+            <div>
+                <h1>Configurações dos Mini Apps</h1>
+                <div class="grid">
+                    <button id="alarmsSettingsBtn">
+                        <f-icon>&#xe916;</f-icon>
+                        <span>Alarmes</span>
+                    </button>
+                    <button id="todosSettingsBtn">
+                        <f-icon>&#xe73a;</f-icon>
+                        <span>Afazeres</span>
+                    </button>
+                    <button id="eventsSettingsBtn">
+                        <f-icon>&#xe787;</f-icon>
+                        <span>Eventos</span>
+                    </button>
+                    <button id="lateralAppSettingsBtn">
+                        <f-icon>&#xE7AC;</f-icon>
+                        <span>App. Lateral</span>
+                    </button>
+                    <button id="homeMenuSettingsBtn">
+                        <f-icon>&#xE80F;</f-icon>
+                        <span>Menu Home</span>
+                    </button>
+                    <button id="quickSettingsSettingsBtn">
+                        <f-icon>&#xE9F5;</f-icon>
+                        <span>Menu rápido</span>
+                    </button>
+                </div>
+            </div>
+        </div>
 
-            <!--Alarms Settings-->
+        <!--Alarms Settings-->
+        <div class="appContent subSetting" id="alarmsSettings">
             <h2>Alarmes</h2>
             <br>
             <div class="configInfo">
@@ -379,7 +410,8 @@
             <div class="configInfo">
                 <div class="col">
                     <label for="playNoDayAlarm">Tocar alarme sem dia definido</label>
-                    <span class="subText">Quando não há um dia da semana definido, mas o alarme está ligado, o alarme
+                    <span class="subText">Quando não há um dia da semana definido, mas o alarme está ligado, o
+                        alarme
                         sempre tocará</span>
                 </div>
                 <input type="checkbox" name="" id="playNoDayAlarm">
@@ -392,9 +424,10 @@
                 Versão do app do Alarme
                 <span id="alarmVersion"></span>
             </div>
-            <br>
+        </div>
 
-            <!--Todo Settings-->
+        <!--Todo Settings-->
+        <div class="appContent subSetting" id="todosSettings">
             <h2>Afazeres</h2>
             <br>
             <div class="configInfo">
@@ -412,9 +445,10 @@
                 Versão do app de Afazeres
                 <span id="todoVersion"></span>
             </div>
-            <br>
+        </div>
 
-            <!--Events Settings-->
+        <!--Events Settings-->
+        <div class="appContent subSetting" id="eventsSettings">
             <h2>Eventos</h2>
             <br>
             <div class="configInfo">
@@ -440,7 +474,9 @@
                 Versão do app de Eventos
                 <span id="eventsVersion"></span>
             </div>
+        </div>
 
+        <div class="appContent subSetting" id="homeMenuSettings">
             <!--Home Menu Settings-->
             <h1>Menu Home</h1>
             <br>
@@ -522,7 +558,10 @@
     </div>
 
     <div class="quickSettingsPanel" id="qsp">
-        <h1 class="noPhoneShow">Nome app</h1>
+        <div style="display: flex; justify-content: space-between;">
+            <h1 class="noPhoneShow">Nome app</h1>
+            <h3>Menu Rápido</h3>
+        </div>
         <div class="abContainer">
             <button id="posiAppLeft">
                 <f-icon>&#xEA49;</f-icon>

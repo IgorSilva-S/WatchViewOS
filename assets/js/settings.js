@@ -8,6 +8,56 @@ const sysInfo = document.getElementById('sysInfo')
 const dataInfo = document.getElementById('dataInfo')
 const mahmInfo = document.getElementById('mahmInfo')
 
+// Apps SubSettings
+const alarmSettings = document.getElementById('alarmsSettings')
+const todoSettings = document.getElementById('todosSettings')
+const eventsSettings = document.getElementById('eventsSettings')
+const homeMenuSettings = document.getElementById('homeMenuSettings')
+
+let isInSubSettings = false
+
+const settingsTitle = {
+    'timeInfo': 'Data e Hora',
+    'cusInfo': 'Personalização',
+    'sysInfo': 'Sistema',
+    'dataInfo': 'Dados',
+    'mahmInfo': 'Mini Apps e Menu Home',
+    'alarmsSettings': 'Configurações do Alarme',
+    'todosSettings': 'Configurações do Afazeres',
+    'eventsSettings': 'Configurações do Eventos',
+    'homeMenuSettings': 'Configurações do Menu Home'
+}
+
+
+function openSettingsIn(page) {
+    console.log(page)
+    closeQuickSettings(true)
+    dncScreen.style.display = 'block'
+    wallpaper.style.opacity = '0'
+    watchApp.style.opacity = '0'
+    alarmApp.style.opacity = '0'
+    todoApp.style.opacity = '0'
+    eventsApp.style.opacity = '0'
+    settingsApp.style.opacity = '0'
+    actualApp = 'settings'
+    setTimeout(() => {
+        dncScreen.removeAttribute('style')
+        wallpaper.removeAttribute('style')
+        watchApp.style.display = 'none'
+        alarmApp.removeAttribute('style')
+        todoApp.removeAttribute('style')
+        eventsApp.removeAttribute('style')
+        settingsApp.removeAttribute('style')
+        settingsApp.style.display = 'block'
+        page.style.display = 'block'
+        sHome.style.display = 'none'
+        backBtn.style.display = 'flex'
+        sHeader.classList.add('backHeader')
+        sName.innerHTML = settingsTitle[page.id]
+        lSound()
+    }, 700);
+}
+
 document.getElementById('timeBtn').addEventListener('click', () => {
     sHome.style.opacity = '0'
     setTimeout(() => {
@@ -63,23 +113,88 @@ document.getElementById('mahmBtn').addEventListener('click', () => {
     }, 400);
 })
 
+document.getElementById('alarmsSettingsBtn').addEventListener('click', () => {
+    mahmInfo.style.opacity = '0'
+    isInSubSettings = true
+    setTimeout(() => {
+        alarmSettings.style.display = 'block'
+        mahmInfo.style.display = 'none'
+        sName.innerHTML = 'Configurações do Alarme'
+    }, 400);
+})
+
+document.getElementById('todosSettingsBtn').addEventListener('click', () => {
+    mahmInfo.style.opacity = '0'
+    isInSubSettings = true
+    setTimeout(() => {
+        todoSettings.style.display = 'block'
+        mahmInfo.style.display = 'none'
+        sName.innerHTML = 'Configurações do Afazeres'
+    }, 400);
+})
+
+document.getElementById('eventsSettingsBtn').addEventListener('click', () => {
+    mahmInfo.style.opacity = '0'
+    isInSubSettings = true
+    setTimeout(() => {
+        eventsSettings.style.display = 'block'
+        mahmInfo.style.display = 'none'
+        sName.innerHTML = 'Configurações do Eventos'
+    }, 400);
+})
+
+document.getElementById('homeMenuSettingsBtn').addEventListener('click', () => {
+    mahmInfo.style.opacity = '0'
+    isInSubSettings = true
+    setTimeout(() => {
+        homeMenuSettings.style.display = 'block'
+        mahmInfo.style.display = 'none'
+        sName.innerHTML = 'Configurações do Menu Home'
+    }, 400);
+})
+
 backBtn.addEventListener('click', (e) => {
-    e.stopPropagation()
+    if (!appQuickSettings) {
+        e.stopPropagation()
+    }
     timeInfo.style.opacity = '0'
     sysInfo.style.opacity = '0'
     cusInfo.style.opacity = '0'
     dataInfo.style.opacity = '0'
     mahmInfo.style.opacity = '0'
+    alarmSettings.style.opacity = '0'
+    eventsSettings.style.opacity = '0'
+    todoSettings.style.opacity = '0'
+    homeMenuSettings.style.opacity = '0'
     setTimeout(() => {
-        timeInfo.removeAttribute('style')
-        sysInfo.removeAttribute('style')
-        cusInfo.removeAttribute('style')
-        dataInfo.removeAttribute('style')
-        mahmInfo.removeAttribute('style')
-        sHome.removeAttribute('style')
-        backBtn.removeAttribute('style')
-        sHeader.classList.remove('backHeader')
-        sName.innerHTML = 'Configurações'
+        if (isInSubSettings) {
+            timeInfo.removeAttribute('style')
+            sysInfo.removeAttribute('style')
+            cusInfo.removeAttribute('style')
+            dataInfo.removeAttribute('style')
+            mahmInfo.style.display = 'block'
+            mahmInfo.style.opacity = '1'
+            alarmSettings.removeAttribute('style')
+            todoSettings.removeAttribute('style')
+            eventsSettings.removeAttribute('style')
+            homeMenuSettings.removeAttribute('style')
+            sName.innerHTML = 'Mini Apps e Menu Home'
+            isInSubSettings = false
+        } else {
+            timeInfo.removeAttribute('style')
+            sysInfo.removeAttribute('style')
+            cusInfo.removeAttribute('style')
+            dataInfo.removeAttribute('style')
+            mahmInfo.removeAttribute('style')
+            alarmSettings.removeAttribute('style')
+            todoSettings.removeAttribute('style')
+            eventsSettings.removeAttribute('style')
+            homeMenuSettings.removeAttribute('style')
+            sHome.removeAttribute('style')
+            backBtn.removeAttribute('style')
+            sHeader.classList.remove('backHeader')
+            sName.innerHTML = 'Configurações'
+        }
     }, 400);
 })
 
@@ -232,6 +347,7 @@ document.getElementById('watchAppMaterial').addEventListener('input', function (
         if (!document.getElementById('appDim').checked) {
             watchApp.classList.add('noDim')
         }
+        document.getElementById('aplicationsMaterial').dispatchEvent(new Event('change'))
     } else {
         watchApp.classList.remove('app')
     }
@@ -432,6 +548,30 @@ document.getElementById('DND').addEventListener('change', (e) => {
         document.getElementById('dndPill').style.display = 'flex'
     } else {
         document.getElementById('dndPill').removeAttribute('style')
+    }
+})
+
+document.getElementById('aplicationsMaterial').addEventListener('change', function () {
+    const allApps = document.querySelectorAll('.app')
+    allApps.forEach(a => {
+        a.classList.remove('liquid')
+        a.classList.remove('aero')
+        a.classList.remove('transparent')
+        a.classList.remove('opaque')
+    })
+    function changeAll(what) {
+        allApps.forEach(a => {
+            a.classList.add(what)
+        })
+    }
+    if (this.value == 'lglass') {
+        changeAll('liquid')
+    } else if (this.value == 'aero') {
+        changeAll('aero')
+    } else if (this.value == 'transparent') {
+        changeAll('transparent')
+    } else if (this.value == 'opaque') {
+        changeAll('opaque')
     }
 })
 
