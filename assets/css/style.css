@@ -42,6 +42,15 @@ body {
     max-height: 100dvh;
 }
 
+button:disabled {
+    opacity: .5;
+}
+
+button:disabled:hover {
+    box-shadow: none !important;
+    cursor: not-allowed;
+}
+
 pre {
     user-select: text;
 }
@@ -543,6 +552,8 @@ h6 {
     flex-direction: column;
     font-size: 40px;
     transition-duration: .25s;
+    border-bottom: 2px solid #151515cc;
+    border-top: 2px solid #252525cc;
 }
 
 [type="fullscreen"] .abContainer button {
@@ -550,10 +561,14 @@ h6 {
     aspect-ratio: 1;
     z-index: 2;
     background-color: #191919;
+    border-bottom: 2px solid #151515;
+    border-top: 2px solid #252525;
 }
 
 .homeMenuOP .abContainer button {
     background-color: #353535;
+    border-bottom: 2px solid #303030;
+    border-top: 2px solid #404040;
 }
 
 .abContainer button:hover {
@@ -615,6 +630,8 @@ h6 {
 .app.opaque .appContent .grid button,
 .app.opaque .appContent.grid button {
     background-color: #292929;
+    border-bottom: 2px solid #252525;
+    border-top: 2px solid #353535;
 }
 
 .app.noHeader {
@@ -813,6 +830,7 @@ h6 {
 .app.divideInTwo_R .appContent.grid {
     grid-template-columns: repeat(3, 1fr);
 }
+
 .app.divideInTwo_L .appContent .grid,
 .app.divideInTwo_R .appContent .grid {
     grid-template-columns: repeat(3, 1fr);
@@ -832,6 +850,8 @@ h6 {
     flex-direction: column;
     font-size: 40px;
     transition-duration: .25s;
+    border-bottom: 2px solid #151515cc;
+    border-top: 2px solid #252525cc;
 }
 
 .appContent.grid button f-icon,
@@ -874,10 +894,14 @@ h6 {
     justify-content: center;
     align-items: center;
     text-decoration: none;
+    border-top: 2px solid color-mix(in srgb, var(--primary), white 13%);
+    border-bottom: 2px solid color-mix(in srgb, var(--primary), black 13%);
 }
 
 .primBtn.warning {
     background-color: rgb(175, 0, 0);
+    border-bottom: 2px solid rgb(97, 0, 0);
+    border-top: 2px solid rgb(216, 0, 0);
     color: #f0f8ff;
 }
 
@@ -893,6 +917,8 @@ h6 {
     justify-content: center;
     align-items: center;
     text-decoration: none;
+    border-bottom: 2px solid #151515;
+    border-top: 2px solid #252525;
 }
 
 .primBtn:hover,
@@ -903,6 +929,8 @@ h6 {
 .warning:hover {
     box-shadow: 0 0 12px 5px rgb(255, 42, 42);
     background-color: rgb(175, 0, 0);
+    border-bottom: 2px solid rgb(97, 0, 0);
+    border-top: 2px solid rgb(216, 0, 0);
 }
 
 .popUp {
@@ -1004,6 +1032,8 @@ h6 {
     font-size: 20px;
     padding: 10px;
     background-color: #19191999;
+    border-bottom: 2px solid #15151599;
+    border-top: 2px solid #25252599;
     color: aliceblue;
     transition-duration: .25s;
 }
@@ -1133,6 +1163,8 @@ h6 {
     background-color: #19191999;
     color: aliceblue;
     transition-duration: .25s;
+    border-bottom: 2px solid #15151599;
+    border-top: 2px solid #25252599;
 }
 
 .configBtn:hover {
@@ -1183,6 +1215,8 @@ h6 {
     align-items: center;
     margin-bottom: 20px;
     position: relative;
+    border-bottom: 2px solid #15151599;
+    border-top: 2px solid #25252599;
 }
 
 .noNet {

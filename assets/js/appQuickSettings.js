@@ -20,7 +20,7 @@ document.addEventListener('click', () => {
     }
 })
 
-function openQuickSettings() {
+function openQuickSettings(needSilence) {
     const appName = quickSettingsPanel.querySelector(':scope > div > h1');
     watchApp.classList.add('appSettings');
     alarmApp.classList.add('appSettings');
@@ -44,14 +44,31 @@ function openQuickSettings() {
         case 'settings':
             appName.innerText = 'Configurações';
             break;
+        case 'lateral':
+            appName.innerText = 'Abrir App. Lateral';
+            break;
     }
     appQuickSettings = true
     isPointerInHeader = false
     isDragging = true
     quickSettingsPanel.style.bottom = '0'
-    document.getElementById('openQS').currentTime = 0
-    document.getElementById('openQS').play()
+    if (!needSilence) {
+        document.getElementById('openQS').currentTime = 0
+        document.getElementById('openQS').play()
+    }
     wallpaper.style.filter = 'brightness(50%)'
+
+    if (appInRight == 'lateral' && actualApp == 'lateral') {
+        document.getElementById('posiAppRight').disabled = true
+    } else {
+        document.getElementById('posiAppRight').disabled = false
+    }
+
+    if (appInLeft == 'lateral' && actualApp == 'lateral') {
+        document.getElementById('posiAppLeft').disabled = true
+    } else {
+        document.getElementById('posiAppLeft').disabled = false
+    }
 }
 
 function closeQuickSettings(needSilence) {
@@ -103,23 +120,32 @@ watchApp.addEventListener('click', () => {
         return;
     }
 
-    if (appQuickSettings) {
+    if (appQuickSettings && actualApp == convertIdToInsideName(watchApp.id)) {
         closeQuickSettings()
+    } else if (appQuickSettings && actualApp != convertIdToInsideName(watchApp.id)) {
+        actualApp = convertIdToInsideName(watchApp.id)
+        openQuickSettings(true)
     }
+
+    actualApp = convertIdToInsideName(watchApp.id)
 })
 
 document.querySelectorAll('.app').forEach(a => {
-    console.log(a)
     a.addEventListener('click', () => {
-        console.log(a.id)
+
         if (isDragging) {
             isDragging = false;
             return;
         }
 
-        if (appQuickSettings) {
+        if (appQuickSettings && actualApp == convertIdToInsideName(a.id)) {
             closeQuickSettings()
+        } else if (appQuickSettings && actualApp != convertIdToInsideName(a.id)) {
+            actualApp = convertIdToInsideName(a.id)
+            openQuickSettings(true)
         }
+
+        actualApp = convertIdToInsideName(a.id)
     })
 })
 
@@ -130,6 +156,11 @@ document.getElementById('posiAppLeft').addEventListener('click', () => {
         lateralApp.classList.remove('divideInTwo_R')
         lateralApp.classList.remove('divideInTwo_L')
         appInLeft = null
+        appList[appInRight].classList.remove('divideInTwo_R')
+        appList[appInRight].removeAttribute('style')
+        if (appList[appInRight] == appList['watch']) {
+            watchApp.style.display = 'none'
+        }
         appInRight = null
         openSecondAppIn = null
     } else {
@@ -159,13 +190,26 @@ document.getElementById('closeApp').addEventListener('click', () => {
         } else {
             appList[actualApp].removeAttribute('style')
         }
+        if (appList[actualApp].classList.contains('divideInTwo_R')) {
+            appInRight = null
+        } else if (appList[actualApp].classList.contains('divideInTwo_L')) {
+            appInLeft = null
+        }
         appList[actualApp].classList.remove('divideInTwo_R')
         appList[actualApp].classList.remove('divideInTwo_L')
         lateralApp.classList.remove('divideInTwo_R')
         lateralApp.classList.remove('divideInTwo_L')
         lateralApp.removeAttribute('style')
-        actualApp = null
-        closeQuickSettings(true)
+        if (appInLeft == null && appInRight == null || appInLeft == 'lateral' || appInRight == 'lateral') {
+            actualApp = null
+            appInLeft = null
+            appInRight = null
+        } else if (appInRight == null) {
+            actualApp = appInLeft
+        } else if (appInLeft == null) {
+            actualApp = appInRight
+        }
+        closeQuickSettings()
     }, 700);
 })
 
@@ -176,6 +220,11 @@ document.getElementById('posiAppRight').addEventListener('click', () => {
         lateralApp.classList.remove('divideInTwo_R')
         lateralApp.classList.remove('divideInTwo_L')
         appInRight = null
+        appList[appInLeft].classList.remove('divideInTwo_L')
+        appList[appInLeft].removeAttribute('style')
+        if (appList[appInLeft] == appList['watch']) {
+            watchApp.style.display = 'none'
+        }
         appInLeft = null
         openSecondAppIn = null
     } else {

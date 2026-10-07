@@ -290,7 +290,7 @@ document.getElementById('wpOpacity').addEventListener('input', () => {
     localStorage.setItem('personalization', JSON.stringify(personalization))
 })
 
-document.getElementById('aColor').addEventListener('change', (e) => {
+document.getElementById('aColor').addEventListener('input', (e) => {
     personalization.accentColor = e.target.value
     localStorage.setItem('personalization', JSON.stringify(personalization))
     document.documentElement.style.setProperty('--primary', e.target.value)
@@ -320,7 +320,7 @@ document.getElementById('txtColor').addEventListener('change', e => {
     localStorage.setItem('personalization', JSON.stringify(personalization))
 })
 
-document.getElementById('bColor').addEventListener('change', () => {
+document.getElementById('bColor').addEventListener('input', () => {
     let color = document.getElementById('bColor').value
     document.getElementById('BCLabel').style.backgroundColor = color
     document.documentElement.style.setProperty('--wallpaperColor', color)
@@ -517,13 +517,17 @@ document.getElementById('deleteSpecific').addEventListener('click', () => {
 })
 
 document.getElementById('viewData').addEventListener('click', () => {
+    let fakePersonalization = personalization
+    if (fakePersonalization.image != undefined) {
+        fakePersonalization.image = 'Imagem de papel de parede registrada.'
+    }
     document.getElementById('popContent').innerHTML = `
         <h1>Visualização de dados</h1>
         <br><br>
         Events: <pre>${JSON.stringify(events, null, 2)}</pre><br>
         Todos: <pre>${JSON.stringify(todos, null, 2)}</pre><br>
         Alarms: <pre>${JSON.stringify(alarms, null, 2)}</pre><br>
-        Personalization: <pre>${JSON.stringify(personalization, null, 2)}</pre><br>
+        Personalization: <pre>${JSON.stringify(fakePersonalization, null, 2)}</pre><br>
         Settings: <pre>${JSON.stringify(settings, null, 2)}</pre><br>
         Datas: <pre>${JSON.stringify(datas, null, 2)}</pre><br>
         Home Menu Data: <pre>${JSON.stringify(homeMenuData, null, 2)}</pre><br>

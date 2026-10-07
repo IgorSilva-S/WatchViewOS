@@ -174,6 +174,22 @@ const appList = {
     'lateral': lateralApp
 }
 
+function convertIdToInsideName(id) {
+    if (id == 'watch') {
+        return 'watch'
+    } else if (id == 'alarm') {
+        return 'alarm'
+    } else if (id == 'todo') {
+        return 'todo'
+    } else if (id == 'events') {
+        return 'events'
+    } else if (id == 'settings') {
+        return 'settings'
+    } else if (id == 'openLateralApp') {
+        return 'lateral'
+    }
+}
+
 // Buttons
 const watchBtn = document.getElementById('watchBtn')
 const alarmBtn = document.getElementById('alarmBtn')
