@@ -22,7 +22,7 @@ document.addEventListener('contextmenu', (e) => {
         closeQuickSettings(true)
         homeMenu.style.bottom = '0'
         hmClose.style.bottom = '0'
-        if (actualApp == 'watch') {
+        if (actualApp == 'watch' && appInLeft != 'watch' && appInRight != 'watch') {
             let divideWatch = document.getElementById('watchDivider').checked
             if (!isMobile) {
                 document.getElementById('watch').style.height = '40vh'
