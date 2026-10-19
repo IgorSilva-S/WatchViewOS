@@ -680,7 +680,7 @@ h6 {
 .defaultWatch.divideInTwo_L::after,
 .defaultWatch.divideInTwo_R::after {
     content: '';
-    width: 4px;
+    width: 2px;
     height: 100dvh;
     position: absolute;
     background-color: var(--primary);
@@ -689,12 +689,12 @@ h6 {
 
 .app.divideInTwo_L::after,
 .defaultWatch.divideInTwo_L::after {
-    right: -2px;
+    right: 0px;
 }
 
 .app.divideInTwo_R::after,
 .defaultWatch.divideInTwo_R::after {
-    left: -2px;
+    left: 0px;
 }
 
 .app.noDim {
@@ -943,6 +943,25 @@ h6 {
     box-sizing: border-box;
 }
 
+.secBtn#homeMenuOpener {
+    z-index: 999;
+    position: fixed;
+    background-color: #191919cc;
+    border-top: 2px solid #454545cc;
+    border-bottom: 2px solid #151515cc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%, 100%);
+}
+
+.secBtn#homeMenuOpener f-icon {
+    font-size: 30px;
+}
+
 .primBtn:hover,
 .secBtn:hover {
     box-shadow: 0 0 12px 5px var(--primary);
@@ -1188,7 +1207,7 @@ h6 {
     color: aliceblue;
     transition-duration: .25s;
     border-bottom: 2px solid #15151599;
-    border-top: 2px solid #25252599;
+    border-top: 2px solid #45454599;
     box-sizing: border-box;
 }
 
@@ -1241,7 +1260,7 @@ h6 {
     margin-bottom: 20px;
     position: relative;
     border-bottom: 2px solid #15151599;
-    border-top: 2px solid #25252599;
+    border-top: 2px solid #45454599;
     box-sizing: border-box;
 }
 

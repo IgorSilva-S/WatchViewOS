@@ -242,6 +242,12 @@
             </div>
             <div class="configInfo">
                 <div>
+                    <label for="sysMusic">Manter música do setup tocando</label>
+                </div>
+                <input type="checkbox" name="" id="sysMusic">
+            </div>
+            <div class="configInfo">
+                <div>
                     <label for="liteModel">Reduzir efeitos</label>
                 </div>
                 <input type="checkbox" name="" id="liteModel">
@@ -481,6 +487,10 @@
             <h1>Menu Home</h1>
             <br>
             <div class="configInfo">
+                <label for="homeMenuPill">Apresentar botão "Menu Home" quando chega no fundo da tela</label>
+                <input type="checkbox" name="" id="homeMenuPill" checked>
+            </div>
+            <div class="configInfo">
                 <label for="removeTitle">Remover título "Menu Home" da gaveta</label>
                 <input type="checkbox" name="" id="removeTitle">
             </div>
@@ -526,11 +536,11 @@
                 <f-icon>&#xe916;</f-icon>
                 <span>Alarmes</span>
             </button>
-            <button>
+            <button id="lateralTodosOpen">
                 <f-icon>&#xe73a;</f-icon>
                 <span>Afazeres</span>
             </button>
-            <button>
+            <button id="lateralEventsOpen">
                 <f-icon>&#xe787;</f-icon>
                 <span>Eventos</span>
             </button>
@@ -577,6 +587,11 @@
             </button>
         </div>
     </div>
+
+    <button class="secBtn" id="homeMenuOpener">
+        <f-icon>&#xE80F;</f-icon>
+        <h4>Menu HOME</h4>
+    </button>
 
     <!--Home Menu Close-->
     <div id="hmClose"></div>
@@ -654,6 +669,8 @@
     <audio src="assets/sounds/Style1/Loading.wav" id="loadingAudio" loop></audio>
     <audio src="assets/sounds/Style1/OpenQuickSettings.wav" id="openQS"></audio>
     <audio src="assets/sounds/Style1/CloseQuickSettings.wav" id="closeQS"></audio>
+
+    <audio src="assets/sounds/introduction.mp3" loop id="introMusic"></audio>
 
     <!--Liquid Glass Effect (DO NOT TOUCH)-->
     <svg style="display:none;">

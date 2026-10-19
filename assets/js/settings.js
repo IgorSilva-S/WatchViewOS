@@ -391,6 +391,17 @@ document.getElementById('sysSounds').addEventListener('change', () => {
     localStorage.setItem('settings', JSON.stringify(settings))
 })
 
+document.getElementById('sysMusic').addEventListener('change', () => {
+    let checker = document.getElementById("sysMusic").checked
+    if (checker) {
+        document.getElementById('introMusic').play()
+    } else {
+        document.getElementById('introMusic').pause()
+        document.getElementById('introMusic').currentTime = 0
+    }
+
+})
+
 document.getElementById('linkLE').addEventListener('click', () => {
     backBtn.click()
     dncScreen.style.display = 'block'

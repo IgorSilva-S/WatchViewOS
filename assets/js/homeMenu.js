@@ -1,4 +1,4 @@
-const homeMenuVersion = '1.0'
+const homeMenuVersion = '1.0.1'
 document.getElementById('homeVersion').innerHTML = homeMenuVersion
 
 let homeMenuOpened = false
@@ -22,6 +22,7 @@ document.addEventListener('contextmenu', (e) => {
         closeQuickSettings(true)
         homeMenu.style.bottom = '0'
         hmClose.style.bottom = '0'
+        document.getElementById('introMusic').volume = .3
         if (actualApp == 'watch' && appInLeft != 'watch' && appInRight != 'watch') {
             let divideWatch = document.getElementById('watchDivider').checked
             if (!isMobile) {
@@ -68,10 +69,11 @@ document.addEventListener('contextmenu', (e) => {
         document.getElementById('eventbar').removeAttribute('style')
         lSound()
 
-    //Home Menu Close
+        //Home Menu Close
     } else if (!phoneUp && !popOpen && connected && !playingAlarm && actualApp != null) {
         homeMenu.removeAttribute('style')
         hmClose.removeAttribute('style')
+        document.getElementById('introMusic').volume = 1
         if (canPlaySFX) {
             document.getElementById('closeHome').pause()
             document.getElementById('closeHome').currentTime = 0
@@ -110,11 +112,40 @@ document.addEventListener('contextmenu', (e) => {
     }
 })
 
+document.addEventListener("mousemove", (event) => {
+    const chegouEmbaixo = event.clientY >= window.innerHeight - 2;
+
+    if (chegouEmbaixo && !homeMenuOpened) {
+        document.getElementById("homeMenuOpener").style.transform =
+            "translate(-50%, -20px)";
+    } else {
+        clearTimeout(homeButtonTimeout)
+        homeButtonTimeout = setTimeout(() => {
+            document.getElementById("homeMenuOpener").style.removeProperty("transform");
+        }, 5000);
+    }
+});
+
+let homeButtonTimeout = null
+
+document.addEventListener('click', () => {
+    clearTimeout(homeButtonTimeout)
+    document.getElementById("homeMenuOpener").style.removeProperty("transform");
+})
+
+
+document.getElementById('homeMenuOpener').addEventListener('click', () => {
+    document.dispatchEvent(new MouseEvent('contextmenu'))
+    clearTimeout(homeButtonTimeout)
+    document.getElementById("homeMenuOpener").style.removeProperty("transform");
+})
+
 Array.from(document.getElementById('abc').children).forEach(element => {
     element.addEventListener('click', () => {
         fullHomeMenu = document.getElementById('fullHomeMenu').checked
         homeMenu.removeAttribute('style')
         hmClose.removeAttribute('style')
+        document.getElementById('introMusic').volume = 1
         restartSettings()
         if (actualApp == 'watch' && !fullHomeMenu && !isMobile) {
             document.getElementById('watch').removeAttribute('style')
@@ -132,6 +163,11 @@ Array.from(document.getElementById('abc').children).forEach(element => {
         if (!fullHomeMenu) {
             homeMenu.removeAttribute('type', 'fullscreen')
         }
+        watchApp.style.display = 'none'
+        alarmApp.removeAttribute('style')
+        todoApp.removeAttribute('style')
+        eventsApp.removeAttribute('style')
+        settingsApp.removeAttribute('style')
         homeMenuOpened = false
     })
 });
@@ -140,6 +176,7 @@ hmClose.addEventListener('click', () => {
     let canPlaySFX = document.getElementById('sysSounds').checked
     homeMenu.removeAttribute('style')
     hmClose.removeAttribute('style')
+    document.getElementById('introMusic').volume = 1
     if (canPlaySFX) {
         document.getElementById('closeHome').pause()
         document.getElementById('closeHome').currentTime = 0
@@ -221,6 +258,8 @@ watchBtn.addEventListener('click', () => {
     } else if (fullHomeMenu || isMobile) {
         clearTimeout(appsTO)
         watchApp.removeAttribute('style')
+    } else if (actualApp == 'watch') {
+        watchApp.removeAttribute('style')
     }
 })
 
@@ -263,6 +302,8 @@ alarmBtn.addEventListener('click', () => {
         } else if (actualApp == 'settings') {
             settingsApp.style.display = 'block'
         }
+    } else if (actualApp == 'alarm') {
+        alarmApp.style.display = 'block'
     }
 })
 
@@ -305,6 +346,8 @@ todoBtn.addEventListener('click', () => {
         } else if (actualApp == 'settings') {
             settingsApp.style.display = 'block'
         }
+    } else if (actualApp == 'todo') {
+        todoApp.style.display = 'block'
     }
 })
 
@@ -347,6 +390,8 @@ eventsBtn.addEventListener('click', () => {
         } else if (actualApp == 'settings') {
             settingsApp.style.display = 'block'
         }
+    } else if (actualApp == 'events') {
+        eventsApp.style.display = 'block'
     }
 })
 
@@ -389,5 +434,7 @@ settingsBtn.addEventListener('click', () => {
         } else if (actualApp == 'settings') {
             settingsApp.style.display = 'block'
         }
+    } else if (actualApp == 'settings') {
+        settingsApp.style.display = 'block'
     }
 })

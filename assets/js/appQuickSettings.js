@@ -28,6 +28,7 @@ function openQuickSettings(needSilence) {
     eventsApp.classList.add('appSettings');
     settingsApp.classList.add('appSettings');
     lateralApp.classList.add('appSettings')
+    document.getElementById('introMusic').volume = .3
     switch (actualApp) {
         case 'watch':
             appName.innerText = 'Relógio';
@@ -78,6 +79,7 @@ function closeQuickSettings(needSilence) {
     eventsApp.classList.remove('appSettings');
     settingsApp.classList.remove('appSettings');
     lateralApp.classList.remove('appSettings')
+    document.getElementById('introMusic').volume = 1
     appQuickSettings = false
     quickSettingsPanel.removeAttribute('style')
     if (!needSilence) {
@@ -208,6 +210,18 @@ document.getElementById('closeApp').addEventListener('click', () => {
             actualApp = appInLeft
         } else if (appInLeft == null) {
             actualApp = appInRight
+        }
+
+        if (appInLeft != null || appInRight != null) {
+            if (appInRight == null) {
+                openSecondAppIn = 'right'
+                lateralApp.classList.add('divideInTwo_R');
+                appInRight = 'lateral'
+            } else if (appInLeft == null) {
+                openSecondAppIn = 'left'
+                lateralApp.classList.add('divideInTwo_L');
+                appInLeft = 'lateral'
+            }
         }
         closeQuickSettings()
     }, 700);

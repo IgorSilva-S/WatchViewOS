@@ -30,6 +30,14 @@ document.getElementById('lateralAlarmsOpen').addEventListener('click', () => {
     openLateralApp(appList['alarm'])
 })
 
+document.getElementById('lateralEventsOpen').addEventListener('click', () => {
+    openLateralApp(appList['events'])
+})
+
+document.getElementById('lateralTodosOpen').addEventListener('click', () => {
+    openLateralApp(appList['todo'])
+})
+
 document.getElementById('lateralSettingsOpen').addEventListener('click', () => {
     openLateralApp(appList['settings'])
 })
