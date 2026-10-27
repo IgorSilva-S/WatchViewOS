@@ -45,7 +45,7 @@ todoManager('load')
 alarmManager('load')
 
 // Settings boot
-document.getElementById('BCLabel').style.backgroundColor = document.getElementById('bColor').value
+// document.getElementById('BCLabel').style.backgroundColor = document.getElementById('bColor').value
 
 function settingsAlign() {
     if (settings.showSec) {
@@ -84,16 +84,21 @@ settingsAlign()
 
 // Personalization Boot
 function bootPersona(data) {
-    if (data.image != null) {
+    document.getElementById('tyWall').innerText = data.howIsWallpaper != null ? data.howIsWallpaper : "Nenhum";
+    if (data.howIsWallpaper == "Imagem Local" || data.howIsWallpaper == "Imagem Web") {
         document.documentElement.style.setProperty('--wallpaperImg', `url(${data.image})`)
-        document.getElementById('tyWall').innerText = `Imagem`;
-    }
-
-    if (data.backColor != undefined) {
-        document.getElementById('BCLabel').style.backgroundColor = data.backColor
-        document.getElementById('bColor').value = data.backColor
+    } else if (data.howIsWallpaper == "Cores") {
         document.documentElement.style.setProperty('--wallpaperColor', data.backColor)
     }
+    // if (data.image != null) {
+    //     document.documentElement.style.setProperty('--wallpaperImg', `url(${data.image})`)
+    // }
+
+    // if (data.backColor != undefined) {
+    //     document.getElementById('BCLabel').style.backgroundColor = data.backColor
+    //     document.getElementById('bColor').value = data.backColor
+    //     document.documentElement.style.setProperty('--wallpaperColor', data.backColor)
+    // }
 
     if (data.opacity != undefined) {
         document.documentElement.style.setProperty('--wallpaperOpacity', data.opacity)
@@ -185,6 +190,10 @@ function appsBoot(data) {
 
 // Home Menu BOOT
 function homeMenuBOOT(data) {
+    if (!data.homeMenuPill) {
+        document.getElementById('homeMenuPill').checked = false
+    }
+
     if (data.removeTitle == true) {
         document.getElementById('homeTitle').innerText = '‎'
         document.getElementById('removeTitle').checked = true

@@ -255,31 +255,116 @@ document.getElementById('manualTZ').addEventListener('input', (e) => {
 })
 
 // Personalization
-document.getElementById('cgWall').addEventListener('change', () => {
-    const fileInput = document.getElementById('cgWall');
-    const file = fileInput.files[0];
-    const reader = new FileReader();
 
-    reader.onload = () => {
-        const imageUrl = reader.result;
-        document.documentElement.style.setProperty('--wallpaperImg', `url(${imageUrl})`)
-        document.getElementById('tyWall').innerText = `Imagem`;
+document.getElementById('changeWallpaper').addEventListener('click', () => {
+    document.getElementById('popContent').innerHTML = `
+        <h1>Modificar papel de parede</h1>
+        <br>
+        <div class="configInfo">
+            Tipo do papel de parede
+            <select id="wallpaperSelect">
+                <option value="localImg">Imagem Local</option>
+                <option value="webImg">Link Imagem Web</option>
+                <option value="colorImg">Cor</option>
+            </select>
+        </div>
+        <div id="wallpaperByImage" style="width: 100%">
+            <div class="configInfo">
+                Selecionar papel de parede
+                <label for="cgWall" class="secBtn" id="fButton">Selecionar</label>
+                <input type="file" name="" id="cgWall" accept="image/*" style="display: none;">
+            </div>
+        </div>
+        <div id="wallpaperByLink" style="width: 100%; display: none">
+            <label for="wallpaperLink">Link da Imagem</label>
+            <br><br>
+            <input type="text" placeholder="http://site.com/imagem.png" id="wallpaperLink">
+        </div>
+        <div id="wallpaperByColor" style="width: 100%; display: none">
+            <div class="configInfo">
+                Cor de fundo
+                <label for="bColor" class="colorLabel backgroundLabel" id="BCLabel"></label>
+                <input type="color" name="" id="bColor" style="width: 0; height: 0;">
+            </div>
+        </div>
+    `
 
-        personalization.image = imageUrl
+    document.getElementById('wallpaperSelect').addEventListener("input", function () {
+        document.getElementById("wallpaperByImage").style.display = "none"
+        document.getElementById("wallpaperByLink").style.display = "none"
+        document.getElementById("wallpaperByColor").style.display = "none"
+        if (this.value == "localImg") {
+            document.getElementById("wallpaperByImage").style.display = "block"
+        } else if (this.value == "webImg") {
+            document.getElementById("wallpaperByLink").style.display = "block"
+        } else if (this.value == "colorImg") {
+            document.getElementById("wallpaperByColor").style.display = "block"
+        }
+    })
+
+    document.getElementById("wallpaperLink").addEventListener("input", function () {
+        document.documentElement.style.setProperty('--wallpaperImg', `url(${this.value})`)
+        document.documentElement.style.setProperty('--wallpaperColor', "#000000")
+        document.getElementById('bColor').value = "#000000"
+        let color = document.getElementById('bColor').value
+        document.getElementById('BCLabel').style.backgroundColor = color
+        document.getElementById('tyWall').innerText = `Imagem Web`;
+        personalization.image = this.value
+        personalization.backColor = null
+        personalization.howIsWallpaper = "Imagem Web"
         localStorage.setItem('personalization', JSON.stringify(personalization))
+    })
 
-    };
+    document.getElementById('cgWall').addEventListener('change', () => {
+        const fileInput = document.getElementById('cgWall');
+        const file = fileInput.files[0];
+        const reader = new FileReader();
 
-    if (file) {
-        reader.readAsDataURL(file);
-    }
-});
+        reader.onload = () => {
+            const imageUrl = reader.result;
+            document.documentElement.style.setProperty('--wallpaperImg', `url(${imageUrl})`)
+            document.documentElement.style.setProperty('--wallpaperColor', "#000000")
+            document.getElementById('bColor').value = "#000000"
+            let color = document.getElementById('bColor').value
+            document.getElementById('BCLabel').style.backgroundColor = color
+            document.getElementById('tyWall').innerText = `Imagem Local`;
+            personalization.howIsWallpaper = "Imagem Local"
+
+            personalization.image = imageUrl
+            personalization.backColor = null
+            localStorage.setItem('personalization', JSON.stringify(personalization))
+
+        };
+
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    });
+
+    document.getElementById('bColor').value = personalization.backColor
+    document.getElementById('BCLabel').style.backgroundColor = document.getElementById('bColor').value
+    document.getElementById('bColor').addEventListener('input', () => {
+        let color = document.getElementById('bColor').value
+        document.getElementById('BCLabel').style.backgroundColor = color
+        document.documentElement.style.setProperty('--wallpaperColor', color)
+        document.documentElement.style.setProperty('--wallpaperImg', `none`)
+        document.getElementById('tyWall').innerText = `Cores`;
+        personalization.image = null
+        personalization.howIsWallpaper = "Cores"
+        personalization.backColor = color
+        localStorage.setItem('personalization', JSON.stringify(personalization))
+    })
+    openPopup()
+})
 
 document.getElementById('rWall').addEventListener('click', () => {
-    document.getElementById('tyWall').innerText = `Cores`;
+    document.getElementById('tyWall').innerText = `Nenhum`;
     document.documentElement.style.setProperty('--wallpaperImg', `none`)
-    document.getElementById('cgWall').value = '';
+    document.documentElement.style.setProperty('--wallpaperColor', "#000000")
+    // document.getElementById('cgWall').value = '';
     personalization.image = null
+    personalization.howIsWallpaper = null
+    personalization.backColor = null
     localStorage.setItem('personalization', JSON.stringify(personalization))
 })
 
@@ -320,14 +405,14 @@ document.getElementById('txtColor').addEventListener('change', e => {
     localStorage.setItem('personalization', JSON.stringify(personalization))
 })
 
-document.getElementById('bColor').addEventListener('input', () => {
-    let color = document.getElementById('bColor').value
-    document.getElementById('BCLabel').style.backgroundColor = color
-    document.documentElement.style.setProperty('--wallpaperColor', color)
+// document.getElementById('bColor').addEventListener('input', () => {
+//     let color = document.getElementById('bColor').value
+//     document.getElementById('BCLabel').style.backgroundColor = color
+//     document.documentElement.style.setProperty('--wallpaperColor', color)
 
-    personalization.backColor = color
-    localStorage.setItem('personalization', JSON.stringify(personalization))
-})
+//     personalization.backColor = color
+//     localStorage.setItem('personalization', JSON.stringify(personalization))
+// })
 
 document.getElementById('watchColor').addEventListener('change', e => {
     if (e.target.checked) {
@@ -673,6 +758,11 @@ document.getElementById('removeEvents').addEventListener('change', e => {
     }
     datas.notShowEvents = e.target.checked
     localStorage.setItem('datas', JSON.stringify(datas))
+})
+
+document.getElementById('homeMenuPill').addEventListener('input', function () {
+    homeMenuData.homeMenuPill = this.checked
+    localStorage.setItem('homeMenu', JSON.stringify(homeMenuData))
 })
 
 document.getElementById('removeTitle').addEventListener('change', e => {

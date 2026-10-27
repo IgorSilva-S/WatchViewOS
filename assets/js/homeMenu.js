@@ -115,7 +115,7 @@ document.addEventListener('contextmenu', (e) => {
 document.addEventListener("mousemove", (event) => {
     const chegouEmbaixo = event.clientY >= window.innerHeight - 2;
 
-    if (chegouEmbaixo && !homeMenuOpened) {
+    if (chegouEmbaixo && !homeMenuOpened && document.getElementById('homeMenuPill').checked) {
         document.getElementById("homeMenuOpener").style.transform =
             "translate(-50%, -20px)";
     } else {
@@ -405,6 +405,7 @@ settingsBtn.addEventListener('click', () => {
         eventsApp.style.opacity = '0'
         settingsApp.style.opacity = '0'
         actualApp = 'settings'
+        isInSubSettings = false
         setTimeout(() => {
             dncScreen.removeAttribute('style')
             wallpaper.removeAttribute('style')
@@ -436,5 +437,6 @@ settingsBtn.addEventListener('click', () => {
         }
     } else if (actualApp == 'settings') {
         settingsApp.style.display = 'block'
+        isInSubSettings = false
     }
 })

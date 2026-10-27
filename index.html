@@ -161,11 +161,12 @@
                 <div class="configInfo persona">
                     <div class="col">
                         Papel de parede
-                        <span id="tyWall">Cores</span>
+                        <span id="tyWall">Nenhum</span>
                     </div>
                     <div class="lLine">
-                        <label for="cgWall" class="primBtn" id="fButton">Alterar</label>
-                        <input type="file" name="" id="cgWall" accept="image/*" style="display: none;">
+                        <button class="primBtn" id="changeWallpaper">Modificar</button>
+                        <!-- <label for="cgWall" class="primBtn" id="fButton">Alterar</label>
+                        <input type="file" name="" id="cgWall" accept="image/*" style="display: none;"> -->
                         <button class="secBtn" id="rWall">Remover</button>
                     </div>
                 </div>
@@ -175,7 +176,10 @@
                 <input type="number" name="" id="wpOpacity" min="0" max="100" value="100">
             </div>
             <div class="configInfo">
-                Cor de destaque
+                <div class="col">
+                    Cor de destaque
+                    <span class="subText">Clique duas vezes para voltar a cor padrão</span>
+                </div>
                 <label for="aColor" class="colorLabel" id="cLabel"></label>
                 <input type="color" name="" id="aColor" style="width: 0; height: 0;" value="#292ccc">
             </div>
@@ -189,11 +193,11 @@
                 </label>
                 <input type="checkbox" name="" id="txtColor">
             </div>
-            <div class="configInfo">
+            <!-- <div class="configInfo">
                 Cor de fundo
                 <label for="bColor" class="colorLabel backgroundLabel" id="BCLabel"></label>
                 <input type="color" name="" id="bColor" style="width: 0; height: 0;">
-            </div>
+            </div> -->
             <div class="configInfo">
                 <label for="watchColor">
                     Inverter cor do relógio
@@ -580,6 +584,10 @@
             <button id="closeApp">
                 <f-icon>&#xE711;</f-icon>
                 <span>Fechar</span>
+            </button>
+            <button id="specificSettings">
+                <f-icon>&#xF035;</f-icon>
+                <span>Ajustes</span>
             </button>
             <button id="posiAppRight">
                 <f-icon>&#xE89F;</f-icon>
