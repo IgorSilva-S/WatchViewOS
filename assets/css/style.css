@@ -519,37 +519,39 @@ h6 {
 
 
 .abContainer {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+
     width: 100%;
     height: 80%;
     justify-content: space-evenly;
     align-items: center;
     box-sizing: border-box;
     padding: 30px;
+    overflow-y: auto;
 }
 
 [type="fullscreen"] .abContainer {
     position: absolute;
-    bottom: 20px;
-    align-items: flex-end;
-    margin-bottom: 120px;
+    bottom: -30px;
+    left: 0;
 }
 
 .quickSettingsPanel .abContainer {
     height: 100%;
 }
 
-[type="fullscreen"] .abContainer::after {
+[type="fullscreen"]::after {
     position: absolute;
     width: 100%;
     content: '';
     height: 350px;
     background-color: #19191977;
-    bottom: -150px;
+    bottom: -00px;
     left: -30px;
 }
 
-.homeMenuOP[type="fullscreen"] .abContainer::after {
+.homeMenuOP[type="fullscreen"]::after {
     background-color: #353535;
 }
 
@@ -592,9 +594,9 @@ h6 {
     box-shadow: 0 0 12px 5px var(--primary);
 }
 
-[type="fullscreen"] .abContainer button:hover {
+/* [type="fullscreen"] .abContainer button:hover {
     margin-bottom: 30px;
-}
+} */
 
 .abContainer button f-icon {
     font-size: 80px;
